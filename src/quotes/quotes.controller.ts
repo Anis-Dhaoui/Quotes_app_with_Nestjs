@@ -1,6 +1,6 @@
 import { UpdateQuoteDto } from './dto/update-quote.dto';
 import { CreateQuoteDto } from './dto/create-quote.dto';
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Res } from '@nestjs/common';
 import { QuotesService } from './quotes.service';
 
 @Controller('quotes')
@@ -38,9 +38,7 @@ export class QuotesController {
         }
     }
 
-
     @Get()
-    @HttpCode(HttpStatus.NO_CONTENT)
     async getQuotes(@Res() response) {
         try {
             const quotesData = await this.quoteService.getAllQuotes();
