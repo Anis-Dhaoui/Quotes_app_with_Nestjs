@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Res, HttpStatus, HttpCode, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Res, HttpStatus, Put } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -23,7 +23,7 @@ export class UsersController {
           error: 'Conflict'
         })
       }
-      return res.json(error);
+      return res.status(error.status).json(error.response);
     }
   }
 
@@ -36,11 +36,7 @@ export class UsersController {
         users: users
       })
     } catch (error) {
-      return res.status(HttpStatus.NOT_FOUND).json({
-        statusCode: 404,
-        message: 'Error: User data not found!',
-        error: 'Not Found'
-      });
+      return res.status(error.status).json(error.response);
     }
 
   }
@@ -54,11 +50,7 @@ export class UsersController {
         user: user
       })
     } catch (error) {
-      return res.status(HttpStatus.NOT_FOUND).json({
-        statusCode: 404,
-        message: 'Error: User not found!',
-        error: 'User Not Found'
-      });
+      return res.status(error.status).json(error.response);
     }
   }
 
@@ -78,7 +70,7 @@ export class UsersController {
           error: 'Conflict'
         })
       }
-      return res.json(error);
+      return res.status(error.status).json(error.response);
     }
   }
 
@@ -91,11 +83,7 @@ export class UsersController {
         deletedUser: deletedUser
       })
     } catch (error) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: 400,
-        message: 'Error: User not created!',
-        error: 'Bad Request'
-      });
+      return res.status(error.status).json(error.response);
     }
   }
 }
