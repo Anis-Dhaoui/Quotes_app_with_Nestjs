@@ -12,7 +12,7 @@ export class QuotesController {
         try {
             const newQuote = await this.quoteService.createQuote(createQuoteDto);
             return response.status(HttpStatus.CREATED).json({
-                message: 'Student has been created successfully',
+                message: 'Quote has been created successfully',
                 newQuote,
             });
         } catch (err) {
@@ -21,20 +21,6 @@ export class QuotesController {
                 message: 'Error: Quote not created!',
                 error: 'Bad Request'
             });
-        }
-    }
-
-    @Put('/:id')
-    async updateQuote(@Res() response, @Param('id') quoteId: string,
-        @Body() updateQuoteDto: UpdateQuoteDto) {
-        try {
-            const existingQuote = await this.quoteService.updateQuote(quoteId, updateQuoteDto);
-            return response.status(HttpStatus.OK).json({
-                message: 'Quote has been successfully updated',
-                existingQuote,
-            });
-        } catch (err) {
-            return response.status(err.status).json(err.response);
         }
     }
 
@@ -57,6 +43,20 @@ export class QuotesController {
                 this.quoteService.getQuote(quoteId);
             return response.status(HttpStatus.OK).json({
                 message: 'Quote found successfully', existingQuote,
+            });
+        } catch (err) {
+            return response.status(err.status).json(err.response);
+        }
+    }
+
+    @Put('/:id')
+    async updateQuote(@Res() response, @Param('id') quoteId: string,
+        @Body() updateQuoteDto: UpdateQuoteDto) {
+        try {
+            const existingQuote = await this.quoteService.updateQuote(quoteId, updateQuoteDto);
+            return response.status(HttpStatus.OK).json({
+                message: 'Quote has been successfully updated',
+                existingQuote,
             });
         } catch (err) {
             return response.status(err.status).json(err.response);

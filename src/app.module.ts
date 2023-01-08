@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { QuoteSchema } from './quotes/quote.schema';
 import { QuotesController } from './quotes/quotes.controller';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { QuotesController } from './quotes/quotes.controller';
     MongooseModule.forFeature([
       { name: 'Quote', schema: QuoteSchema }
     ]),
+    UsersModule,
   ],
   controllers: [AppController, QuotesController],
   providers: [AppService, QuotesService],
