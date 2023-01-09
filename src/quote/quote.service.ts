@@ -16,7 +16,7 @@ export class QuoteService {
   }
 
   async findAll(): Promise<IQuote[]> {
-    const quoteData = await this.quoteModel.find();
+    const quoteData = await this.quoteModel.find().populate('owner');
     if (!quoteData || quoteData.length == 0) {
       throw new NotFoundException('Quotes data not found!');
     }
@@ -24,7 +24,7 @@ export class QuoteService {
   }
 
   async findOne(quoteId: string): Promise<IQuote> {
-    const quote = await this.quoteModel.findById(quoteId).exec();
+    const quote = await this.quoteModel.findById(quoteId).populate('owner');
     if (!quote) {
       throw new NotFoundException(`Quote #${quoteId} not found`);
     }
