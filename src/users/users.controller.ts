@@ -46,7 +46,7 @@ export class UsersController {
     try {
       const user = await this.usersService.findOne(userId);
       return res.status(HttpStatus.OK).json({
-        message: `User ${user.firsName} fetched successfully`,
+        message: `User ${user.firstName} fetched successfully`,
         user: user
       })
     } catch (error) {

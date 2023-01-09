@@ -16,9 +16,23 @@ export class QuoteController {
         quote: newQuote,
       });
     } catch (err) {
+      if (err.errors && err.errors['owner.0'].reason.path == "owner") {
+        return response.status(HttpStatus.NOT_FOUND).json({
+          statusCode: 404,
+          message: 'Error: User does not exist!',
+          error: 'Not Found'
+        });
+      }
+      if (err && err.code == 11000 && err.keyPattern.author == 1) {
+        return response.status(HttpStatus.CONFLICT).json({
+          statusCode: 409,
+          message: `Error: The same quote of '${err.keyValue.author}' is already exists`,
+          error: 'Conflict'
+        })
+      }
       return response.status(HttpStatus.BAD_REQUEST).json({
         statusCode: 400,
-        message: 'Error: Quote not created!',
+        message: 'Error: Quote could not be added!',
         error: 'Bad Request'
       });
     }

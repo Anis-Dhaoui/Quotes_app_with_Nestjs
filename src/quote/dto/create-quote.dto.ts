@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsString, MaxLength } from "class-validator";
+import { INTERESTS } from './../../users/schema/interests.enum';
+import { IsEnum, IsNotEmpty, IsString, MaxLength } from "class-validator";
 import { ObjectId } from "mongoose";
 
 export class CreateQuoteDto {
@@ -22,7 +23,7 @@ export class CreateQuoteDto {
     @IsNotEmpty()
     readonly quote: string;
 
-    @IsString()
+    @IsEnum(INTERESTS)
     @MaxLength(20)
     @IsNotEmpty()
     readonly category: string;
