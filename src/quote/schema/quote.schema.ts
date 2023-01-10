@@ -3,9 +3,9 @@ import * as mongoose from 'mongoose';
 import { INTERESTS } from "src/users/schema/interests.enum";
 import { User } from "src/users/schema/user.schema";
 
-@Schema()
+@Schema({ timestamps: true })
 export class Quote {
-    @Prop({ type: [{ type: mongoose.Types.ObjectId, ref: 'User' }] })
+    @Prop({ type: mongoose.Types.ObjectId, ref: 'User' })
     owner: User;
 
     @Prop()
