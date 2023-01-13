@@ -1,17 +1,33 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
 import { INTERESTS } from "./interests.enum";
+import * as bcrypt from 'bcrypt';
 
 @Schema()
 export class User {
-    @Prop()
+    @Prop({ required: true })
     firstName: string;
-    @Prop()
+    @Prop({ required: true })
     lastName: string;
-    @Prop({ unique: true })
+    @Prop({ unique: true, required: true })
     email: string;
-    @Prop()
+    @Prop({ required: true })
+    password: string;
+    @Prop({ required: true })
     userPic: string;
-    @Prop()
+    @Prop({ required: true })
     interests: INTERESTS[];
 }
 export const UserSchema = SchemaFactory.createForClass(User);
+
+UserSchema.pre('save', async function (next: (err?: Error) => void) {
+    try {
+        if (!this.isModified('password')) {
+            return next();
+        }
+        const hashed = await bcrypt.hash(this['password'], 10);
+        this['password'] = hashed;
+        return next();
+    } catch (err) {
+        return next(err);
+    }
+});

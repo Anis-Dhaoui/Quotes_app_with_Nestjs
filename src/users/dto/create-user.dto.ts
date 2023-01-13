@@ -1,4 +1,4 @@
-import { ArrayMinSize, IsArray, IsEmail, IsEnum, IsNotEmpty, IsString, MaxLength, Validate } from "class-validator";
+import { ArrayMinSize, IsArray, IsEmail, IsEnum, IsNotEmpty, IsString, MaxLength, MinLength, Validate } from "class-validator";
 import { INTERESTS } from "../schema/interests.enum";
 
 export class CreateUserDto {
@@ -22,6 +22,11 @@ export class CreateUserDto {
     @MaxLength(100)
     @IsNotEmpty()
     readonly userPic: string;
+
+    @IsString()
+    @MaxLength(50)
+    @IsNotEmpty()
+    readonly password: string;
 
     @IsArray()
     // "each" tells class-validator to run the validation on each item of the array

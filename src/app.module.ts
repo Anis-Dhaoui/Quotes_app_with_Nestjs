@@ -7,10 +7,7 @@ import { QuoteModule } from './quote/quote.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://quotes_user:KbLfBjdIQGtvsbFw@cluster0.7ivjqle.mongodb.net/?retryWrites=true&w=majority',
-      { dbName: 'quotesDB' }
-    ),
+    MongooseModule.forRoot(process.env.MONGO_URI, { dbName: 'quotesDB' }),
     UsersModule,
     QuoteModule,
   ],
