@@ -24,14 +24,20 @@ export class AuthService {
 
   //$$$$$$$$$$$$$$$$$$// VALIDATE EMAIL AND PASSWORD //$$$$$$$$$$$$$$$$$$//
   async validateUser(email: string, password: string): Promise<any> {
-    Logger.log('infooooooooooooooooooooooooooooooooooooooooooooo')
+    Logger.log('ValidateUser(email, password) METHOD INVOKDED');
 
     const user = await this.getUser({ email });
-    if (!user) return null;
-    const passwordValid = await bcrypt.compare(password, user.password)
     if (!user) {
       throw new HttpException('No account belongs to this email', HttpStatus.NOT_FOUND);
     }
+
+    const passwordValid = await bcrypt.compare(password, user.password)
+    Logger.warn(passwordValid);
+
+    if (!passwordValid) {
+      throw new HttpException('Incorrect password!', HttpStatus.UNAUTHORIZED);
+    }
+
     if (user && passwordValid) {
       return user;
     }
@@ -39,10 +45,10 @@ export class AuthService {
   }
 
   //$$$$$$$$$$$$$$$$$$// SIGNIN //$$$$$$$$$$$$$$$$$$//
-  async login(user: any) {
-    console.log("xxxxxxxxxxxxxxxxxx");
+  async login(user: IUser) {
     const payload = { email: user.email, sub: user._id };
     return {
+      user: user,
       access_token: this.jwtService.sign(payload),
     };
   }
