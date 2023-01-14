@@ -7,26 +7,6 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
-  @Post()
-  async create(@Res() res, @Body() createUserDto: CreateUserDto) {
-    try {
-      const newUser = await this.usersService.create(createUserDto);
-      return res.status(HttpStatus.CREATED).json({
-        message: 'User has been created successfully',
-        user: newUser,
-      });
-    } catch (error) {
-      if (error && error.keyPattern.email == 1) {
-        return res.status(HttpStatus.CONFLICT).json({
-          statusCode: 409,
-          message: `Error: ${error.keyValue.email} belongs to other account`,
-          error: 'Conflict'
-        })
-      }
-      return res.status(error.status).json(error.response);
-    }
-  }
-
   @Get()
   async findAll(@Res() res) {
     try {
