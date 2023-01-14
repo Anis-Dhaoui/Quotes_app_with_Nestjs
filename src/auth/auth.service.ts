@@ -1,6 +1,5 @@
 import { UsersService } from './../users/users.service';
 import { CreateUserDto } from './../users/dto/create-user.dto';
-import { Model } from 'mongoose';
 import { IUser } from './../users/entities/user.entity';
 import { Injectable, HttpStatus, HttpException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
