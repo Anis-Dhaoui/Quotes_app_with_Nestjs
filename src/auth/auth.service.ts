@@ -1,30 +1,25 @@
+import { UsersService } from './../users/users.service';
 import { CreateUserDto } from './../users/dto/create-user.dto';
 import { Model } from 'mongoose';
 import { IUser } from './../users/entities/user.entity';
 import { Injectable, HttpStatus, HttpException } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { Logger } from '@nestjs/common';
 
 @Injectable()
 export class AuthService {
-  constructor(@InjectModel('User') private userModel: Model<IUser>, private jwtService: JwtService) { }
+  constructor(private jwtService: JwtService, private userService: UsersService) { }
 
   //$$$$$$$$$$$$$$$$$$// SIGNUP //$$$$$$$$$$$$$$$$$$//
   async register(createUserDto: CreateUserDto): Promise<IUser> {
-
-    // const user = await this.userModel.findOne({ email: createUserDto.email });
-    // if (user) {
-    //   throw new HttpException('user already exists', HttpStatus.BAD_REQUEST);
-    // }
-    const newUser = await new this.userModel(createUserDto);
+    const newUser = await new this.userService.userModel(createUserDto);
     return newUser.save();
   }
 
   //$$$$$$$$$$$$$$$$$$// CHECK IF USER EXISTS WHEN TRYING TO AUTHENTICATE //$$$$$$$$$$$$$$$$$$//
   async getUser(query: object): Promise<IUser> {
-    return this.userModel.findOne(query);
+    return this.userService.userModel.findOne(query);
   }
 
   //$$$$$$$$$$$$$$$$$$// VALIDATE EMAIL AND PASSWORD //$$$$$$$$$$$$$$$$$$//

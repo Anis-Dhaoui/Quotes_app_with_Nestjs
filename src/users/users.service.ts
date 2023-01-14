@@ -7,7 +7,7 @@ import { IUser } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel('User') private userModel: Model<IUser>) { }
+  constructor(@InjectModel('User') public userModel: Model<IUser>) { }
 
   async findAll(): Promise<IUser[]> {
     const userData = await this.userModel.find();
