@@ -1,4 +1,4 @@
-import { ArrayMinSize, IsArray, IsEmail, IsEnum, IsNotEmpty, IsString, MaxLength, MinLength, Validate } from "class-validator";
+import { ArrayMinSize, IsArray, IsBoolean, IsEmail, IsEnum, IsNotEmpty, IsString, MaxLength, MinLength, Validate } from "class-validator";
 import { INTERESTS } from "../schema/interests.enum";
 
 export class CreateUserDto {
@@ -28,9 +28,12 @@ export class CreateUserDto {
     @IsNotEmpty()
     readonly password: string;
 
-    @IsArray()
     // "each" tells class-validator to run the validation on each item of the array
+    @IsArray()
     @IsEnum(INTERESTS, { each: true })
     @ArrayMinSize(1)
     readonly interests: INTERESTS[];
+
+    @IsBoolean()
+    readonly admin: false;
 }

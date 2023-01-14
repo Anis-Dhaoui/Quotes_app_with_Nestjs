@@ -16,6 +16,8 @@ export class User {
     userPic: string;
     @Prop({ required: true })
     interests: INTERESTS[];
+    @Prop({ default: false })
+    admin: boolean;
 }
 export const UserSchema = SchemaFactory.createForClass(User);
 

@@ -8,4 +8,5 @@ export interface IUser extends Document {
     readonly password: string;
     readonly userPic: string;
     readonly interests: INTERESTS[];
+    readonly admin: boolean;
 }
