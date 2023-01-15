@@ -58,12 +58,12 @@ export class UsersController {
     }
   }
 
-  @Delete(':id')
-  async remove(@Res() res, @Param('id') userId: string) {
+  @Delete(':userId')
+  async remove(@Res() res, @Param('userId') userId: string) {
     try {
       const deletedUser = await this.usersService.remove(userId);
       return res.status(HttpStatus.OK).json({
-        message: `User ${deletedUser.id} deleted successfully`,
+        message: `User ${deletedUser._id} deleted successfully`,
         deletedUser: deletedUser
       })
     } catch (error) {

@@ -17,7 +17,7 @@ export class User {
     userPic: string;
     @Prop({ required: true })
     interests: INTERESTS[];
-    @Prop({ default: ROLES.User })
+    @Prop({ default: ROLES.User, immutable: true })
     role: ROLES;
 }
 export const UserSchema = SchemaFactory.createForClass(User);
