@@ -1,14 +1,16 @@
+import { Roles } from './../auth/RBAC/verify-admin/roles.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { Controller, Get, Post, Body, Param, Delete, Res, HttpStatus, Put, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { RoleGuard } from 'src/auth/RBAC/verify-admin/roles.guard';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
-  @UseGuards(JwtAuthGuard)
+  @Roles('Admin')
+  @UseGuards(JwtAuthGuard, RoleGuard)
   @Get()
   async findAll(@Res() res) {
     try {

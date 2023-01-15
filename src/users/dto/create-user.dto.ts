@@ -33,7 +33,4 @@ export class CreateUserDto {
     @IsEnum(INTERESTS, { each: true })
     @ArrayMinSize(1)
     readonly interests: INTERESTS[];
-
-    @IsBoolean()
-    readonly admin: false;
 }

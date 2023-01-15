@@ -1,3 +1,4 @@
+import { ROLES } from './roles.enum';
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
 import { INTERESTS } from "./interests.enum";
 import * as bcrypt from 'bcrypt';
@@ -16,8 +17,8 @@ export class User {
     userPic: string;
     @Prop({ required: true })
     interests: INTERESTS[];
-    @Prop({ default: false })
-    admin: boolean;
+    @Prop({ default: ROLES.User })
+    role: ROLES;
 }
 export const UserSchema = SchemaFactory.createForClass(User);
 
