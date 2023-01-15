@@ -1,3 +1,4 @@
+import { OwnerGuard } from './../auth/RBAC/verify-owner/owner.guard';
 import { Roles } from './../auth/RBAC/verify-admin/roles.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { Controller, Get, Post, Body, Param, Delete, Res, HttpStatus, Put, UseGuards } from '@nestjs/common';
@@ -10,7 +11,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
   @Roles('Admin')
-  @UseGuards(JwtAuthGuard, RoleGuard)
+  @UseGuards(JwtAuthGuard, RoleGuard, OwnerGuard)
   @Get()
   async findAll(@Res() res) {
     try {
@@ -25,8 +26,10 @@ export class UsersController {
 
   }
 
-  @Get(':id')
-  async findOne(@Res() res, @Param('id') userId: string) {
+  @Roles('Admin')
+  @UseGuards(JwtAuthGuard, RoleGuard, OwnerGuard)
+  @Get(':userId')
+  async findOne(@Res() res, @Param('userId') userId: string) {
     try {
       const user = await this.usersService.findOne(userId);
       return res.status(HttpStatus.OK).json({
@@ -38,12 +41,14 @@ export class UsersController {
     }
   }
 
-  @Put(':id')
-  async update(@Res() res, @Param('id') userId: string, @Body() updateUserDto: UpdateUserDto) {
+  @Roles('Admin')
+  @UseGuards(JwtAuthGuard, RoleGuard, OwnerGuard)
+  @Put(':userId')
+  async update(@Res() res, @Param('userId') userId: string, @Body() updateUserDto: UpdateUserDto) {
     try {
       const updatedUser = await this.usersService.update(userId, updateUserDto);
       return res.status(HttpStatus.OK).json({
-        message: `User ${updatedUser.id} updated successfully`,
+        message: `User ${updatedUser._id} updated successfully`,
         updatedUser: updatedUser
       })
     } catch (error) {

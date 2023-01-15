@@ -7,7 +7,7 @@ import { IQuote } from './entities/quote.entity';
 
 @Injectable()
 export class QuoteService {
-  constructor(@InjectModel('Quote') private quoteModel: Model<IQuote>) { }
+  constructor(@InjectModel('Quote') public quoteModel: Model<IQuote>) { }
 
 
   async create(createQuoteDto: CreateQuoteDto): Promise<IQuote> {
