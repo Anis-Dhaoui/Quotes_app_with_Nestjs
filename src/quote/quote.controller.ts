@@ -1,4 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Res, HttpStatus, Put } from '@nestjs/common';
+import { OwnerGuard } from './../auth/RBAC/verify-owner/owner.guard';
+import { RoleGuard } from './../auth/RBAC/verify-admin/roles.guard';
+import { Roles } from './../auth/RBAC/verify-admin/roles.decorator';
+import { JwtAuthGuard } from './../auth/guards/jwt-auth.guard';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Res, HttpStatus, Put, UseGuards, Req } from '@nestjs/common';
 import { QuoteService } from './quote.service';
 import { CreateQuoteDto } from './dto/create-quote.dto';
 import { UpdateQuoteDto } from './dto/update-quote.dto';
@@ -7,8 +11,10 @@ import { UpdateQuoteDto } from './dto/update-quote.dto';
 export class QuoteController {
   constructor(private readonly quoteService: QuoteService) { }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
-  async create(@Res() response, @Body() createQuoteDto: CreateQuoteDto) {
+  async create(@Res() response, @Req() req, @Body() createQuoteDto: CreateQuoteDto) {
+    (createQuoteDto.owner as any) = req.user._id;
     try {
       const newQuote = await this.quoteService.create(createQuoteDto);
       return response.status(HttpStatus.CREATED).json({
@@ -63,6 +69,8 @@ export class QuoteController {
     }
   }
 
+  @Roles('Admin', 'User')
+  @UseGuards(JwtAuthGuard, RoleGuard, OwnerGuard)
   @Put(':quoteId')
   async update(@Res() response, @Param('quoteId') quoteId: string, @Body() updateQuoteDto: UpdateQuoteDto) {
     try {
@@ -76,6 +84,8 @@ export class QuoteController {
     }
   }
 
+  @Roles('Admin', 'User')
+  @UseGuards(JwtAuthGuard, RoleGuard, OwnerGuard)
   @Delete(':quoteId')
   async remove(@Res() response, @Param('quoteId') quoteId: string) {
     try {

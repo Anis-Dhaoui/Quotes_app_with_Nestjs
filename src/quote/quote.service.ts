@@ -16,7 +16,7 @@ export class QuoteService {
   }
 
   async findAll(): Promise<IQuote[]> {
-    const quoteData = await this.quoteModel.find().populate('owner');
+    const quoteData = await this.quoteModel.find().exec();
     if (!quoteData || quoteData.length == 0) {
       throw new NotFoundException('Quotes data not found!');
     }
