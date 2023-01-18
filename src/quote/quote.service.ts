@@ -1,5 +1,5 @@
 import { InjectModel } from '@nestjs/mongoose';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { CreateQuoteDto } from './dto/create-quote.dto';
 import { UpdateQuoteDto } from './dto/update-quote.dto';
 import { Model } from 'mongoose';
@@ -15,8 +15,9 @@ export class QuoteService {
     return newQuote.save();
   }
 
-  async findAll(): Promise<IQuote[]> {
-    const quoteData = await this.quoteModel.find().exec();
+  async findAll(query: Object): Promise<IQuote[]> {
+    Logger.log(query);
+    const quoteData = await this.quoteModel.find(query).exec();
     if (!quoteData || quoteData.length == 0) {
       throw new NotFoundException('Quotes data not found!');
     }
