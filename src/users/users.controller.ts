@@ -11,7 +11,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
   @Roles('Admin')
-  @UseGuards(JwtAuthGuard, RoleGuard, OwnerGuard)
+  @UseGuards(JwtAuthGuard, RoleGuard)
   @Get()
   async findAll(@Res() res) {
     try {
@@ -26,7 +26,7 @@ export class UsersController {
 
   }
 
-  @Roles('Admin')
+  @Roles('Admin', 'User')
   @UseGuards(JwtAuthGuard, RoleGuard, OwnerGuard)
   @Get(':userId')
   async findOne(@Res() res, @Param('userId') userId: string) {
@@ -41,7 +41,7 @@ export class UsersController {
     }
   }
 
-  @Roles('Admin')
+  @Roles('Admin', 'User')
   @UseGuards(JwtAuthGuard, RoleGuard, OwnerGuard)
   @Put(':userId')
   async update(@Res() res, @Param('userId') userId: string, @Body() updateUserDto: UpdateUserDto) {
@@ -63,6 +63,8 @@ export class UsersController {
     }
   }
 
+  @Roles('Admin')
+  @UseGuards(JwtAuthGuard, RoleGuard)
   @Delete(':userId')
   async remove(@Res() res, @Param('userId') userId: string) {
     try {

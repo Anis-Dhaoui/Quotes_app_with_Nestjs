@@ -12,12 +12,15 @@ export class OwnerGuard implements CanActivate {
     const params = request.params;
 
     if (params.userId) {
-      return user._id == params.userId;
+      Logger.log(user._id == params.userId || user.role == 'Admin');
+      return user._id == params.userId || user.role == 'Admin';
+
     }
 
     if (params.quoteId) {
       const quote = await this.quoteService.findOne(params.quoteId);
-      return quote.owner == user._id
+      Logger.warn(quote.owner)
+      return quote.owner == user._id || user.role == 'Admin';
     }
 
     return true;

@@ -18,7 +18,7 @@ export class AuthService {
 
   //$$$$$$$$$$$$$$$$$$// CHECK IF USER EXISTS WHEN TRYING TO AUTHENTICATE //$$$$$$$$$$$$$$$$$$//
   async getUser(query: object): Promise<IUser> {
-    return this.userService.userModel.findOne(query);
+    return this.userService.userModel.findOne(query, '+password');
   }
 
   //$$$$$$$$$$$$$$$$$$// VALIDATE EMAIL AND PASSWORD //$$$$$$$$$$$$$$$$$$//
