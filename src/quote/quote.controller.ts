@@ -105,7 +105,7 @@ export class QuoteController {
   async findByInterests(@Res() res, @Req() req) {
     Logger.log(req.user.interests)
     try {
-      const quotesData = await this.quoteService.findAllByUsersInterests({ category: req.user.interests });
+      const quotesData = await this.quoteService.findAllByUsersInterests(req.user.interests);
       return res.status(HttpStatus.OK).json({
         message: 'All quotes data found successfully', quotesData,
       });

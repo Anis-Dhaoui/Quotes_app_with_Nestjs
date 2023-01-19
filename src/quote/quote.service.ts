@@ -48,11 +48,13 @@ export class QuoteService {
     return deletedQuote;
   }
 
-  async findAllByUsersInterests(query: Object): Promise<IQuote[]> {
-    Logger.log(query);
-    let quoteData = await this.quoteModel.find(query).exec();
-    if (quoteData.length == 0) {
-      quoteData = await this.quoteModel.find().exec();
+  async findAllByUsersInterests(query: any): Promise<IQuote[]> {
+
+    let quoteData = await this.quoteModel.find().exec();
+    quoteData.sort((a, b) => (query.includes(a.category)) ? -1 : 0);
+
+    if (!quoteData || quoteData.length == 0) {
+      throw new NotFoundException('Quotes data not found!');
     }
 
     return quoteData;
