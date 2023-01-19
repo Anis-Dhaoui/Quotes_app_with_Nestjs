@@ -100,6 +100,7 @@ export class QuoteController {
     }
   }
 
+  // $$$$$$$$$$$$$$$$$$$$$$$ SORT QUOTES ACCORDING TO USER INTERESTS $$$$$$$$$$$$$$$$$$$$$$$
   @UseGuards(JwtAuthGuard)
   @Get('/user/interests')
   async findByInterests(@Res() res, @Req() req) {
