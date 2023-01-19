@@ -16,7 +16,7 @@ export class QuoteService {
   }
 
   async findAll(query: Object): Promise<IQuote[]> {
-    Logger.log(query);
+    // Logger.log(query);
     const quoteData = await this.quoteModel.find(query).exec();
     if (!quoteData || quoteData.length == 0) {
       throw new NotFoundException('Quotes data not found!');
@@ -46,5 +46,15 @@ export class QuoteService {
       throw new NotFoundException(`Quote #${quoteId} not found`);
     }
     return deletedQuote;
+  }
+
+  async findAllByUsersInterests(query: Object): Promise<IQuote[]> {
+    Logger.log(query);
+    let quoteData = await this.quoteModel.find(query).exec();
+    if (quoteData.length == 0) {
+      quoteData = await this.quoteModel.find().exec();
+    }
+
+    return quoteData;
   }
 }

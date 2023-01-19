@@ -2,7 +2,7 @@ import { OwnerGuard } from './../auth/RBAC/verify-owner/owner.guard';
 import { RoleGuard } from './../auth/RBAC/verify-admin/roles.guard';
 import { Roles } from './../auth/RBAC/verify-admin/roles.decorator';
 import { JwtAuthGuard } from './../auth/guards/jwt-auth.guard';
-import { Controller, Get, Post, Body, Param, Delete, Res, HttpStatus, Put, UseGuards, Req, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Res, HttpStatus, Put, UseGuards, Req, Query, Logger } from '@nestjs/common';
 import { QuoteService } from './quote.service';
 import { CreateQuoteDto } from './dto/create-quote.dto';
 import { UpdateQuoteDto } from './dto/update-quote.dto';
@@ -44,19 +44,20 @@ export class QuoteController {
     }
   }
 
-  @Get()
-  async findAll(@Res() response, @Query() query) {
+  @Get('/')
+  async findAll(@Res() res, @Query() query) {
+
     try {
       const quotesData = await this.quoteService.findAll(query);
-      return response.status(HttpStatus.OK).json({
+      return res.status(HttpStatus.OK).json({
         message: 'All quotes data found successfully', quotesData,
       });
     } catch (err) {
-      return response.status(err.status).json(err.response);
+      return res.status(err.status).json(err.response);
     }
   }
 
-  @Get(':quoteId')
+  @Get('/:quoteId')
   async findOne(@Res() response, @Param('quoteId') quoteId: string) {
     try {
       const existingQuote = await
@@ -96,6 +97,20 @@ export class QuoteController {
       });
     } catch (err) {
       return response.status(err.status).json(err.response);
+    }
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/user/interests')
+  async findByInterests(@Res() res, @Req() req) {
+    Logger.log(req.user.interests)
+    try {
+      const quotesData = await this.quoteService.findAllByUsersInterests({ category: req.user.interests });
+      return res.status(HttpStatus.OK).json({
+        message: 'All quotes data found successfully', quotesData,
+      });
+    } catch (err) {
+      return res.status(err.status).json(err.response);
     }
   }
 }
