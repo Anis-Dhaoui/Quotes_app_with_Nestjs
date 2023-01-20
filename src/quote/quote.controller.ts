@@ -103,10 +103,10 @@ export class QuoteController {
   // $$$$$$$$$$$$$$$$$$$$$$$ SORT QUOTES ACCORDING TO USER INTERESTS $$$$$$$$$$$$$$$$$$$$$$$
   @UseGuards(JwtAuthGuard)
   @Get('/user/interests')
-  async findByInterests(@Res() res, @Req() req) {
-    Logger.log(req.user.interests)
+  async findByInterests(@Res() res, @Req() req, @Query() query) {
+
     try {
-      const quotesData = await this.quoteService.findAllByUsersInterests(req.user.interests);
+      const quotesData = await this.quoteService.findAllByUsersInterests(req.user.interests, query);
       return res.status(HttpStatus.OK).json({
         message: 'All quotes data found successfully', quotesData,
       });

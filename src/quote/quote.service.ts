@@ -59,15 +59,17 @@ export class QuoteService {
     return deletedQuote;
   }
 
-  async findAllByUsersInterests(query: any): Promise<IQuote[]> {
-
+  async findAllByUsersInterests(interests, query): Promise<IQuote[]> {
+    Logger.log(interests)
+    // Logger.warn(query);
     let quoteData = await this.quoteModel.find().exec();
-    quoteData.sort((a, b) => (query.includes(a.category)) ? -1 : 0);
+    quoteData.sort((a, b) => (interests.includes(a.category)) ? -1 : 0);
+    const page = quoteData.slice((query.page - 1) * query.limit, query.page * query.limit);
 
     if (!quoteData || quoteData.length == 0) {
       throw new NotFoundException('Quotes data not found!');
     }
 
-    return quoteData;
+    return page;
   }
 }
