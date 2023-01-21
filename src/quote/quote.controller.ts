@@ -57,7 +57,7 @@ export class QuoteController {
     }
   }
 
-  @Get('/:quoteId')
+  @Get('/detail/:quoteId')
   async findOne(@Res() response, @Param('quoteId') quoteId: string) {
     try {
       const existingQuote = await
@@ -102,11 +102,24 @@ export class QuoteController {
 
   // $$$$$$$$$$$$$$$$$$$$$$$ SORT QUOTES ACCORDING TO USER INTERESTS $$$$$$$$$$$$$$$$$$$$$$$
   @UseGuards(JwtAuthGuard)
-  @Get('/user/interests')
+  @Get('/interests')
   async findByInterests(@Res() res, @Req() req, @Query() query) {
 
     try {
       const quotesData = await this.quoteService.findAllByUsersInterests(req.user.interests, query);
+      return res.status(HttpStatus.OK).json({
+        message: 'All quotes data found successfully', quotesData,
+      });
+    } catch (err) {
+      return res.status(err.status).json(err.response);
+    }
+  }
+
+  @Get('/search')
+  async searchByAuthor(@Res() res, @Req() req, @Query() query) {
+    Logger.warn(query)
+    try {
+      const quotesData = await this.quoteService.findByAuthor(query);
       return res.status(HttpStatus.OK).json({
         message: 'All quotes data found successfully', quotesData,
       });

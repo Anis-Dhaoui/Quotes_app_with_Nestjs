@@ -72,4 +72,16 @@ export class QuoteService {
 
     return page;
   }
+
+  async findByAuthor(query): Promise<IQuote[]> {
+    Logger.log(query)
+    const regex = new RegExp(query.author, 'i') // i for case insensitive
+    let data = await this.quoteModel.find({ author: { $regex: regex } });
+
+    if (!data || data.length == 0) {
+      throw new NotFoundException('Quotes data not found!');
+    }
+
+    return data;
+  }
 }
