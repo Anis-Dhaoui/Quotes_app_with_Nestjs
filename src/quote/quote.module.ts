@@ -11,6 +11,6 @@ import { QuoteSchema } from './schema/quote.schema';
   ],
   controllers: [QuoteController],
   providers: [QuoteService],
-  exports: [QuoteService]
+  exports: [QuoteService, MongooseModule.forFeature([{ name: 'Quote', schema: QuoteSchema }])]
 })
 export class QuoteModule { }

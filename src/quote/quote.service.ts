@@ -19,8 +19,8 @@ export class QuoteService {
     Logger.log(query.category);
 
     const pageOpts = {
-      page: query.page || 0,
-      limit: query.limit || 5
+      page: query.page,
+      limit: query.limit
     }
 
     const quoteData = await this.quoteModel.find(query.category ? { category: query.category } : {})

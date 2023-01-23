@@ -23,7 +23,6 @@ export class UsersController {
     } catch (error) {
       return res.status(error.status).json(error.response);
     }
-
   }
 
   @Roles('Admin', 'User')
