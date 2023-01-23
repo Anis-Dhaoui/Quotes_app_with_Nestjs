@@ -27,7 +27,6 @@ export class CreateQuoteDto {
     @IsNotEmpty()
     readonly category: string;
 
-    @IsEnum(STATUS)
-    @IsNotEmpty()
+    @IsEmpty()
     readonly status: string;
 }

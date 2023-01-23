@@ -7,10 +7,13 @@ import { QuoteSchema } from './schema/quote.schema';
 @Global()
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: 'Quote', schema: QuoteSchema }]) // 3. Setup the mongoose module to use the User schema
+    MongooseModule.forFeature([{ name: 'Quote', schema: QuoteSchema }]) // Setup the mongoose module to use the User schema
   ],
   controllers: [QuoteController],
   providers: [QuoteService],
-  exports: [QuoteService, MongooseModule.forFeature([{ name: 'Quote', schema: QuoteSchema }])]
+  exports: [
+    QuoteService,
+    MongooseModule.forFeature([{ name: 'Quote', schema: QuoteSchema }])
+  ]
 })
 export class QuoteModule { }

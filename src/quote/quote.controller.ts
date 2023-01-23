@@ -1,3 +1,4 @@
+import { NotificationService } from './../notification/notification.service';
 import { OwnerGuard } from './../auth/RBAC/verify-owner/owner.guard';
 import { RoleGuard } from './../auth/RBAC/verify-admin/roles.guard';
 import { Roles } from './../auth/RBAC/verify-admin/roles.decorator';
@@ -6,10 +7,14 @@ import { Controller, Get, Post, Body, Param, Delete, Res, HttpStatus, Put, UseGu
 import { QuoteService } from './quote.service';
 import { CreateQuoteDto } from './dto/create-quote.dto';
 import { UpdateQuoteDto } from './dto/update-quote.dto';
+var ObjectId = require('mongoose').Types.ObjectId;
 
 @Controller('quotes')
 export class QuoteController {
-  constructor(private readonly quoteService: QuoteService) { }
+  constructor(
+    private readonly quoteService: QuoteService,
+    private readonly notificationService: NotificationService
+  ) { }
 
   @UseGuards(JwtAuthGuard)
   @Post()
@@ -17,6 +22,15 @@ export class QuoteController {
     (createQuoteDto.owner as any) = req.user._id;
     try {
       const newQuote = await this.quoteService.create(createQuoteDto);
+
+      // Add new notification
+      await this.notificationService.createNotif({
+        sender: req.user._id,
+        reciever: ObjectId('63c446853e6fa1e888823b3d'), //Admin ID
+        title: `${req.user.firstName} ${req.user.lastName} added new quote`,
+        context: ObjectId(newQuote._id)
+      })
+
       return response.status(HttpStatus.CREATED).json({
         message: 'Quote has been created successfully',
         quote: newQuote,

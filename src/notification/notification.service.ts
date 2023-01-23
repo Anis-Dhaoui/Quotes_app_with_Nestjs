@@ -15,7 +15,8 @@ export class NotificationService {
 
   async findAllNotifs(): Promise<INotification[]> {
 
-    const notifData = await this.notifModel.find().exec();
+    const notifData = await this.notifModel.find()
+      .populate('context sender', '-interests -email -role');
 
     if (!notifData || notifData.length == 0) {
       throw new NotFoundException('There is no notifications');
