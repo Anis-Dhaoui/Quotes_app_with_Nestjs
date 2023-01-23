@@ -2,7 +2,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { INotification } from './entities/notification.entity';
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { CreateNotificationDto } from './dto/create-notification.dto';
-import { Model } from 'mongoose';
+import { Model, Query, ObjectId } from 'mongoose';
 
 @Injectable()
 export class NotificationService {
@@ -13,10 +13,17 @@ export class NotificationService {
     return notif.save();
   }
 
-  async findAllNotifs(): Promise<INotification[]> {
-
-    const notifData = await this.notifModel.find()
-      .populate('context sender', '-interests -email -role');
+  async findAllNotifs(query: any, userId: ObjectId): Promise<INotification[]> {
+    const pageOpts = {
+      page: query.page,
+      limit: query.limit
+    }
+    const notifData = await this.notifModel.find({ reciever: userId })
+      .populate('context sender', '-interests -email -role -owner -likedBy -updatedAt')
+      .sort({ createdAt: -1 })
+      .skip(pageOpts.page * pageOpts.limit)
+      .limit(pageOpts.limit)
+      .exec();
 
     if (!notifData || notifData.length == 0) {
       throw new NotFoundException('There is no notifications');
