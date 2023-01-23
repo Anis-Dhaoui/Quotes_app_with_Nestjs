@@ -1,6 +1,6 @@
-import { ROLES } from './../schema/roles.enum';
+import { INTERESTS } from '../enum/interests.enum';
+import { ROLES } from '../enum/roles.enum';
 import { Document } from 'mongoose';
-import { INTERESTS } from '../schema/interests.enum';
 
 export interface IUser extends Document {
     readonly firstName: string;

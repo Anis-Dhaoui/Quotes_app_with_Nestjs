@@ -1,6 +1,7 @@
-import { INTERESTS } from './../../users/schema/interests.enum';
+import { STATUS } from './../enum/status.enum';
 import { IsEmpty, IsEnum, IsNotEmpty, IsString, MaxLength } from "class-validator";
 import { ObjectId } from "mongoose";
+import { INTERESTS } from "src/users/enum/interests.enum";
 
 export class CreateQuoteDto {
 
@@ -25,4 +26,8 @@ export class CreateQuoteDto {
     @MaxLength(20)
     @IsNotEmpty()
     readonly category: string;
+
+    @IsEnum(STATUS)
+    @IsNotEmpty()
+    readonly status: string;
 }

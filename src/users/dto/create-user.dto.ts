@@ -1,5 +1,5 @@
 import { ArrayMinSize, IsArray, IsBoolean, IsEmail, IsEnum, IsNotEmpty, IsString, MaxLength, MinLength, Validate } from "class-validator";
-import { INTERESTS } from "../schema/interests.enum";
+import { INTERESTS } from "../enum/interests.enum";
 
 export class CreateUserDto {
     @IsString()

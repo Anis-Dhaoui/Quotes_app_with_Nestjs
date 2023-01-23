@@ -1,7 +1,7 @@
-import { ROLES } from './roles.enum';
+import { ROLES } from '../enum/roles.enum';
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
-import { INTERESTS } from "./interests.enum";
 import * as bcrypt from 'bcrypt';
+import { INTERESTS } from '../enum/interests.enum';
 
 @Schema()
 export class User {

@@ -1,5 +1,6 @@
+import { STATUS } from './../enum/status.enum';
 import { Document, ObjectId } from 'mongoose';
-import { INTERESTS } from 'src/users/schema/interests.enum';
+import { INTERESTS } from 'src/users/enum/interests.enum';
 
 export interface IQuote extends Document {
     readonly owner: ObjectId;
@@ -7,4 +8,6 @@ export interface IQuote extends Document {
     readonly authorPic: string;
     readonly quote: string;
     readonly category: INTERESTS;
+    readonly status: STATUS;
+    readonly likedBy: [ObjectId];
 }
