@@ -19,7 +19,7 @@ export class NotificationService {
       limit: query.limit
     }
     const notifData = await this.notifModel.find({ reciever: userId })
-      .populate('context sender', '-interests -email -role -owner -likedBy -updatedAt')
+      .populate('sender', '-interests -email -role -owner -likedBy -updatedAt -_id -__v')
       .sort({ createdAt: -1 })
       .skip(pageOpts.page * pageOpts.limit)
       .limit(pageOpts.limit)
@@ -31,11 +31,16 @@ export class NotificationService {
     return notifData;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} notification`;
+  async findOneNotif(notifId: ObjectId) {
+    const quote = await this.notifModel.findById(notifId)
+      .populate('context sender', '-interests -email -role -owner -likedBy -updatedAt -__v');
+    if (!quote) {
+      throw new NotFoundException(`Notification #${notifId} not found`);
+    }
+    return quote;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} notification`;
+  remove(notifId: number) {
+    return `This action removes a #${notifId} notification`;
   }
 }

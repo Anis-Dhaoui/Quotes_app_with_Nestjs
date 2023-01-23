@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongoose';
 import { JwtAuthGuard } from './../auth/guards/jwt-auth.guard';
 import { Controller, Get, Post, Body, Param, Delete, Res, HttpStatus, Query, UseGuards, Req } from '@nestjs/common';
 import { NotificationService } from './notification.service';
@@ -20,9 +21,17 @@ export class NotificationController {
     }
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.notificationService.findOne(+id);
+  @Get('/:notifId')
+  async findOne(@Param('notifId') notifId: ObjectId, @Res() res) {
+    try {
+      const existingQuote = await
+        this.notificationService.findOneNotif(notifId);
+      return res.status(HttpStatus.OK).json({
+        message: 'Quote found successfully', existingQuote,
+      });
+    } catch (err) {
+      return res.status(err.status).json(err.res);
+    }
   }
 
   @Delete(':id')
