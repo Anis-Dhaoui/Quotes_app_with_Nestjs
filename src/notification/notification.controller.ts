@@ -1,30 +1,32 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Res, HttpStatus } from '@nestjs/common';
 import { NotificationService } from './notification.service';
 import { CreateNotificationDto } from './dto/create-notification.dto';
-import { UpdateNotificationDto } from './dto/update-notification.dto';
 
-@Controller('notification')
+@Controller('notifications')
 export class NotificationController {
-  constructor(private readonly notificationService: NotificationService) {}
+  constructor(private readonly notificationService: NotificationService) { }
 
   @Post()
-  create(@Body() createNotificationDto: CreateNotificationDto) {
-    return this.notificationService.create(createNotificationDto);
+  create(@Res() res, @Body() createNotificationDto: CreateNotificationDto) {
+    try {
+      return this.notificationService.createNotif(createNotificationDto);
+    } catch (error) {
+      return res.status(HttpStatus.BAD_REQUEST).json({
+        statusCode: 400,
+        message: 'Error: Notification could not be added!',
+        error: 'Bad Request'
+      });
+    }
   }
 
   @Get()
   findAll() {
-    return this.notificationService.findAll();
+    return this.notificationService.findAllNotifs();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.notificationService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateNotificationDto: UpdateNotificationDto) {
-    return this.notificationService.update(+id, updateNotificationDto);
   }
 
   @Delete(':id')

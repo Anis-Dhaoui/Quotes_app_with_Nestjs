@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongoose';
-import { IsBoolean, IsNotEmpty, IsString } from "class-validator";
+import { IsBoolean, IsEmpty, IsNotEmpty, IsString } from "class-validator";
 
 export class CreateNotificationDto {
     @IsNotEmpty()
@@ -15,7 +15,7 @@ export class CreateNotificationDto {
     @IsNotEmpty()
     context: ObjectId;
 
-    @IsNotEmpty()
+    @IsEmpty()
     @IsBoolean()
     read: boolean;
 }
