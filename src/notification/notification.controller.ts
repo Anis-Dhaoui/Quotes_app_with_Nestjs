@@ -39,8 +39,16 @@ export class NotificationController {
     }
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.notificationService.remove(+id);
+  @Delete(':notifId')
+  async remove(@Param('notifId') notifId: ObjectId, @Res() res) {
+    try {
+      const deletedNotif = await this.notificationService.removeNotif(notifId);
+      return res.status(HttpStatus.OK).json({
+        message: 'Notification deleted successfully',
+        deletedNotif,
+      });
+    } catch (err) {
+      return res.status(err.status).json(err.response);
+    }
   }
 }

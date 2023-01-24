@@ -40,7 +40,11 @@ export class NotificationService {
     return quote;
   }
 
-  remove(notifId: number) {
-    return `This action removes a #${notifId} notification`;
+  async removeNotif(notifId: ObjectId) {
+    const deletedNotif = await this.notifModel.findByIdAndDelete(notifId);
+    if (!deletedNotif) {
+      throw new NotFoundException(`Notification #${notifId} not found`);
+    }
+    return deletedNotif;
   }
 }
