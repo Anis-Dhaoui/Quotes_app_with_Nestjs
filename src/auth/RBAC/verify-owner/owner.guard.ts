@@ -1,9 +1,10 @@
+import { NotificationService } from './../../../notification/notification.service';
 import { QuoteService } from './../../../quote/quote.service';
 import { CanActivate, ExecutionContext, Injectable, Logger } from '@nestjs/common';
 
 @Injectable()
 export class OwnerGuard implements CanActivate {
-  constructor(private quoteService: QuoteService) { }
+  constructor(private quoteService: QuoteService, private notificationService: NotificationService) { }
 
   async canActivate(context: ExecutionContext) {
 
@@ -21,6 +22,12 @@ export class OwnerGuard implements CanActivate {
       const quote = await this.quoteService.findOne(params.quoteId);
       Logger.warn(quote.owner)
       return quote.owner == user._id || user.role == 'Admin';
+    }
+
+    if (params.notifId) {
+      const notification = await this.notificationService.findOneNotif(params.notifId);
+      Logger.warn(notification.reciever.toString() == user._id.toString())
+      return notification.reciever.toString() == user._id.toString();
     }
 
     return true;

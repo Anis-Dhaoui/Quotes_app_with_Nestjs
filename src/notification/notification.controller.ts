@@ -1,3 +1,6 @@
+import { Roles } from './../auth/RBAC/verify-admin/roles.decorator';
+import { OwnerGuard } from './../auth/RBAC/verify-owner/owner.guard';
+import { RoleGuard } from './../auth/RBAC/verify-admin/roles.guard';
 import { ObjectId } from 'mongoose';
 import { JwtAuthGuard } from './../auth/guards/jwt-auth.guard';
 import { Controller, Get, Post, Body, Param, Delete, Res, HttpStatus, Query, UseGuards, Req } from '@nestjs/common';
@@ -21,13 +24,15 @@ export class NotificationController {
     }
   }
 
+  @Roles('Admin', 'User')
+  @UseGuards(JwtAuthGuard, RoleGuard, OwnerGuard)
   @Get('/:notifId')
   async findOne(@Param('notifId') notifId: ObjectId, @Res() res) {
     try {
-      const existingQuote = await
+      const notification = await
         this.notificationService.findOneNotif(notifId);
       return res.status(HttpStatus.OK).json({
-        message: 'Quote found successfully', existingQuote,
+        message: 'Notfication found successfully', notification,
       });
     } catch (err) {
       return res.status(err.status).json(err.res);
