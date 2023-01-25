@@ -2,7 +2,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { CreateQuoteDto } from './dto/create-quote.dto';
 import { UpdateQuoteDto } from './dto/update-quote.dto';
-import { Model } from 'mongoose';
+import { Model, ObjectId } from 'mongoose';
 import { IQuote } from './entities/quote.entity';
 
 @Injectable()
@@ -83,5 +83,15 @@ export class QuoteService {
     }
 
     return data;
+  }
+
+  async findMyQuotes(userId: ObjectId): Promise<IQuote[]> {
+
+    const myQuotesData = await this.quoteModel.find({ owner: userId }, '-owner').sort({ 'createdAt': -1, 'status': -1 });
+
+    if (!myQuotesData || myQuotesData.length == 0) {
+      throw new NotFoundException('You have no Quotes yet');
+    }
+    return myQuotesData;
   }
 }

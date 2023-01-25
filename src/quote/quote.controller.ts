@@ -16,6 +16,7 @@ export class QuoteController {
     private readonly notificationService: NotificationService
   ) { }
 
+  // $$$$$$$$$$$$$$$$$$$$$$ AUTHENTICATED USER CAN POST NEW QUOTE $$$$$$$$$$$$$$$$$$$$$$
   @UseGuards(JwtAuthGuard)
   @Post()
   async create(@Res() response, @Req() req, @Body() createQuoteDto: CreateQuoteDto) {
@@ -58,6 +59,7 @@ export class QuoteController {
     }
   }
 
+  // $$$$$$$$$$$$$$$$$$$$$$ EVERYONE CAN FETCH ALL QUOTES $$$$$$$$$$$$$$$$$$$$$$
   @Get('/')
   async findAll(@Res() res, @Query() query) {
 
@@ -71,6 +73,7 @@ export class QuoteController {
     }
   }
 
+  // $$$$$$$$$$$$$$$$$$$$$$ EVERYONE CAN VISIT QUOTE DETAIL $$$$$$$$$$$$$$$$$$$$$$
   @Get('/detail/:quoteId')
   async findOne(@Res() response, @Param('quoteId') quoteId: string) {
     try {
@@ -84,6 +87,7 @@ export class QuoteController {
     }
   }
 
+  // $$$$$$$$$$$$$$$$$$$$$$ USER CAN UPDATE HIS OWN QUOTE (ADMIN has this privelge as well) $$$$$$$$$$$$$$$$$$$$$$
   @Roles('Admin', 'User')
   @UseGuards(JwtAuthGuard, RoleGuard, OwnerGuard)
   @Put(':quoteId')
@@ -99,6 +103,7 @@ export class QuoteController {
     }
   }
 
+  // $$$$$$$$$$$$$$$$$$$$$$ USER CAN REMOVE HIS OWN QUOTE (ADMIN has this privelge as well) $$$$$$$$$$$$$$$$$$$$$$
   @Roles('Admin', 'User')
   @UseGuards(JwtAuthGuard, RoleGuard, OwnerGuard)
   @Delete(':quoteId')
@@ -129,6 +134,7 @@ export class QuoteController {
     }
   }
 
+  // $$$$$$$$$$$$$$$$$$$$$$ USERS CAN SEARCH FOR QUOTES BY AUTHOR NAME $$$$$$$$$$$$$$$$$$$$$$
   @Get('/search')
   async searchByAuthor(@Res() res, @Req() req, @Query() query) {
     Logger.warn(query)
@@ -142,4 +148,18 @@ export class QuoteController {
     }
   }
 
+  // $$$$$$$$$$$$$$$$$$$$$$ EVERY USER CAN FETCH HIS OWN QUOTES $$$$$$$$$$$$$$$$$$$$$$
+  @Roles('User')
+  @UseGuards(JwtAuthGuard, RoleGuard)
+  @Get('/myquotes')
+  async getMyQuotes(@Res() res, @Req() req) {
+    try {
+      const myQuotes = await this.quoteService.findMyQuotes(req.user._id);
+      return res.status(HttpStatus.OK).json({
+        message: 'All your quotes data fetched successfully', myQuotes,
+      });
+    } catch (err) {
+      return res.status(err.status).json(err.response);
+    }
+  }
 }
