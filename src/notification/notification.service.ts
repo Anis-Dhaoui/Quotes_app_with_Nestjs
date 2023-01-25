@@ -44,9 +44,8 @@ export class NotificationService {
   }
 
   async findOneNotif(notifId: ObjectId) {
-    const quote = await this.notifModel.findById(notifId)
+    const quote = await this.notifModel.findByIdAndUpdate(notifId, { read: true }, { new: true })
       .populate('context sender', '-interests -email -role -owner -likedBy -updatedAt -__v');
-    await this.notifModel.findByIdAndUpdate(notifId, { read: true })
     if (!quote) {
       throw new NotFoundException(`Notification #${notifId} not found`);
     }
