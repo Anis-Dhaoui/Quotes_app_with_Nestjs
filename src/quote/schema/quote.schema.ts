@@ -21,8 +21,8 @@ export class Quote {
     @Prop()
     category: INTERESTS;
 
-    @Prop({ default: STATUS.PENDING })
-    status: STATUS;
+    @Prop({ default: STATUS.PENDING, type: String, enum: STATUS })
+    status;
 
     @Prop([{ type: mongoose.Types.ObjectId, ref: 'User' }])
     likedBy: [User]

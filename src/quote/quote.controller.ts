@@ -23,7 +23,7 @@ export class QuoteController {
     try {
       const newQuote = await this.quoteService.create(createQuoteDto);
 
-      // Add new notification
+      // Send notification to the ADMIN in order to review this quote
       await this.notificationService.createNotif({
         sender: req.user._id,
         reciever: ObjectId('63c446853e6fa1e888823b3d'), //Admin ID
@@ -141,4 +141,5 @@ export class QuoteController {
       return res.status(err.status).json(err.response);
     }
   }
+
 }
