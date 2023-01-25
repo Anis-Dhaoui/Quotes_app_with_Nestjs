@@ -18,12 +18,24 @@ export class NotificationService {
       page: query.page,
       limit: query.limit
     }
-    const notifData = await this.notifModel.find({ reciever: userId })
-      .populate('sender', '-interests -email -role -owner -likedBy -updatedAt -_id -__v')
-      .sort({ createdAt: -1 })
-      .skip(pageOpts.page * pageOpts.limit)
-      .limit(pageOpts.limit)
-      .exec();
+
+    const notifData = await this.notifModel.aggregate([
+      { $match: { reciever: userId } },
+      { $sort: { createdAt: -1 } },
+      { $skip: pageOpts.page * pageOpts.limit },
+      { $limit: +pageOpts.limit },
+      { $sort: { read: 1 } },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'sender',
+          foreignField: '_id',
+          as: 'user',
+          pipeline: [{ $project: { _id: 0, firstName: 1, lastName: 1, userPic: 1 } }]
+        }
+      },
+      { $project: { sender: 0, reciever: 0, context: 0, updatedAt: 0, __v: 0 } }
+    ])
 
     if (!notifData || notifData.length == 0) {
       throw new NotFoundException('There is no notifications');
@@ -34,6 +46,7 @@ export class NotificationService {
   async findOneNotif(notifId: ObjectId) {
     const quote = await this.notifModel.findById(notifId)
       .populate('context sender', '-interests -email -role -owner -likedBy -updatedAt -__v');
+    await this.notifModel.findByIdAndUpdate(notifId, { read: true })
     if (!quote) {
       throw new NotFoundException(`Notification #${notifId} not found`);
     }

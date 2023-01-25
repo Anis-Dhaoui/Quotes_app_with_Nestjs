@@ -39,6 +39,8 @@ export class NotificationController {
     }
   }
 
+  @Roles('Admin', 'User')
+  @UseGuards(JwtAuthGuard, RoleGuard, OwnerGuard)
   @Delete(':notifId')
   async remove(@Param('notifId') notifId: ObjectId, @Res() res) {
     try {
