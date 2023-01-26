@@ -14,9 +14,9 @@ export class InteractionsController {
   @Post(':quoteId')
   async likeQuote(@Param('quoteId') quoteId: ObjectId, @Res() res, @Req() req) {
     try {
-      const likedQuote = await this.interactionsService.likeQ(quoteId, req.user._id);
+      const likedQuote = await this.interactionsService.likeDislikeQ(quoteId, req.user._id);
       return res.status(HttpStatus.OK).json({
-        message: 'Quote Liked Successfully!', likedQuote,
+        message: 'Inrerraction has been performed successfully!', likedQuote,
       });
     } catch (err) {
       return res.status(err.status).json(err.response);
