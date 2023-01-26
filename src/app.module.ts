@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { NotificationModule } from './notification/notification.module';
+import { InteractionsModule } from './interactions/interactions.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { NotificationModule } from './notification/notification.module';
     AuthModule,
     AdminModule,
     NotificationModule,
+    InteractionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
