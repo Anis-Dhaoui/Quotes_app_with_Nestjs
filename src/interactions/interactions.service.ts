@@ -1,19 +1,22 @@
 import { IQuote } from './../quote/entities/quote.entity';
 import { InjectModel } from '@nestjs/mongoose';
-import { Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { Model, ObjectId } from 'mongoose';
 
 @Injectable()
 export class InteractionsService {
   constructor(@InjectModel('Quote') public quoteModel: Model<IQuote>) { }
 
-
-  findAll() {
-    return `This action returns all interactions`;
+  async likeQ(quoteId: ObjectId, userId: ObjectId) {
+    const likedQuote = await this.quoteModel.findByIdAndUpdate(quoteId, { $addToSet: { likedBy: userId } }, { new: true });
+    if (!likedQuote) {
+      throw new NotFoundException(`Quote #${quoteId} not found`);
+    }
+    return likedQuote;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} interaction`;
+  async findAll() {
+    return `This action returns all interactions`;
   }
 
 }

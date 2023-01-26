@@ -25,7 +25,7 @@ export class Quote {
     status;
 
     @Prop([{ type: mongoose.Types.ObjectId, ref: 'User' }])
-    likedBy: [User]
+    likedBy: User
 }
 export const QuoteSchema = SchemaFactory.createForClass(Quote);
 // Condition for author and quote (together) must be unique 
