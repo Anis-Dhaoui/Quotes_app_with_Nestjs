@@ -1,10 +1,10 @@
+import { UsersService } from './../users/users.service';
 import { NotificationService } from './../notification/notification.service';
 import { RoleGuard } from 'src/auth/RBAC/verify-admin/roles.guard';
 import { JwtAuthGuard } from './../auth/guards/jwt-auth.guard';
 import { ObjectId } from 'mongoose';
 import { Roles } from './../auth/RBAC/verify-admin/roles.decorator';
-import { QuoteService } from './../quote/quote.service';
-import { Controller, Get, Query, Res, HttpStatus, Param, UseGuards, Put, Req } from '@nestjs/common';
+import { Controller, Get, Query, Res, HttpStatus, Param, UseGuards, Put, Req, Delete } from '@nestjs/common';
 import { AdminService } from './admin.service';
 // var ObjectId = require('mongoose').Types.ObjectId;
 
@@ -12,9 +12,43 @@ import { AdminService } from './admin.service';
 export class AdminController {
   constructor(
     private readonly adminService: AdminService,
-    private readonly notificationService: NotificationService
+    private readonly notificationService: NotificationService,
+    private readonly usersService: UsersService
   ) { }
 
+  //$$$$$$$$$$$$$$$$$$$$$$$$// FETCH ALL USERS  //$$$$$$$$$$$$$$$$$$$$$$$$//
+  @Roles('Admin')
+  @UseGuards(JwtAuthGuard, RoleGuard)
+  @Get('allusers')
+  async findAll(@Res() res) {
+    try {
+      const users = await this.usersService.findAll();
+      return res.status(HttpStatus.OK).json({
+        message: 'Fetched all users successfully',
+        users: users
+      })
+    } catch (error) {
+      return res.status(error.status).json(error.response);
+    }
+  }
+
+  //$$$$$$$$$$$$$$$$$$$$$$$$// REMOVE SPECICIFIC USER  //$$$$$$$$$$$$$$$$$$$$$$$$//
+  @Roles('Admin')
+  @UseGuards(JwtAuthGuard, RoleGuard)
+  @Delete('/allusers/:userId')
+  async remove(@Res() res, @Param('userId') userId: string) {
+    try {
+      const deletedUser = await this.usersService.remove(userId);
+      return res.status(HttpStatus.OK).json({
+        message: `User ${deletedUser._id} deleted successfully`,
+        deletedUser: deletedUser
+      })
+    } catch (error) {
+      return res.status(error.status).json(error.response);
+    }
+  }
+
+  //$$$$$$$$$$$$$$$$$$$$$$$$// APPROVE OR DISAPROVE POSTED QUOTES  //$$$$$$$$$$$$$$$$$$$$$$$$//
   @Roles('Admin')
   @UseGuards(JwtAuthGuard, RoleGuard)
   @Put('/:quoteId')

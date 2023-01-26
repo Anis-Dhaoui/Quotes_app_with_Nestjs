@@ -10,21 +10,6 @@ import { RoleGuard } from 'src/auth/RBAC/verify-admin/roles.guard';
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
-  @Roles('Admin')
-  @UseGuards(JwtAuthGuard, RoleGuard)
-  @Get()
-  async findAll(@Res() res) {
-    try {
-      const users = await this.usersService.findAll();
-      return res.status(HttpStatus.OK).json({
-        message: 'Fetched all users successfully',
-        users: users
-      })
-    } catch (error) {
-      return res.status(error.status).json(error.response);
-    }
-  }
-
   @Roles('Admin', 'User')
   @UseGuards(JwtAuthGuard, RoleGuard, OwnerGuard)
   @Get(':userId')
@@ -58,21 +43,6 @@ export class UsersController {
           error: 'Conflict'
         })
       }
-      return res.status(error.status).json(error.response);
-    }
-  }
-
-  @Roles('Admin')
-  @UseGuards(JwtAuthGuard, RoleGuard)
-  @Delete(':userId')
-  async remove(@Res() res, @Param('userId') userId: string) {
-    try {
-      const deletedUser = await this.usersService.remove(userId);
-      return res.status(HttpStatus.OK).json({
-        message: `User ${deletedUser._id} deleted successfully`,
-        deletedUser: deletedUser
-      })
-    } catch (error) {
       return res.status(error.status).json(error.response);
     }
   }
