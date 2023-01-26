@@ -50,7 +50,7 @@ export class NotificationService {
 
   async findOneNotif(notifId: ObjectId, user: any): Promise<INotification> {
     const isAdmin = user.role == 'Admin';
-    Logger.error(isAdmin)
+    Logger.log("is admin? ", isAdmin)
     const quote = await this.notifModel.findByIdAndUpdate(notifId, { read: true }, { new: true })
       .populate(
         isAdmin ? 'context sender' : 'context',
