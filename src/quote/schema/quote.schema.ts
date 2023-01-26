@@ -24,7 +24,7 @@ export class Quote {
     @Prop({ default: STATUS.PENDING, type: String, enum: STATUS })
     status;
 
-    @Prop([{ type: mongoose.Types.ObjectId, ref: 'User' }])
+    @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }])
     likedBy: User
 }
 export const QuoteSchema = SchemaFactory.createForClass(Quote);

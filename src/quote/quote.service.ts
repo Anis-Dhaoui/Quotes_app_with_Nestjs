@@ -36,7 +36,7 @@ export class QuoteService {
   }
 
   async findOne(quoteId: string): Promise<IQuote> {
-    const quote = await this.quoteModel.findById(quoteId).populate('owner');
+    const quote = await this.quoteModel.findById(quoteId).populate('owner likedBy', 'firstName lastName userPic');
     if (!quote) {
       throw new NotFoundException(`Quote #${quoteId} not found`);
     }
