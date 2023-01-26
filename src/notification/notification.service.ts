@@ -13,14 +13,14 @@ export class NotificationService {
     return notif.save();
   }
 
-  async findAllNotifs(query: any, userId: ObjectId): Promise<INotification[]> {
+  async findAllNotifs(query: any, user: any): Promise<INotification[]> {
     const pageOpts = {
       page: query.page,
       limit: query.limit
     }
 
     const notifData = await this.notifModel.aggregate([
-      { $match: { reciever: userId } },
+      { $match: { reciever: user._id } },
       { $sort: { createdAt: -1 } },
       { $skip: pageOpts.page * pageOpts.limit },
       { $limit: +pageOpts.limit },
@@ -34,7 +34,12 @@ export class NotificationService {
           pipeline: [{ $project: { _id: 0, firstName: 1, lastName: 1, userPic: 1 } }]
         }
       },
-      { $project: { sender: 0, reciever: 0, context: 0, updatedAt: 0, __v: 0 } }
+      {
+        $project:
+          user.role == 'Admin' ?
+            { sender: 0, reciever: 0, context: 0, updatedAt: 0, __v: 0 } :
+            { sender: 0, reciever: 0, context: 0, updatedAt: 0, __v: 0, user: 0 }
+      }
     ])
 
     if (!notifData || notifData.length == 0) {
@@ -43,9 +48,14 @@ export class NotificationService {
     return notifData;
   }
 
-  async findOneNotif(notifId: ObjectId) {
+  async findOneNotif(notifId: ObjectId, user: any): Promise<INotification> {
+    const isAdmin = user.role == 'Admin';
+    Logger.error(isAdmin)
     const quote = await this.notifModel.findByIdAndUpdate(notifId, { read: true }, { new: true })
-      .populate('context sender', '-interests -email -role -owner -likedBy -updatedAt -__v');
+      .populate(
+        isAdmin ? 'context sender' : 'context',
+        '-interests -email -role -owner -likedBy -updatedAt -__v'
+      );
     if (!quote) {
       throw new NotFoundException(`Notification #${notifId} not found`);
     }

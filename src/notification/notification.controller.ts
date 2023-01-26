@@ -15,7 +15,7 @@ export class NotificationController {
   @Get()
   async findAll(@Res() res, @Req() req, @Query() query) {
     try {
-      const notifData = await this.notificationService.findAllNotifs(query, req.user._id);
+      const notifData = await this.notificationService.findAllNotifs(query, req.user);
       return res.status(HttpStatus.OK).json({
         message: 'All notifications data found successfully', notifData,
       });
@@ -27,10 +27,9 @@ export class NotificationController {
   @Roles('Admin', 'User')
   @UseGuards(JwtAuthGuard, RoleGuard, OwnerGuard)
   @Get('/:notifId')
-  async findOne(@Param('notifId') notifId: ObjectId, @Res() res) {
+  async findOne(@Param('notifId') notifId: ObjectId, @Res() res, @Req() req) {
     try {
-      const notification = await
-        this.notificationService.findOneNotif(notifId);
+      const notification = await this.notificationService.findOneNotif(notifId, req.user);
       return res.status(HttpStatus.OK).json({
         message: 'Notfication found successfully', notification,
       });

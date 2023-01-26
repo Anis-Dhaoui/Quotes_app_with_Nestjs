@@ -25,7 +25,7 @@ export class OwnerGuard implements CanActivate {
     }
 
     if (params.notifId) {
-      const notification = await this.notificationService.findOneNotif(params.notifId);
+      const notification = await this.notificationService.findOneNotif(params.notifId, user);
       Logger.warn(notification.reciever.toString() == user._id.toString())
       return notification.reciever.toString() == user._id.toString();
     }

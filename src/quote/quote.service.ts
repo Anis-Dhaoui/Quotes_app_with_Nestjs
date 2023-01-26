@@ -89,7 +89,7 @@ export class QuoteService {
 
     const myQuotesData = await this.quoteModel
       .find({ owner: userId }, ['-owner', '-__v'])
-      .sort({ 'createdAt': -1 });
+      .sort({ 'createdAt': -1, 'status': 1 });
 
     if (!myQuotesData || myQuotesData.length == 0) {
       throw new NotFoundException('You have no Quotes yet');
