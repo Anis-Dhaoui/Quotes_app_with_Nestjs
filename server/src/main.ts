@@ -9,8 +9,8 @@ async function bootstrap() {
   // HANDLING ALL EXCEPTIONS
   const httpAdapter = app.get(HttpAdapterHost);
   app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
-
   app.useGlobalPipes(new ValidationPipe());
+  app.enableCors();
 
   await app.listen(3000);
 }
