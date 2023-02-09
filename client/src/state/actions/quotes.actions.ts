@@ -11,7 +11,7 @@ interface QuotesLoading {
 
 interface GetAllQuotes {
     type: quotesActionsTypes.GET_ALL_QUOTES,
-    payload: IQuote[]
+    payload: IResponse
 }
 
 interface QuotesFailed {
@@ -19,4 +19,4 @@ interface QuotesFailed {
     payload: string
 }
 
-export type ACTION = GetAllQuotes | QuotesLoading | QuotesFailed
+export type ACTION = QuotesLoading | GetAllQuotes | QuotesFailed

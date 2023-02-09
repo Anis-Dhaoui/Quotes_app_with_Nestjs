@@ -3,13 +3,13 @@ import { ACTION } from "../actions/quotes.actions"
 
 interface STATE {
     loading: boolean,
-    quotes?: IQuote[],
+    quotes?: IResponse,
     error?: string | null
 }
 
 const initialState = {
     loading: false,
-    quotes: [],
+    quotes: undefined,
     error: null
 }
 
