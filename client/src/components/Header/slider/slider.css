@@ -1,18 +1,5 @@
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: "Work Sans", sans-serif;
-    font-weight: 400;
-    height: 100vh;
-}
-
 .wrapper {
     margin-top: 150px;
-    background-color: #08BDBD;
     height: 100%;
     width: 100%;
     display: flex;

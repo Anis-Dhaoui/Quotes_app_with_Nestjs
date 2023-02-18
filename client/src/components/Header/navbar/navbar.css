@@ -1,4 +1,12 @@
-        @import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css';
+        /* @import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css'; */
+        .custom-toggler {
+            color: #fff !important;
+            border-color: #fff !important;
+        }
+
+        .custom-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
+        }
 
         section {
             background: url(https://images.pexels.com/photos/414102/pexels-photo-414102.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
@@ -14,30 +22,25 @@
         }
 
         .navbar-brand {
-            color: #fff;
-            font-size: 45px;
+            color: #fff !important;
+            font-size: 65px;
             font-family: Germania;
             cursor: pointer;
         }
 
-        .icon-bar {
-            background-color: #000;
-
-        }
-
-        .nav {
+        .navbar-nav a {
             font-family: Lithos Pro;
-            color: #fff;
-            padding: 10px 20px;
+            color: #fff !important;
+            padding-top: 10px;
         }
 
-        .nav li {
+        .navbar-nav li {
             padding: 10px;
             cursor: pointer;
             font-size: 16px;
         }
 
-        .nav li:after {
+        .navbar-nav li:after {
             content: '';
             display: block;
             border-bottom: 2px solid #38fd07;
@@ -45,7 +48,7 @@
             transition: .2s ease-in-out;
         }
 
-        .nav li:hover:after {
+        .navbar-nav li:hover:after {
             transform: scaleX(1);
         }
 
@@ -85,7 +88,7 @@
             }
 
             .navbar-collapse {
-                background: #501e27;
+                background: #292828;
             }
 
             .slider-container {

@@ -1,13 +1,16 @@
-import 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js';
+// import 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js';
 
 window.onscroll = function () { scrollFunction(); };
 
 function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
 
-        document.getElementById("navbar").style.background = "black";
+        document.querySelector("nav").style.background = "black";
+        document.getElementById('toggler-id').classList.add('custom-toggler');
+        document.getElementById('toggler-icon-id').classList.add('custom-toggler-icon');
     } else {
-
-        document.getElementById("navbar").style.background = "none";
+        document.querySelector("nav").style.background = "none";
+        document.getElementById('toggler-id').classList.remove('custom-toggler');
+        document.getElementById('toggler-icon-id').classList.remove('custom-toggler-icon');
     }
 }
