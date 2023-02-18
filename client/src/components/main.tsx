@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
+import HeaderCmp from './Header/navbar/navbar.Header'
 // import { fetchQuotes } from '../state/actions-creators/quotes.actions-creators';
 // import { useAppDispatch, useAppSelector } from '../state/store.state';
-import HeaderCmp from './Header/header.Header';
 
 export default function Main() {
     // const dispatch = useAppDispatch();
@@ -36,9 +36,38 @@ export default function Main() {
     return (
         <>
             <HeaderCmp />
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
+            <h1>aaaaaaaaaaaaaaaa</h1>
         </>
-
-        // <h1>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</h1>
-
     )
 }

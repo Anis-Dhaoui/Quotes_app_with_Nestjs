@@ -1,6 +1,7 @@
 import React from 'react'
-import './header.css';
-import './header.js';
+import './navbar.css';
+import './navbar.js';
+import SliderCmp from '../slider/slider.Header';
 
 
 function HeaderCmp() {
@@ -26,9 +27,11 @@ function HeaderCmp() {
                     </ul>
                 </div>
             </div>
-            {/* <div className="para">
-                <h3>Scroll down to see the navbar effect..</h3>
-            </div> */}
+            <div className="slider-container">
+                <h3>Best Quotes</h3>
+                <SliderCmp />
+            </div>
+
         </section>
     )
 }

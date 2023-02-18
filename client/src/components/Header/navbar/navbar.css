@@ -49,13 +49,16 @@
             transform: scaleX(1);
         }
 
-        .para {
+        .slider-container {
             min-height: 500px;
+            min-width: 100%;
+            position: absolute;
+            top: 120px;
         }
 
-        .para h3 {
+        .slider-container h3 {
             text-align: center;
-            margin-top: 15%;
+            margin-bottom: -21px;
             color: #fff;
             font-family: nyala;
             font-size: 44px;
@@ -85,7 +88,7 @@
                 background: #501e27;
             }
 
-            .para {
+            .slider-container {
                 min-height: 800px;
             }
         }
