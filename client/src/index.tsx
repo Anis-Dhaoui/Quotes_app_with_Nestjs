@@ -8,6 +8,7 @@ import $ from 'jquery';
 import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
