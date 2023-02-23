@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Multiselect from 'multiselect-react-dropdown';
+import InterestDropdownCmp from './interest-dropdown';
 
 function RegisterCmp() {
+    const [interestsList, setinterestsList] = useState(['aaaaaaaa', 'bbbbbbbbb', 'ccccccccccc']);
+
     return (
         <form action="" className="sign-up-form">
             <h2 className="title">Register</h2>
-            <div className="input-field">
-                <i className="fas fa-user"></i>
-                <input type="text" name="usuario" autoComplete="username" placeholder="Username" required />
+            <div className="row">
+                <div className="input-field col-md-6 col">
+                    <i className="fas fa-user"></i>
+                    <input type="text" name="fitstname" autoComplete="given-name" placeholder="First name" required />
+                </div>
+                <div className="input-field col-md-6 col">
+                    <i className="fas fa-user"></i>
+                    <input type="text" name="lastname" autoComplete="family-name" placeholder="Last name" required />
+                </div>
             </div>
             <div className="input-field">
                 <i className="fas fa-envelope"></i>
@@ -16,6 +26,22 @@ function RegisterCmp() {
                 <i className="fas fa-lock"></i>
                 <input type="password" name="contraseña" autoComplete='current-password' placeholder="Password" id="id_reg" required />
                 <i className="far fa-eye" id="toggleReg" style={{ cursor: 'pointer' }}></i>
+            </div>
+            <div className="interests-list">
+                <i className="fas fa-list-check"></i>
+                <Multiselect
+                    onKeyPressFn={function noRefCheck() { }}
+                    onRemove={function noRefCheck() { }}
+                    onSearch={function noRefCheck() { }}
+                    onSelect={function noRefCheck() { }}
+                    isObject={false}
+                    options={interestsList}
+                    showArrow
+                    showCheckbox
+                    hidePlaceholder
+                    placeholder='Choose your interests'
+                    className='xx'
+                />
             </div>
             <label className="check">
                 <input type="checkbox" />
