@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Multiselect from 'multiselect-react-dropdown';
-import InterestDropdownCmp from './interest-dropdown';
 
 function RegisterCmp() {
     const [interestsList, setinterestsList] = useState(['aaaaaaaa', 'bbbbbbbbb', 'ccccccccccc']);
