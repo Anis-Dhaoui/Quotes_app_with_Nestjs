@@ -1,0 +1,19 @@
+export const interestsList: string[] = [
+    'Life',
+    'Happiness',
+    'Religion',
+    'Technology',
+    'AI',
+    'Alone',
+    'Anger',
+    'Birthday',
+    'Computers',
+    'Dreams',
+    'Health',
+    'Romantic',
+    'Politics',
+    'Forgiveness',
+    'Success',
+    'Motivational',
+    'Wisdom'
+]

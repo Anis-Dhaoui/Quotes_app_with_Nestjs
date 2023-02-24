@@ -70,6 +70,10 @@
     font-weight: 500;
 }
 
+.optionListContainer {
+    background: var(--bg-input) !important;
+}
+
 /* $$$$$$$$$$$$$$$ Multi Select Dropdown List For Interests $$$$$$$$$$$$$$$*/
 
 

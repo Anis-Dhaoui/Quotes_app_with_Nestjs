@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import Multiselect from 'multiselect-react-dropdown';
+import { interestsList } from './interestsList.entry';
 
 function RegisterCmp() {
-    const [interestsList, setinterestsList] = useState(['aaaaaaaa', 'bbbbbbbbb', 'ccccccccccc']);
+
+    const [selectedItems, setSelectedItems] = useState<string[]>([]);
+    console.log(selectedItems)
 
     return (
         <form action="" className="sign-up-form">
@@ -29,17 +32,14 @@ function RegisterCmp() {
             <div className="interests-list">
                 <i className="fas fa-list-check"></i>
                 <Multiselect
-                    onKeyPressFn={function noRefCheck() { }}
-                    onRemove={function noRefCheck() { }}
-                    onSearch={function noRefCheck() { }}
-                    onSelect={function noRefCheck() { }}
+                    onRemove={(items: string[]) => { setSelectedItems([...items]) }}
+                    onSelect={(items: string[]) => { setSelectedItems([...items]) }}
                     isObject={false}
                     options={interestsList}
                     showArrow
                     showCheckbox
                     hidePlaceholder
                     placeholder='Choose your interests'
-                    className='xx'
                 />
             </div>
             <label className="check">
