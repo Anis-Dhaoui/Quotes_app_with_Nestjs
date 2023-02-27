@@ -76,7 +76,20 @@
 
 /* $$$$$$$$$$$$$$$ Multi Select Dropdown List For Interests $$$$$$$$$$$$$$$*/
 
+/* $$$$$$$$$$$$$$$ Error Message Styling $$$$$$$$$$$$$$$*/
+.fail {
+    border-bottom: 2px solid rgba(255, 35, 35, 0.932) !important;
+}
 
+.success {
+    border-bottom: 2px solid rgba(45, 241, 19, 0.932) !important;
+}
+
+.tooltip-inner {
+    background-color: rgba(255, 35, 35, 0.932) !important;
+}
+
+/* $$$$$$$$$$$$$$$ Error Message Styling $$$$$$$$$$$$$$$*/
 
 
 * {

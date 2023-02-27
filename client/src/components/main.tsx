@@ -44,38 +44,40 @@ export default function Main() {
                 <Route path='/entry' element={<EntryCmp />} />
             </Routes>
 
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
-            <h1>aaaaaaaaaaaaaaaa</h1>
+            <div className='mt-5'>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+                <h1>aaaaaaaaaaaaaaaa</h1>
+            </div>
         </>
     )
 }
