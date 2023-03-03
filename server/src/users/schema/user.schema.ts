@@ -13,7 +13,7 @@ export class User {
     email: string;
     @Prop({ required: true, select: false })
     password: string;
-    @Prop({ required: true })
+    @Prop({ required: false })
     userPic: string;
     @Prop({ required: true })
     interests: INTERESTS[];

@@ -18,9 +18,6 @@ export class CreateUserDto {
     @IsNotEmpty()
     readonly email: string;
 
-    @IsString()
-    @MaxLength(100)
-    @IsNotEmpty()
     readonly userPic: string;
 
     @IsString()

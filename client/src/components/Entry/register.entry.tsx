@@ -4,11 +4,12 @@ import { interestsList, INTERESTS } from './interestsList.entry';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../../state/store.state';
+import { handleRegister } from '../../state/actions-creators/register.actions-creators';
 
 function RegisterCmp() {
     const dispatch = useAppDispatch();
     const { loading, res } = useAppSelector(state => state.register);
-
+    console.log(loading, res)
     // types of inputs values
     type Inputs = {
         firstName: string,
@@ -19,9 +20,10 @@ function RegisterCmp() {
     };
 
     let { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>({ mode: 'all' });
+
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         data.interests = selectedItems;
-        console.log(data)
+        dispatch(handleRegister(data));
     }
     // console.log(watch("firstName"));
 

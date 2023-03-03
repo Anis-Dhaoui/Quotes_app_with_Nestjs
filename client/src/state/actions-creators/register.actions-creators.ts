@@ -4,7 +4,15 @@ import { ACTION } from './../actions/register.actions';
 import axios from 'axios';
 import { Dispatch } from 'redux';
 
-export const register = (inputs: IRegisterReqBody) => {
+//Test purpose
+// const formInputs = {
+//     firstName: 'Anis',
+//     lastName: 'Dhaoui',
+//     email: 'anis.dhaoui@gmyail.com',
+//     password: 'AAAbbb123',
+//     interests: ['Life']
+// };
+export const handleRegister = (inputs: IRegisterReqBody) => {
 
     return async (dispatch: Dispatch<ACTION>) => {
         dispatch({
@@ -13,7 +21,6 @@ export const register = (inputs: IRegisterReqBody) => {
 
         try {
             const { data } = await axios.post<IRegisterRes>(`${baseUrl}/auth/register`, inputs);
-
             dispatch({
                 type: registerActionsTypes.REGISTER_SUCCESS,
                 payload: data
@@ -22,7 +29,7 @@ export const register = (inputs: IRegisterReqBody) => {
         } catch (err: any) {
             dispatch({
                 type: registerActionsTypes.REGISTER_FAILED,
-                payload: err.message
+                payload: err.response.data
             });
         }
     }
