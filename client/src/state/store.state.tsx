@@ -1,12 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { quoteRed } from './reducers/quotes.reducers'
 import { TypedUseSelectorHook } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
+import { registerRed } from './reducers/register.reducers'
+import { quoteRed } from './reducers/quotes.reducers'
+
 
 export const store = configureStore({
     reducer: {
-        quotes: quoteRed
+        quotes: quoteRed,
+        register: registerRed
     }
 })
 

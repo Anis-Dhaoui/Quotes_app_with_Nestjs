@@ -28,12 +28,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
                 ? exception.getResponse()
                 : HttpStatus.INTERNAL_SERVER_ERROR;
 
-        const responseBody = {
-            statusCode: httpStatus,
-            statusMessage: httpStatus == 500 ? 'Internal Server Error' : httpStatusMessage,
-            timestamp: new Date().toISOString(),
-            path: httpAdapter.getRequestUrl(ctx.getRequest()),
-        };
+        const responseBody = httpStatus == 500 ? 'Internal Server Error' : httpStatusMessage
 
         httpAdapter.reply(ctx.getResponse(), responseBody, httpStatus);
     }

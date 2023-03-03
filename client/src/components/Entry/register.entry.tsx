@@ -3,8 +3,11 @@ import Multiselect from 'multiselect-react-dropdown';
 import { interestsList, INTERESTS } from './interestsList.entry';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { useAppDispatch, useAppSelector } from '../../state/store.state';
 
 function RegisterCmp() {
+    const dispatch = useAppDispatch();
+    const { loading, res } = useAppSelector(state => state.register);
 
     // types of inputs values
     type Inputs = {

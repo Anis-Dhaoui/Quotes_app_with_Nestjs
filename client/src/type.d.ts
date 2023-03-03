@@ -1,3 +1,4 @@
+
 interface IQuote {
     _id: string;
     owner: string;
@@ -11,3 +12,20 @@ interface IResponse {
     message: string,
     quotesData: IQuote[]
 }
+
+
+
+//$$$$$$$$$$$$$$$$$$$$$$$$$$// REGISTER //$$$$$$$$$$$$$$$$$$$$$$$$$$//
+interface IRegisterRes {
+    statusCode: number,
+    message: string | string[],
+    error?: string
+}
+
+interface IRegisterReqBody {
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    interests: INTERESTS[]
+};
