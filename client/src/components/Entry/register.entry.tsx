@@ -151,7 +151,10 @@ function RegisterCmp() {
                 <input type="checkbox" />
                 <span className="checkmark"> I accept the <a href="terms.html">terms and services</a></span>
             </label>
-            <input type="submit" style={{ width: '180px' }} value="Create account" className="entry-btn solid" />
+            <button disabled={loading} type="submit" style={{ width: '180px' }} className="entry-btn solid">
+                {loading ? <i className="fas fa-spinner fa-spin"></i> : 'Create account'}
+            </button>
+
             <p className="social-text">You can register with:</p>
             <div className="social-media">
                 <a href="#" className="social-icon" aria-label="Register with Google">
