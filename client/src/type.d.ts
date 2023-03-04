@@ -18,7 +18,7 @@ interface IResponse {
 //$$$$$$$$$$$$$$$$$$$$$$$$$$// REGISTER //$$$$$$$$$$$$$$$$$$$$$$$$$$//
 interface IRegisterRes {
     statusCode: number,
-    message: string | string[],
+    message: string,
     error?: string
 }
 
@@ -27,5 +27,5 @@ interface IRegisterReqBody {
     lastName: string,
     email: string,
     password: string,
-    interests: INTERESTS[]
+    interests: string[]
 };

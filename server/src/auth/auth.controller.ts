@@ -19,7 +19,7 @@ export class AuthController {
       if (error && error.keyPattern.email == 1) {
         return res.status(HttpStatus.CONFLICT).json({
           statusCode: 409,
-          message: `Error: ${error.keyValue.email} belongs to other account`,
+          message: `${error.keyValue.email} belongs to other account`,
         })
       }
 

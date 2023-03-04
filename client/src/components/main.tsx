@@ -3,6 +3,8 @@ import HeaderCmp from './Header/navbar/navbar.Header'
 import { Routes, Route } from 'react-router';
 import EntryCmp from './Entry/login-register.entry';
 import HomeCmp from './Home/quotes.home';
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 // import { fetchQuotes } from '../state/actions-creators/quotes.actions-creators';
 // import { useAppDispatch, useAppSelector } from '../state/store.state';
 
@@ -39,6 +41,7 @@ export default function Main() {
     return (
         <>
             {/* <HeaderCmp /> */}
+            <ToastContainer autoClose={5000} theme="colored" />
             <Routes>
                 <Route path='/' element={[<HeaderCmp />, <HomeCmp />]} />
                 <Route path='/entry' element={<EntryCmp />} />

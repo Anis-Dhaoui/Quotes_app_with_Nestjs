@@ -1,31 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Multiselect from 'multiselect-react-dropdown';
 import { interestsList, INTERESTS } from './interestsList.entry';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../../state/store.state';
 import { handleRegister } from '../../state/actions-creators/register.actions-creators';
+import { toast, Slide, Zoom, Flip, Bounce } from "react-toastify";
 
 function RegisterCmp() {
     const dispatch = useAppDispatch();
     const { loading, res } = useAppSelector(state => state.register);
-    console.log(loading, res)
-    // types of inputs values
-    type Inputs = {
-        firstName: string,
-        lastName: string,
-        email: string,
-        password: string,
-        interests: INTERESTS[]
-    };
-
-    let { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>({ mode: 'all' });
-
-    const onSubmit: SubmitHandler<Inputs> = (data) => {
+    let { register, handleSubmit, watch, formState: { errors } } = useForm<IRegisterReqBody>({ mode: 'all' });
+    const onSubmit: SubmitHandler<IRegisterReqBody> = (data) => {
         data.interests = selectedItems;
         dispatch(handleRegister(data));
     }
-    // console.log(watch("firstName"));
+    useEffect(() => {
+        toast.success(res?.message)
+
+    }, [res?.statusCode == 200])
 
     const [selectedItems, setSelectedItems] = useState<INTERESTS[]>([]);
 
@@ -105,6 +98,7 @@ function RegisterCmp() {
                     />
                 </div>
             </OverlayTrigger>
+            <i className='text-danger'>{res?.statusCode == 409 ? res?.message : null}</i>
 
             <OverlayTrigger show={true} placement='right' overlay={tooltipErrMsg(errors.password?.message)}>
                 <div className={errors.password ? 'input-field fail' : 'input-field success'}>
