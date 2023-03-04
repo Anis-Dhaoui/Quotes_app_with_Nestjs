@@ -5,10 +5,15 @@ document.addEventListener("readystatechange", function () {
 
     sign_up_btn.addEventListener("click", () => {
         container.classList.add("sign-up-mode");
+        setTimeout(() => {
+            document.querySelectorAll('[role="tooltip"]').forEach(el => el.classList.add('show'));
+        }, 2000);
+
     });
 
     sign_in_btn.addEventListener("click", () => {
         container.classList.remove("sign-up-mode");
+        document.querySelectorAll('[role="tooltip"]').forEach(el => el.classList.remove('show'));
     });
 
     const togglePassword = document.querySelector("#togglePassword");
