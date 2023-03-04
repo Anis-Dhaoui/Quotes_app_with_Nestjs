@@ -17,11 +17,8 @@ function RegisterCmp() {
     }
     useEffect(() => {
         toast.success(res?.message)
-
     }, [res?.statusCode == 200])
-
     const [selectedItems, setSelectedItems] = useState<INTERESTS[]>([]);
-
     // Reusable function to handle Error messages of all input fields
     const tooltipErrMsg = (errMsg: string | undefined) => {
         if (errMsg) {
