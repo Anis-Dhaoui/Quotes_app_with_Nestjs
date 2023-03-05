@@ -18,7 +18,7 @@ export class AuthService {
 
   //$$$$$$$$$$$$$$$$$$// CHECK IF USER EXISTS WHEN TRYING TO AUTHENTICATE //$$$$$$$$$$$$$$$$$$//
   async getUser(query: object): Promise<IUser> {
-    return this.userService.userModel.findOne(query, '+password');
+    return this.userService.userModel.findOne(query, '+password -__v');
   }
 
   //$$$$$$$$$$$$$$$$$$// VALIDATE EMAIL AND PASSWORD //$$$$$$$$$$$$$$$$$$//
@@ -46,8 +46,17 @@ export class AuthService {
   //$$$$$$$$$$$$$$$$$$// SIGNIN //$$$$$$$$$$$$$$$$$$//
   async login(user: IUser) {
     const payload = { email: user.email, sub: user._id };
+    const userWithoutPassword = {
+      _id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      userPic: user.userPic,
+      interests: user.interests,
+      role: user.role
+    }
     return {
-      user: user,
+      user: userWithoutPassword,
       access_token: this.jwtService.sign(payload),
     };
   }

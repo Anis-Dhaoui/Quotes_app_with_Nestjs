@@ -1,7 +1,7 @@
 import { OwnerGuard } from './../auth/RBAC/verify-owner/owner.guard';
 import { Roles } from './../auth/RBAC/verify-admin/roles.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { Controller, Get, Post, Body, Param, Delete, Res, HttpStatus, Put, UseGuards } from '@nestjs/common';
+import { Controller, Get, Body, Param, Res, HttpStatus, Put, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { RoleGuard } from 'src/auth/RBAC/verify-admin/roles.guard';
@@ -15,7 +15,7 @@ export class UsersController {
   @Get(':userId')
   async findOne(@Res() res, @Param('userId') userId: string) {
     try {
-      const user = await this.usersService.findOne(userId);
+      const user = await this.usersService.findOneUser(userId);
       return res.status(HttpStatus.OK).json({
         message: `User ${user.firstName} fetched successfully`,
         user: user

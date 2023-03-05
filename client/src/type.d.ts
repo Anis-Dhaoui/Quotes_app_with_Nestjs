@@ -13,8 +13,6 @@ interface IResponse {
     quotesData: IQuote[]
 }
 
-
-
 //$$$$$$$$$$$$$$$$$$$$$$$$$$// REGISTER //$$$$$$$$$$$$$$$$$$$$$$$$$$//
 interface IRegisterRes {
     statusCode: number,
@@ -31,3 +29,18 @@ interface IRegisterReqBody {
 };
 
 //$$$$$$$$$$$$$$$$$$$$$$$$$$// LOGIN //$$$$$$$$$$$$$$$$$$$$$$$$$$//
+interface ILoginRes {
+    _id: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    userPic: string,
+    interests: string[],
+    role: string,
+    access_token: string
+}
+
+interface ILoginReq {
+    email: string,
+    password: string
+}
