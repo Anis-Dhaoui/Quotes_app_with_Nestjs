@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Dispatch } from 'redux';
 
 //Test purpose
-// const formInputs = {
+// const registerForm = {
 //     firstName: 'Anis',
 //     lastName: 'Dhaoui',
 //     email: 'anis.dhaoui@gmyail.com',

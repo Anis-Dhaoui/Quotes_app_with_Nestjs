@@ -1,6 +1,15 @@
 import React from 'react'
+import { useAppDispatch, useAppSelector } from '../../state/store.state';
+import { handleLogin } from '../../state/actions-creators/login.actions-creators';
 
 function LoginCmp() {
+    const dispatch = useAppDispatch();
+    const { loading, user, errMsg } = useAppSelector(state => state.login);
+
+    const onSubmit = () => {
+        dispatch(handleLogin({ email: "aaa@bbb.cc", password: "abcdEF12" }))
+    }
+
     return (
         <form action="" className="sign-in-form">
             <h2 className="title">Login</h2>
@@ -14,7 +23,7 @@ function LoginCmp() {
                 <i className="far fa-eye" id="togglePassword" style={{ cursor: 'pointer' }}></i>
             </div>
             <a className="pass" href="#">Forgot your password?</a>
-            <input type="submit" value="Sign in" className="entry-btn solid" />
+            <input type="submit" value="Sign in" className="entry-btn solid" onClick={onSubmit} />
             <p className="social-text">You can login with:</p>
             <div className="social-media">
                 <a href="#" className="social-icon" aria-label="Register with Google">

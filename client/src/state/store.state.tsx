@@ -4,12 +4,14 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { registerRed } from './reducers/register.reducers'
 import { quoteRed } from './reducers/quotes.reducers'
+import { loginRed } from './reducers/login.reducers'
 
 
 export const store = configureStore({
     reducer: {
         quotes: quoteRed,
-        register: registerRed
+        register: registerRed,
+        login: loginRed
     }
 })
 

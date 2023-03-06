@@ -6,12 +6,12 @@ interface LoginLoading {
 
 interface LoginFailed {
     type: loginActionsTypes.LOGIN_FAILED,
-    payload: {}
+    payload: string
 }
 
 interface LoginSuccess {
     type: loginActionsTypes.LOGIN_SUCCESS,
-    payload: {}
+    payload: ILoginRes
 }
 
 export type ACTION = LoginLoading | LoginFailed | LoginSuccess

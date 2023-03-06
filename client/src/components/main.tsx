@@ -41,7 +41,7 @@ export default function Main() {
     return (
         <>
             {/* <HeaderCmp /> */}
-            <ToastContainer autoClose={5000} theme="colored" />
+            <ToastContainer autoClose={3000} theme="colored" />
             <Routes>
                 <Route path='/' element={[<HeaderCmp />, <HomeCmp />]} />
                 <Route path='/entry' element={<EntryCmp />} />
