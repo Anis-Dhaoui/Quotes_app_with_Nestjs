@@ -7,7 +7,7 @@ import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 function LoginCmp() {
     const dispatch = useAppDispatch();
     const { loading, user, errMsg } = useAppSelector(state => state.login);
-    let { register, handleSubmit, watch, formState: { errors } } = useForm<IRegisterReqBody>({ mode: 'all' });
+    let { register, handleSubmit, watch, formState: { errors } } = useForm<ILoginReq>({ mode: 'all' });
     const onSubmit: SubmitHandler<ILoginReq> = (data) => {
         dispatch(handleLogin(data));
     }

@@ -20,7 +20,7 @@ interface IRegisterRes {
     error?: string
 }
 
-interface IRegisterReqBody {
+interface IRegisterReq {
     firstName: string,
     lastName: string,
     email: string,

@@ -9,15 +9,13 @@ import { toast } from "react-toastify";
 
 function RegisterCmp() {
     const dispatch = useAppDispatch();
-    const { loading, res } = useAppSelector(state => state.register);
-    let { register, handleSubmit, watch, formState: { errors } } = useForm<IRegisterReqBody>({ mode: 'all' });
-    const onSubmit: SubmitHandler<IRegisterReqBody> = (data) => {
+    const { loading, res, errMsg } = useAppSelector(state => state.register);
+    let { register, handleSubmit, watch, formState: { errors } } = useForm<IRegisterReq>({ mode: 'all' });
+    const onSubmit: SubmitHandler<IRegisterReq> = (data) => {
         data.interests = selectedItems;
         dispatch(handleRegister(data));
     }
-    useEffect(() => {
-        toast.success(res?.message)
-    }, [res?.statusCode == 200])
+
     const [selectedItems, setSelectedItems] = useState<INTERESTS[]>([]);
     // Reusable function to handle Error messages of all input fields
     const tooltipErrMsg = (errMsg: string | undefined) => {
@@ -95,7 +93,6 @@ function RegisterCmp() {
                     />
                 </div>
             </OverlayTrigger>
-            <i className='text-danger'>{res?.statusCode == 409 ? res?.message : null}</i>
 
             <OverlayTrigger show={true} placement='right' overlay={tooltipErrMsg(errors.password?.message)}>
                 <div className={errors.password ? 'input-field fail' : 'input-field success'}>

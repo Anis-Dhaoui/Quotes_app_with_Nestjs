@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { registerActionsTypes } from './../actions-types/register.actions-types';
 import { baseUrl } from '../../shared/baseURL';
 import { ACTION } from './../actions/register.actions';
@@ -12,25 +13,27 @@ import { Dispatch } from 'redux';
 //     password: 'AAAbbb123',
 //     interests: ['Life']
 // };
-export const handleRegister = (inputs: IRegisterReqBody) => {
+export const handleRegister = (inputs: IRegisterReq) => {
 
     return async (dispatch: Dispatch<ACTION>) => {
         dispatch({
             type: registerActionsTypes.REGISTER_LOADING
         });
-
+        const toastId = toast.loading('Please wait...')
         try {
             const { data } = await axios.post<IRegisterRes>(`${baseUrl}/auth/register`, inputs);
             dispatch({
                 type: registerActionsTypes.REGISTER_SUCCESS,
                 payload: data
             });
-
+            toast.update(toastId, { render: data.message, type: "success", isLoading: false, autoClose: 2000, closeButton: true, closeOnClick: true });
         } catch (err: any) {
             dispatch({
                 type: registerActionsTypes.REGISTER_FAILED,
                 payload: err.response.data
             });
+            console.log(err.response.data)
+            toast.update(toastId, { render: err.response.data.message, type: "error", isLoading: false, autoClose: 3000, closeButton: true, closeOnClick: true });
         }
     }
 } 

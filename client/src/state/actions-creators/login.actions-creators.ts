@@ -16,7 +16,7 @@ export const handleLogin = (inputs: ILoginReq) => {
         dispatch({
             type: loginActionsTypes.LOGIN_LOADING
         });
-        const toastId = toast.loading('loading...')
+        const toastId = toast.loading('Please wait...')
         try {
             const { data } = await axios.post<ILoginRes>(`${baseUrl}/auth/login`, inputs);
             dispatch({

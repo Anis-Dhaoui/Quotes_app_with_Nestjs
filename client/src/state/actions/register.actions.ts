@@ -6,7 +6,7 @@ interface RegisterLoading {
 
 interface RegisterFailed {
     type: registerActionsTypes.REGISTER_FAILED,
-    payload: IRegisterRes
+    payload: string
 }
 interface RegisterSuccess {
     type: registerActionsTypes.REGISTER_SUCCESS,

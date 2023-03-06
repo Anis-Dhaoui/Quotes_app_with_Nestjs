@@ -3,12 +3,14 @@ import { registerActionsTypes } from './../actions-types/register.actions-types'
 
 interface STATE {
     loading: boolean,
-    res?: IRegisterRes
+    res?: IRegisterRes,
+    errMsg?: string
 }
 
 const initialState = {
     loading: false,
-    res: undefined
+    res: undefined,
+    errMsg: undefined
 }
 
 export const registerRed = (state: STATE = initialState, action: ACTION): STATE => {
@@ -27,7 +29,7 @@ export const registerRed = (state: STATE = initialState, action: ACTION): STATE 
         case registerActionsTypes.REGISTER_FAILED:
             return {
                 loading: false,
-                res: action.payload
+                errMsg: action.payload
             }
 
         default:
