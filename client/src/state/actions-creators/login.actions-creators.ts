@@ -6,10 +6,10 @@ import axios from 'axios';
 import { Dispatch } from 'redux';
 
 //Test purpose
-const loginForm = {
-    email: 'anis.dhaoui@gmyail.com',
-    password: 'AAAbbb123',
-};
+// const loginForm = {
+//     email: 'anis.dhaoui@gmyail.com',
+//     password: 'AAAbbb123',
+// };
 export const handleLogin = (inputs: ILoginReq) => {
 
     return async (dispatch: Dispatch<ACTION>) => {
@@ -18,7 +18,7 @@ export const handleLogin = (inputs: ILoginReq) => {
         });
         const toastId = toast.loading('loading...')
         try {
-            const { data } = await axios.post<ILoginRes>(`${baseUrl}/auth/login`, loginForm);
+            const { data } = await axios.post<ILoginRes>(`${baseUrl}/auth/login`, inputs);
             dispatch({
                 type: loginActionsTypes.LOGIN_SUCCESS,
                 payload: data

@@ -5,7 +5,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../../state/store.state';
 import { handleRegister } from '../../state/actions-creators/register.actions-creators';
-import { toast, Slide, Zoom, Flip, Bounce } from "react-toastify";
+import { toast } from "react-toastify";
 
 function RegisterCmp() {
     const dispatch = useAppDispatch();
