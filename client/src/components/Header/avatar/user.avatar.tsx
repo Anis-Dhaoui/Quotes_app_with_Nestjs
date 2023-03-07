@@ -14,11 +14,11 @@ function AvatarCmp() {
             </div>
             <div className="menu-toggle"></div>
             <ul className="menu">
-                <li><a href="#"><IonIcon name="person-outline" className='menu-icons' />Profile</a></li>
-                <li><a href="#"><IonIcon name="chatbox-outline" className='menu-icons' />Messages</a></li>
-                <li><a href="#"><IonIcon name="notifications-outline" className='menu-icons' />Notification</a></li>
-                <li><a href="#"><IonIcon name="cog-outline" className='menu-icons' />Settings</a></li>
-                <li><a href="#"><IonIcon name="log-out-outline" className='menu-icons' />Logout</a></li>
+                <li><a href="/#"><IonIcon name="person-outline" className='menu-icons' />Profile</a></li>
+                <li><a href="/#"><IonIcon name="chatbox-outline" className='menu-icons' />Messages</a></li>
+                <li><a href="/#"><IonIcon name="notifications-outline" className='menu-icons' />Notification</a></li>
+                <li><a href="/#"><IonIcon name="cog-outline" className='menu-icons' />Settings</a></li>
+                <li><a href="/#"><IonIcon name="log-out-outline" className='menu-icons' />Logout</a></li>
             </ul>
         </div>
     )

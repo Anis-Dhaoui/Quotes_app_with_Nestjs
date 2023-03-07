@@ -145,16 +145,16 @@ function RegisterCmp() {
 
             <p className="social-text">You can register with:</p>
             <div className="social-media">
-                <a href="#" className="social-icon" aria-label="Register with Google">
+                <a href="/#" className="social-icon" aria-label="Register with Google">
                     <i className="fab fa-google"></i>
                 </a>
-                <a href="#" className="social-icon" aria-label="Register with Discord">
+                <a href="/#" className="social-icon" aria-label="Register with Discord">
                     <i className="fab fa-discord"></i>
                 </a>
-                <a href="#" className="social-icon" aria-label="Register with Twitter">
+                <a href="/#" className="social-icon" aria-label="Register with Twitter">
                     <i className="fab fa-twitter"></i>
                 </a>
-                <a href="#" className="social-icon">
+                <a href="/#" className="social-icon">
                     <i className="fab fa-facebook-f" aria-label="Register with Facebook"></i>
                 </a>
             </div>
