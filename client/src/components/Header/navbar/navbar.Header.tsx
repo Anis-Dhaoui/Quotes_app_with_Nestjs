@@ -34,8 +34,12 @@ function HeaderCmp() {
                         </li>
                         {/* {entryButtons} */}
                     </ul>
+                    <ul style={{ marginLeft: '7rem', listStyle: 'none' }}>
+                        <li><AvatarCmp /></li>
+                    </ul>
+
                 </div>
-                <AvatarCmp />
+
             </nav>
             <div className="slider-container">
                 <h3>Best Quotes</h3>

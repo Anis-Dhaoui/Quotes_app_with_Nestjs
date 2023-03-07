@@ -8,7 +8,7 @@ function AvatarCmp() {
         <div className="navigation">
             <div className="user-box">
                 <div className="image-box">
-                    <img src="https://i.pravatar.cc/150?img=49" alt="avatar" />
+                    <img src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_481292845_77896.jpg" alt="avatar" />
                 </div>
                 <p className="username">Jenifer Lopez</p>
             </div>
