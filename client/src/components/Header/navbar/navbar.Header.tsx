@@ -2,9 +2,20 @@ import React from 'react'
 import './navbar.css';
 import './navbar.js';
 import SliderCmp from '../slider/slider.Header';
+import AvatarCmp from '../../Profile/avatar/user.avatar.profile';
 
 
 function HeaderCmp() {
+
+    const entryButtons =
+        <>
+            <li className="nav-item">
+                <a className="nav-link" href="#">Login</a>
+            </li>
+            <li className="nav-item">
+                <a className="nav-link">Signup</a>
+            </li>
+        </>
 
     return (
         <section contextMenu='return false' className='snippet-body, mt-0'>
@@ -21,14 +32,10 @@ function HeaderCmp() {
                         <li className="nav-item">
                             <a className="nav-link" href="#">About</a>
                         </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Login</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link">Signup</a>
-                        </li>
+                        {/* {entryButtons} */}
                     </ul>
                 </div>
+                <AvatarCmp />
             </nav>
             <div className="slider-container">
                 <h3>Best Quotes</h3>

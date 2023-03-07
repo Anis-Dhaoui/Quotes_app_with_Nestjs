@@ -1587,6 +1587,11 @@
   dependencies:
     "@swc/helpers" "^0.4.14"
 
+"@reacticons/ionicons@^6.1.1":
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/@reacticons/ionicons/-/ionicons-6.1.1.tgz#180aa7bda0ba954f37847d2e008296bc006ec52e"
+  integrity sha512-wZvoxqx7mabIoUaECwMPwxjhwNAQXkh27lU2CrGk05tCnKE20uAZneM11nGVzGr1OFEacQeheXNSA/w4DX/vgQ==
+
 "@reduxjs/toolkit@^1.9.2":
   version "1.9.2"
   resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-1.9.2.tgz#4cd153491118038e2eebcb63b2264e42a8a2d74c"
