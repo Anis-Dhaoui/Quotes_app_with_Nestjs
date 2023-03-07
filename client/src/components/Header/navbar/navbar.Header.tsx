@@ -2,7 +2,7 @@ import React from 'react'
 import './navbar.css';
 import './navbar.js';
 import SliderCmp from '../slider/slider.Header';
-import AvatarCmp from '../../Profile/avatar/user.avatar.profile';
+import AvatarCmp from '../avatar/user.avatar';
 
 
 function HeaderCmp() {
