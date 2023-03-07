@@ -4,6 +4,7 @@ import { handleLogin } from '../../state/actions-creators/login.actions-creators
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 function LoginCmp() {
     const dispatch = useAppDispatch();
     const { loading, user, errMsg } = useAppSelector(state => state.login);

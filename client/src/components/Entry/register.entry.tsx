@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Multiselect from 'multiselect-react-dropdown';
 import { interestsList, INTERESTS } from './interestsList.entry';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../../state/store.state';
 import { handleRegister } from '../../state/actions-creators/register.actions-creators';
-import { toast } from "react-toastify";
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 function RegisterCmp() {
     const dispatch = useAppDispatch();
     const { loading, res, errMsg } = useAppSelector(state => state.register);
