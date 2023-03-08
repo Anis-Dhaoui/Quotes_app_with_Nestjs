@@ -4,20 +4,11 @@ import './navbar.js';
 import SliderCmp from '../slider/slider.Header';
 import AvatarCmp from '../avatar/user.avatar';
 import { useAppSelector } from '../../../state/store.state';
+import { Link } from 'react-router-dom';
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 function HeaderCmp() {
     const { loading, user, errMsg, isAuthenticated } = useAppSelector(state => state.login);
-
-    const entryButtons =
-        <>
-            <li className="nav-item">
-                <a className="nav-link" href="/#">Login</a>
-            </li>
-            <li className="nav-item">
-                <a href="/#" className="nav-link">Signup</a>
-            </li>
-        </>
 
     return (
         <section contextMenu='return false' className='snippet-body, mt-0'>
@@ -34,7 +25,14 @@ function HeaderCmp() {
                         <li className="nav-item">
                             <a className="nav-link" href="/#">About</a>
                         </li>
-                        {!isAuthenticated ? entryButtons : null}
+                        {
+                            !isAuthenticated ?
+                                <li className="nav-item">
+                                    <Link to={'/entry'} className="nav-link">Login</Link>
+                                </li>
+                                :
+                                null
+                        }
                     </ul>
                     {
                         isAuthenticated ?
