@@ -43,7 +43,7 @@ export default function Main() {
             {/* <HeaderCmp /> */}
             <ToastContainer autoClose={3000} theme="colored" />
             <Routes>
-                <Route path='/' element={[<HeaderCmp />, <HomeCmp />]} />
+                <Route path='/' element={[<HeaderCmp key={1} />, <HomeCmp key={2} />]} />
                 <Route path='/entry' element={<EntryCmp />} />
             </Routes>
 

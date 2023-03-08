@@ -1,8 +1,10 @@
-document.addEventListener("readystatechange", function () {
-    let menuToggle = document.querySelector('.menu-toggle');
-    let navigation = document.querySelector('.navigation');
+if (window.location.pathname !== '/entry') {
+    document.addEventListener("readystatechange", function () {
+        let menuToggle = document.querySelector('.menu-toggle');
+        let navigation = document.querySelector('.navigation');
 
-    menuToggle.onclick = function () {
-        navigation.classList.toggle('active');
-    }
-})
+        menuToggle.onclick = function () {
+            navigation.classList.toggle('active');
+        }
+    })
+}
