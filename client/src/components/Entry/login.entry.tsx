@@ -1,17 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../state/store.state';
 import { handleLogin } from '../../state/actions-creators/login.actions-creators';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 function LoginCmp() {
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const { loading, user, errMsg } = useAppSelector(state => state.login);
+    const { loading, user, errMsg, isAuthenticated } = useAppSelector(state => state.login);
     let { register, handleSubmit, watch, formState: { errors } } = useForm<ILoginReq>({ mode: 'all' });
     const onSubmit: SubmitHandler<ILoginReq> = (data) => {
         dispatch(handleLogin(data));
     }
+
+    //Redirect to home Page when logged user trying to access entry page
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/');
+        }
+    }, [])
+
     // Reusable function to handle Error messages of all input fields
     const tooltipErrMsg = (errMsg: string | undefined) => {
         if (errMsg) {
