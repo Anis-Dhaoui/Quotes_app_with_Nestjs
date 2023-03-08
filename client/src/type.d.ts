@@ -30,13 +30,15 @@ interface IRegisterReq {
 
 //$$$$$$$$$$$$$$$$$$$$$$$$$$// LOGIN //$$$$$$$$$$$$$$$$$$$$$$$$$$//
 interface ILoginRes {
-    _id: string,
-    firstName: string,
-    lastName: string,
-    email: string,
-    userPic: string,
-    interests: string[],
-    role: string,
+    user: {
+        _id: string,
+        firstName: string,
+        lastName: string,
+        email: string,
+        userPic: string,
+        interests: string[],
+        role: string,
+    }
     access_token: string
 }
 

@@ -3,14 +3,15 @@ import IonIcon from '@reacticons/ionicons';
 import './user.css';
 import './user.js';
 
-function AvatarCmp() {
+function AvatarCmp({ cu }: ILoginRes | any) {
+
     return (
         <div className="navigation">
             <div className="user-box">
                 <div className="image-box">
                     <img src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_481292845_77896.jpg" alt="avatar" />
                 </div>
-                <p className="username">Jenifer Lopez</p>
+                <p className="username"> {`${cu.firstName} ${cu.lastName}`} </p>
             </div>
             <div className="menu-toggle"></div>
             <ul className="menu">
