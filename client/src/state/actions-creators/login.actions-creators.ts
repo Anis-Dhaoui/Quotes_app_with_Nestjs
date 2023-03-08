@@ -25,7 +25,9 @@ export const handleLogin = (inputs: ILoginReq) => {
             });
             localStorage.setItem('loggedUser', JSON.stringify(data));
             toast.update(toastId, { render: "Let's get in", type: "success", isLoading: false, autoClose: 2000, closeButton: true, closeOnClick: true });
-
+            setTimeout(() => {
+                window.location.href = window.location.origin
+            }, 2002);
         } catch (err: any) {
             dispatch({
                 type: loginActionsTypes.LOGIN_FAILED,
