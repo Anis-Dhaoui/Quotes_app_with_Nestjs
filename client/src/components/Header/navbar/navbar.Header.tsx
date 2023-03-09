@@ -6,6 +6,7 @@ import AvatarCmp from '../avatar/user.avatar';
 import { useAppSelector } from '../../../state/store.state';
 import { Link } from 'react-router-dom';
 
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 function HeaderCmp() {
     const { loading, user, errMsg, isAuthenticated } = useAppSelector(state => state.login);

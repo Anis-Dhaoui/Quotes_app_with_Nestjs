@@ -20,6 +20,7 @@ function LoginCmp() {
         if (isAuthenticated) {
             navigate('/');
         }
+        /* eslint-disable-next-line */
     }, [])
 
     // Reusable function to handle Error messages of all input fields

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import HeaderCmp from './Header/navbar/navbar.Header'
 import { Routes, Route } from 'react-router';
 import EntryCmp from './Entry/login-register.entry';
