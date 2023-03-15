@@ -12,7 +12,7 @@ function HeaderCmp() {
     const { loading, user, errMsg, isAuthenticated } = useAppSelector(state => state.login);
 
     return (
-        <section contextMenu='return false' className='snippet-body, mt-0'>
+        <section id="nav-container" contextMenu='return false' className='snippet-body, mt-0'>
             <nav className="navbar navbar-light navbar-expand-lg container-fluid fixed-top">
                 <a href="/#" className="navbar-brand">Brand</a>
                 <button id='toggler-id' className="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">

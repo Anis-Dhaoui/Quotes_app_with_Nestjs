@@ -4,7 +4,7 @@ import { ACTION } from './../actions/quotes.actions';
 import axios from 'axios';
 import { Dispatch } from 'redux';
 
-export const fetchQuotes = (p: number = 1, l: number = 5) => {
+export const fetchQuotes = (p: number = 0, l: number = 10, c: string = "") => {
 
     return async (dispatch: Dispatch<ACTION>) => {
         dispatch({
@@ -12,10 +12,10 @@ export const fetchQuotes = (p: number = 1, l: number = 5) => {
         });
 
         try {
-            const { data } = await axios.get(`${baseUrl}/quotes?page=${p}&limit=${l}`);
+            const { data } = await axios.get(`${baseUrl}/quotes?page=${p}&limit=${l}&category=${c}`);
 
             dispatch({
-                type: quotesActionsTypes.GET_ALL_QUOTES,
+                type: quotesActionsTypes.QUOTES_SUCCESS,
                 payload: data
             });
 

@@ -1,97 +1,97 @@
-        /* @import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css'; */
-        .custom-toggler {
-            color: #fff !important;
-            border-color: #fff !important;
-        }
+/* @import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css'; */
+.custom-toggler {
+    color: #fff !important;
+    border-color: #fff !important;
+}
 
-        .custom-toggler-icon {
-            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
-        }
+.custom-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
+}
 
-        section {
-            background: url(https://images.pexels.com/photos/414102/pexels-photo-414102.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            min-height: 700px;
-        }
+#nav-container {
+    background: url(https://images.pexels.com/photos/414102/pexels-photo-414102.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 700px;
+}
 
-        .navbar {
-            position: fixed;
-            transition: 1s;
-        }
+.navbar {
+    position: fixed;
+    transition: 1s;
+}
 
-        .navbar-brand {
-            color: #fff !important;
-            font-size: 65px;
-            font-family: Germania;
-            cursor: pointer;
-        }
+.navbar-brand {
+    color: #fff !important;
+    font-size: 65px;
+    font-family: Germania;
+    cursor: pointer;
+}
 
-        .navbar-nav a {
-            font-family: Lithos Pro;
-            color: #fff !important;
-            padding-top: 10px;
-        }
+.navbar-nav a {
+    font-family: Lithos Pro;
+    color: #fff !important;
+    padding-top: 10px;
+}
 
-        .navbar-nav li {
-            padding: 10px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+.navbar-nav li {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
 
-        .navbar-nav li:after {
-            content: '';
-            display: block;
-            border-bottom: 2px solid #38fd07;
-            transform: scaleX(0);
-            transition: .2s ease-in-out;
-        }
+.navbar-nav li:after {
+    content: '';
+    display: block;
+    border-bottom: 2px solid #38fd07;
+    transform: scaleX(0);
+    transition: .2s ease-in-out;
+}
 
-        .navbar-nav li:hover:after {
-            transform: scaleX(1);
-        }
+.navbar-nav li:hover:after {
+    transform: scaleX(1);
+}
 
-        .slider-container {
-            min-height: 500px;
-            min-width: 100%;
-            position: absolute;
-            top: 120px;
-        }
+.slider-container {
+    min-height: 500px;
+    min-width: 100%;
+    position: absolute;
+    top: 120px;
+}
 
-        .slider-container h3 {
-            text-align: center;
-            margin-bottom: -21px;
-            color: #fff;
-            font-family: nyala;
-            font-size: 44px;
-        }
+.slider-container h3 {
+    text-align: center;
+    margin-bottom: -21px;
+    color: #fff;
+    font-family: nyala;
+    font-size: 44px;
+}
 
-        section::-webkit-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+section::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 
-        }
+}
 
-        section::-webkit-scrollbar {
-            width: 14px;
-        }
+section::-webkit-scrollbar {
+    width: 14px;
+}
 
-        section::-webkit-scrollbar-thumb {
+section::-webkit-scrollbar-thumb {
 
-            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .5);
-            background: #501e27;
-        }
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .5);
+    background: #501e27;
+}
 
-        @media(max-width: 720px) {
-            section {
-                background-size: 100% 100%;
-            }
+@media(max-width: 720px) {
+    section {
+        background-size: 100% 100%;
+    }
 
-            .navbar-collapse {
-                background: #292828;
-            }
+    .navbar-collapse {
+        background: #292828;
+    }
 
-            .slider-container {
-                min-height: 800px;
-            }
-        }
+    .slider-container {
+        min-height: 800px;
+    }
+}

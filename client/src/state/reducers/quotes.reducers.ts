@@ -3,7 +3,7 @@ import { ACTION } from "../actions/quotes.actions"
 
 interface STATE {
     loading: boolean,
-    quotes?: IResponse,
+    quotes?: IQuotesRes,
     error?: string | null
 }
 
@@ -20,7 +20,7 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
                 loading: true
             }
 
-        case quotesActionsTypes.GET_ALL_QUOTES:
+        case quotesActionsTypes.QUOTES_SUCCESS:
             return {
                 loading: false,
                 quotes: action.payload

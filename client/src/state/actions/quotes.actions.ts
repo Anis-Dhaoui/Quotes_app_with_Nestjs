@@ -10,8 +10,8 @@ interface QuotesLoading {
 }
 
 interface GetAllQuotes {
-    type: quotesActionsTypes.GET_ALL_QUOTES,
-    payload: IResponse
+    type: quotesActionsTypes.QUOTES_SUCCESS,
+    payload: IQuotesRes
 }
 
 interface QuotesFailed {

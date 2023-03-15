@@ -8,7 +8,7 @@ interface IQuote {
     category: string;
 }
 
-interface IResponse {
+interface IQuotesRes {
     message: string,
     quotesData: IQuote[]
 }
