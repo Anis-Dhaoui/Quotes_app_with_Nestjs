@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../state/store.state';
 import { fetchQuotes } from '../../state/actions-creators/quotes.actions-creators';
 import RenderQuote from './card/quote.card.home';
+import Loader from '../../shared/loader/loader';
 
 
 function HomeCmp() {
@@ -10,12 +11,19 @@ function HomeCmp() {
     useEffect(() => {
         dispatch(fetchQuotes());
     }, [])
-    console.log(loading);
-    console.log(quotes);
-    console.log(error);
 
+    if (loading) {
+        return <Loader />
+    }
+    if (error) {
+        return (
+            <div className="alert alert-danger my-5 mx-5" role="alert">
+                {error}
+            </div>
+        )
+    }
     return (
-        <RenderQuote />
+        <RenderQuote loading={loading} quotes={quotes} error={error} />
     )
 }
 
