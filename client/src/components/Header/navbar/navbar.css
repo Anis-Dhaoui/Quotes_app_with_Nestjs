@@ -57,6 +57,7 @@
     min-width: 100%;
     position: absolute;
     top: 120px;
+    overflow: hidden;
 }
 
 .slider-container h3 {

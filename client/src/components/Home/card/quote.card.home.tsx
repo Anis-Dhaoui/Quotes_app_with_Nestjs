@@ -37,7 +37,6 @@ export default function RenderQuote(props: quoteProps) {
                     </div>
                 </section>
             </div>
-
         )
     })
 
