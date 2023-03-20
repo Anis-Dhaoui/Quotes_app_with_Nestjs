@@ -1,5 +1,6 @@
 import React from 'react'
 import './quote-card.css'
+import moment from 'moment'
 
 type quoteProps = {
     loading: boolean,
@@ -9,6 +10,7 @@ type quoteProps = {
 export default function RenderQuote(props: quoteProps) {
 
     const renderQuotes = props.quotes?.quotesData.map((item) => {
+        console.log(item)
         return (
             <div className="col-md-6" key={item._id}>
                 <section className="t-bq-section" id="jasper">
@@ -21,7 +23,7 @@ export default function RenderQuote(props: quoteProps) {
                             </div>
 
                             <div className="t-bq-quote-jasper-userpic"></div>
-
+                            <i className="text-muted ml-1">{moment(item.createdAt).fromNow()}</i>
                             <div className="t-bq-quote-jasper-base">
                                 <blockquote className="t-bq-quote-jasper-text" cite="Strugatsky Brothers">
                                     He was neat by nature and could not stand any disorder. Maybe that's why, when he got drunk and lost his human form, he always made such a disgusting mess.

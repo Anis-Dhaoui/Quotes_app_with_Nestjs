@@ -6,6 +6,7 @@ interface IQuote {
     authorPic: string;
     quote: string;
     category: string;
+    createdAt: string;
 }
 
 interface IQuotesRes {
