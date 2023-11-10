@@ -1,6 +1,5 @@
 import { toast } from 'react-toastify';
 import { loginActionsTypes } from './../actions-types/login.actions-types';
-import { baseUrl } from '../../shared/baseURL';
 import { ACTION } from '../actions/login.actions';
 import axios from 'axios';
 import { Dispatch } from 'redux';
@@ -18,7 +17,7 @@ export const handleLogin = (inputs: ILoginReq) => {
         });
         const toastId = toast.loading('Please wait...')
         try {
-            const { data } = await axios.post<ILoginRes>(`${baseUrl}/auth/login`, inputs);
+            const { data } = await axios.post<ILoginRes>(`${process.env.REACT_APP_BASE_URL}/auth/login`, inputs);
             dispatch({
                 type: loginActionsTypes.LOGIN_SUCCESS,
                 payload: data

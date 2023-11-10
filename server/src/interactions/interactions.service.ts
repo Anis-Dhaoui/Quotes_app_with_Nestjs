@@ -28,5 +28,4 @@ export class InteractionsService {
   async findAll() {
     return `This action returns all interactions`;
   }
-
 }

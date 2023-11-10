@@ -1,7 +1,7 @@
 import { AllExceptionsFilter } from './Errors-Handler/all-exceptions.filter';
 import { NestFactory, HttpAdapterHost } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -12,6 +12,9 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors();
 
-  await app.listen(3000);
+  await app.listen(5000, () =>{
+    Logger.flush()
+    Logger.debug("SERVER RUNNING ON PORT: 5000")
+  });
 }
 bootstrap();

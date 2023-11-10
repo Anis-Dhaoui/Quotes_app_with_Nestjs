@@ -1,6 +1,5 @@
 import { toast } from 'react-toastify';
 import { registerActionsTypes } from './../actions-types/register.actions-types';
-import { baseUrl } from '../../shared/baseURL';
 import { ACTION } from './../actions/register.actions';
 import axios from 'axios';
 import { Dispatch } from 'redux';
@@ -21,7 +20,7 @@ export const handleRegister = (inputs: IRegisterReq) => {
         });
         const toastId = toast.loading('Please wait...')
         try {
-            const { data } = await axios.post<IRegisterRes>(`${baseUrl}/auth/register`, inputs);
+            const { data } = await axios.post<IRegisterRes>(`${process.env.REACT_APP_BASE_URL}/auth/register`, inputs);
             dispatch({
                 type: registerActionsTypes.REGISTER_SUCCESS,
                 payload: data

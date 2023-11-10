@@ -1,4 +1,3 @@
-import { baseUrl } from '../../shared/baseURL';
 import { quotesActionsTypes } from './../actions-types/quotes.actions-types';
 import { ACTION } from './../actions/quotes.actions';
 import axios from 'axios';
@@ -12,7 +11,7 @@ export const fetchQuotes = (p: number = 0, l: number = 10, c: string = "") => {
         });
 
         try {
-            const { data } = await axios.get(`${baseUrl}/quotes?page=${p}&limit=${l}&category=${c}`);
+            const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/quotes?page=${p}&limit=${l}&category=${c}`);
 
             dispatch({
                 type: quotesActionsTypes.QUOTES_SUCCESS,
