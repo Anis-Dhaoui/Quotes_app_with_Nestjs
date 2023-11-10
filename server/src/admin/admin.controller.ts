@@ -6,6 +6,9 @@ import { ObjectId } from 'mongoose';
 import { Roles } from './../auth/RBAC/verify-admin/roles.decorator';
 import { Controller, Get, Query, Res, HttpStatus, Param, UseGuards, Put, Req, Delete } from '@nestjs/common';
 import { AdminService } from './admin.service';
+
+
+
 // var ObjectId = require('mongoose').Types.ObjectId;
 
 @Controller('admin')
@@ -51,7 +54,7 @@ export class AdminController {
   //$$$$$$$$$$$$$$$$$$$$$$$$// APPROVE OR DISAPROVE POSTED QUOTES  //$$$$$$$$$$$$$$$$$$$$$$$$//
   @Roles('Admin')
   @UseGuards(JwtAuthGuard, RoleGuard)
-  @Put('/:quoteId')
+  @Put('/review-quote/:quoteId')
   async allowDeny(@Param('quoteId') quoteId: ObjectId, @Query() query, @Res() res, @Req() req) {
     try {
       const quote = await this.adminService.allowDenyQuote(quoteId, query);

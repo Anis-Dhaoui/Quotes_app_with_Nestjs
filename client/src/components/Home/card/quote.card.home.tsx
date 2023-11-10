@@ -24,14 +24,29 @@ export default function RenderQuote(props: quoteProps) {
 
                             <div className="t-bq-quote-jasper-userpic"></div>
                             <i className="text-muted ml-1">{moment(item.createdAt).fromNow()}</i>
-                            <div className="t-bq-quote-jasper-base">
+                            {/* <div className="t-bq-quote-jasper-base">
                                 <blockquote className="t-bq-quote-jasper-text" cite="Strugatsky Brothers">
-                                    He was neat by nature and could not stand any disorder. Maybe that's why, when he got drunk and lost his human form, he always made such a disgusting mess.
+                                    {item.quote}
                                 </blockquote>
                                 <div className="t-bq-quote-jasper-meta">
                                     <div className="t-bq-quote-jasper-meta-info">
-                                        <div className="t-bq-quote-jasper-author"><cite>Strugatsky Brothers</cite></div>
-                                        <div className="t-bq-quote-jasper-source"><span>The Powerless of This World </span></div>
+                                        <div className="t-bq-quote-jasper-author"><cite> {item.author} </cite></div>
+                                        <div className="t-bq-quote-jasper-source"><span>{item.category} </span></div>
+                                    </div>
+                                </div>
+                            </div> */}
+                            <div className="row d-flex align-items-end t-bq-quote-jasper-base">
+                                <div className="col-12 p-4 justify-content-start">
+                                    <blockquote className="truncate-text" cite="Strugatsky Brothers">{item.quote}</blockquote>
+                                </div>
+                                <div id='card-footer'>
+                                    <div className="col-12 p-2 text-center t-bq-quote-jasper-author"><cite> {item.author} </cite></div>
+                                    <div className="col-12 text-center t-bq-quote-jasper-source"><span style={{ fontSize: "8pt" }}>{item.category}</span></div>
+                                    <div className="row ml-0">
+                                        <div className="col-3"><i className='fa fa-heart-o'></i> Like</div>
+                                        <div className="col-3"><i className='far fa-comment fa-2x'></i></div>
+                                        <div className="col-3">Share</div>
+                                        <div className="col-3 align-self-end">Save</div>
                                     </div>
                                 </div>
                             </div>
