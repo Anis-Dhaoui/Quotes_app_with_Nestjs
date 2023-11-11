@@ -12,7 +12,7 @@ export default function RenderQuote(props: quoteProps) {
     const renderQuotes = props.quotes?.quotesData.map((item) => {
         console.log(item)
         return (
-            <div className="col-md-6" key={item._id}>
+            <div className="col-md-6 col-lg-4 col-sm-12" key={item._id}>
                 <section className="t-bq-section" id="jasper">
                     <div className="t-bq-wrapper t-bq-wrapper-boxed">
                         <div className="t-bq-quote t-bq-quote-jasper">
@@ -58,7 +58,7 @@ export default function RenderQuote(props: quoteProps) {
     })
 
     return (
-        <div className="row">
+        <div className="row mx-0">
             {renderQuotes}
         </div>
     )

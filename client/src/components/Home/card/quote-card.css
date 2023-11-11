@@ -121,7 +121,14 @@ section.t-bq-section {
     border-radius: 0 0 10px 10px;
 }
 
+#interractions-btns i {
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+}
 
+#interractions-btns i:hover {
+    opacity: 0.5;
+}
 
 
 
