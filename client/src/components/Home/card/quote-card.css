@@ -16,18 +16,20 @@ section.t-bq-section {
     position: relative;
     box-shadow: 2px 2px 25px #cecece;
     border-radius: 10px;
-    width: 100%; /* Set the desired width for your cards */
+    width: 100%;
+    /* Set the desired width for your cards */
     overflow: hidden;
     height: 342px;
 }
 
 .truncate-text {
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Number of lines to show */
+    -webkit-line-clamp: 3;
+    /* Number of lines to show */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
+}
 
 .t-bq-quote-jasper .t-bq-quote-jasper-pattern {
     display: flex;
@@ -102,7 +104,7 @@ section.t-bq-section {
     font-size: 5pt;
 }
 
-#card-footer{
+#card-footer {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -113,6 +115,11 @@ section.t-bq-section {
     padding: 15px;
 }
 
+#interractions-btns {
+    background-color: #efc5a1d1;
+    padding: 15px;
+    border-radius: 0 0 10px 10px;
+}
 
 
 

@@ -7,6 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import $ from 'jquery';
 import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+// import './assets/FontAwesome.Pro.5.15.1.Web/css/fontawesome.min.css';
+// import './assets/FontAwesome.Pro.5.15.1.Web/js/fontawesome';
 
 
 const root = ReactDOM.createRoot(

@@ -42,11 +42,11 @@ export default function RenderQuote(props: quoteProps) {
                                 <div id='card-footer'>
                                     <div className="col-12 p-2 text-center t-bq-quote-jasper-author"><cite> {item.author} </cite></div>
                                     <div className="col-12 text-center t-bq-quote-jasper-source"><span style={{ fontSize: "8pt" }}>{item.category}</span></div>
-                                    <div className="row ml-0">
-                                        <div className="col-3"><i className='fa fa-heart-o'></i> Like</div>
-                                        <div className="col-3"><i className='far fa-comment fa-2x'></i></div>
-                                        <div className="col-3">Share</div>
-                                        <div className="col-3 align-self-end">Save</div>
+                                    <div id='interractions-btns' className="row mx-0">
+                                        <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-heart fa-2x"></i></div>
+                                        <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-comment fa-flip-horizontal fa-2x"></i></div>
+                                        <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-paper-plane-top fa-flip-vertical fa-2x"></i></div>
+                                        <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-bookmark fa-2x"></i></div>
                                     </div>
                                 </div>
                             </div>
