@@ -12,18 +12,20 @@ export default function RenderQuote(props: quoteProps) {
     const renderQuotes = props.quotes?.quotesData.map((item) => {
         console.log(item)
         return (
-            <div className="col-md-6 col-lg-4 col-sm-12" key={item._id}>
+            <div className="col-md-6 col-lg-4" key={item._id}>
                 <section className="t-bq-section" id="jasper">
                     <div className="t-bq-wrapper t-bq-wrapper-boxed">
                         <div className="t-bq-quote t-bq-quote-jasper">
-                            <div className="t-bq-quote-jasper-pattern">
-                                <div className="t-bq-quote-jasper-qmark">
+                            <div className="row t-bq-quote-jasper-pattern">
+                                <div className="col d-flex ml-1 justify-content-start quotation">
                                     &#10077;
+                                </div>
+                                <div className="col mr-1 d-flex justify-content-end">
+                                    <i className="engraved-postedAt">{moment(item.createdAt).fromNow()}</i>
                                 </div>
                             </div>
 
                             <div className="t-bq-quote-jasper-userpic"></div>
-                            <i className="text-muted ml-1">{moment(item.createdAt).fromNow()}</i>
                             {/* <div className="t-bq-quote-jasper-base">
                                 <blockquote className="t-bq-quote-jasper-text" cite="Strugatsky Brothers">
                                     {item.quote}

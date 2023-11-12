@@ -39,6 +39,7 @@ section.t-bq-section {
     align-items: center;
     justify-content: flex-start;
     background: url("https://raw.githubusercontent.com/taviskaron/t-div-blockquotes/main/img/hexabump.png") repeat;
+    /* background-color: lightgrey; */
     border-radius: 10px 10px 0 0;
 }
 
@@ -130,7 +131,35 @@ section.t-bq-section {
     opacity: 0.5;
 }
 
+.engraved-postedAt {
+    font-size: 12px;
+    font-family: Lithos Pro;
+    background-color: #b3a4a4;
+    mix-blend-mode: screen;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    /* color: transparent; */
+    text-shadow: rgba(245, 245, 245, 0.72) 0px 0px 0px;
+}
 
+.quotation{
+    background-color: #b3a4a4;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    mix-blend-mode: screen;
+    text-shadow: rgba(245, 245, 245, 0.72) 1px 1px 0px;
+    font-family: Garamond, Georgia, "Times New Roman", serif;
+    font-size: 60pt;
+    text-align: center;
+    height: 80px;
+    line-height: 90pt;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
 
 
 
