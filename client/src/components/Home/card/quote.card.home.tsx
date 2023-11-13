@@ -26,17 +26,6 @@ export default function RenderQuote(props: quoteProps) {
                             </div>
 
                             <div className="t-bq-quote-jasper-userpic"></div>
-                            {/* <div className="t-bq-quote-jasper-base">
-                                <blockquote className="t-bq-quote-jasper-text" cite="Strugatsky Brothers">
-                                    {item.quote}
-                                </blockquote>
-                                <div className="t-bq-quote-jasper-meta">
-                                    <div className="t-bq-quote-jasper-meta-info">
-                                        <div className="t-bq-quote-jasper-author"><cite> {item.author} </cite></div>
-                                        <div className="t-bq-quote-jasper-source"><span>{item.category} </span></div>
-                                    </div>
-                                </div>
-                            </div> */}
                             <div className="row d-flex align-items-end t-bq-quote-jasper-base">
                                 <div className="col-12 p-4 justify-content-start">
                                     <blockquote className="truncate-text" cite="Strugatsky Brothers">{item.quote}</blockquote>

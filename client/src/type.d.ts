@@ -7,6 +7,7 @@ interface IQuote {
     quote: string;
     category: string;
     createdAt: string;
+    likedBy: string[]
 }
 
 interface IQuotesRes {
