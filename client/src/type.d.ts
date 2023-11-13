@@ -12,7 +12,7 @@ interface IQuote {
 
 interface IQuotesRes {
     message: string,
-    quotesData: IQuote[]
+    quotesData: h[]
 }
 
 //$$$$$$$$$$$$$$$$$$$$$$$$$$// REGISTER //$$$$$$$$$$$$$$$$$$$$$$$$$$//
