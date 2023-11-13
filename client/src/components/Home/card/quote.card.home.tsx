@@ -1,6 +1,8 @@
 import React from 'react'
 import './quote-card.css'
 import moment from 'moment'
+import { likeUnlikeQuotes } from '../../../state/actions-creators/quotes.actions-creators'
+import { useAppDispatch, useAppSelector } from '../../../state/store.state'
 
 type quoteProps = {
     loading: boolean,
@@ -8,9 +10,14 @@ type quoteProps = {
     error?: string | null
 }
 export default function RenderQuote(props: quoteProps) {
+    const dispatch = useAppDispatch();
+    // const { loading, quotes, error } = useAppSelector(state => state.quotes);
+    const handleLikeUnlike = (quoteID: any) => {
+        console.log(quoteID)
+        dispatch(likeUnlikeQuotes(quoteID))
+    }
 
     const renderQuotes = props.quotes?.quotesData.map((item) => {
-        console.log(item)
         return (
             <div className="col-md-6 col-lg-4" key={item._id}>
                 <section className="t-bq-section" id="jasper">
@@ -34,7 +41,7 @@ export default function RenderQuote(props: quoteProps) {
                                     <div className="col-12 p-2 text-center t-bq-quote-jasper-author"><cite> {item.author} </cite></div>
                                     <div className="col-12 text-center t-bq-quote-jasper-source"><span style={{ fontSize: "8pt" }}>{item.category}</span></div>
                                     <div id='interractions-btns' className="row mx-0">
-                                        <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-heart fa-2x"></i></div>
+                                        <div className="col-3 d-flex justify-content-center"><i onClick={() => handleLikeUnlike(item._id)} className="fa-light fa-heart fa-2x"></i></div>
                                         <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-comment fa-flip-horizontal fa-2x"></i></div>
                                         <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-paper-plane-top fa-flip-vertical fa-2x"></i></div>
                                         <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-bookmark fa-2x"></i></div>

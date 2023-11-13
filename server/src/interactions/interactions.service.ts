@@ -9,7 +9,6 @@ export class InteractionsService {
 
   async likeDislikeQ(quoteId: ObjectId, userId: ObjectId) {
 
-    var likedQuote;
     const quote = await this.quoteModel.findById(quoteId);
 
     if (!quote) {
@@ -18,11 +17,12 @@ export class InteractionsService {
 
     // if the user already liked the quote then it will dislike it, if it's clicked again
     if (quote.likedBy.includes(userId)) {
-      likedQuote = await this.quoteModel.findByIdAndUpdate(quoteId, { $pull: { likedBy: userId } }, { new: true });
+      await this.quoteModel.findByIdAndUpdate(quoteId, { $pull: { likedBy: userId } }, { new: true });
+      return "Unliked"
     } else {
-      likedQuote = await this.quoteModel.findByIdAndUpdate(quoteId, { $addToSet: { likedBy: userId } }, { new: true });
+      await this.quoteModel.findByIdAndUpdate(quoteId, { $addToSet: { likedBy: userId } }, { new: true });
+      return "Liked"
     }
-    return likedQuote;
   }
 
   async findAll() {

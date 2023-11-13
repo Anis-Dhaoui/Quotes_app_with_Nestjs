@@ -19,4 +19,20 @@ interface QuotesFailed {
     payload: string
 }
 
-export type ACTION = QuotesLoading | GetAllQuotes | QuotesFailed
+
+
+interface QuotesLikeReq {
+    type: quotesActionsTypes.QUOTES_LIKE_REQ
+}
+
+interface QuotesLikeSuccess {
+    type: quotesActionsTypes.QUOTES_LIKE_SUCCESS,
+    payload: string
+}
+
+interface QuotesLikeFailed {
+    type: quotesActionsTypes.QUOTES_LIKE_FAILED,
+    payload: string
+}
+
+export type ACTION = QuotesLoading | GetAllQuotes | QuotesFailed | QuotesLikeReq | QuotesLikeSuccess | QuotesLikeFailed
