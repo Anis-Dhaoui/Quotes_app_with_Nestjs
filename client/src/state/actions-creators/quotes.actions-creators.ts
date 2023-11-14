@@ -3,6 +3,7 @@ import { ACTION } from './../actions/quotes.actions';
 import axios from 'axios';
 import { Dispatch } from 'redux';
 import { axiosInstance } from './axiosHeaderInstance';
+import { toast } from 'react-toastify';
 
 export const fetchQuotes = (p: number = 0, l: number = 25, c: string = "") => {
 
@@ -29,15 +30,14 @@ export const fetchQuotes = (p: number = 0, l: number = 25, c: string = "") => {
 }
 
 
-export const likeUnlikeQuotes = (quoteID: string) => {
-    console.log(quoteID)
+export const likeQuote = (quoteID: string) => {
     return async (dispatch: Dispatch<ACTION>) => {
         dispatch({
             type: quotesActionsTypes.QUOTES_LIKE_REQ
         });
+        const toastId = toast.loading('Please wait...')
         try {
             const { data } = await axiosInstance.post(`${process.env.REACT_APP_BASE_URL}/interactions/${quoteID}`);
-            console.log(data)
             dispatch({
                 type: quotesActionsTypes.QUOTES_LIKE_SUCCESS,
                 payload: data
@@ -48,6 +48,8 @@ export const likeUnlikeQuotes = (quoteID: string) => {
                 type: quotesActionsTypes.QUOTES_LIKE_FAILED,
                 payload: err.message
             });
+            // toast.update(toastId, { render: err.message, type: "error", isLoading: false, autoClose: 3000, closeButton: true, closeOnClick: true });
+
         }
     }
 }

@@ -18,6 +18,7 @@ export class InteractionsController {
       return res.status(HttpStatus.OK).json({
         message: `${req.user._id} ${interaction} quote`,
         user: req.user._id,
+        quoteID: quoteId
       });
     } catch (err) {
       return res.status(err.status).json(err.response);

@@ -3,7 +3,7 @@ import { ACTION } from "../actions/quotes.actions"
 
 interface STATE {
     loading?: any,
-    quotes?: IQuotesRes,
+    quotes?: IQuotesRes | any,
     error?: string | null,
 
     likeReq?: boolean,
@@ -24,16 +24,19 @@ const initialState = {
 export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => {
     switch (action.type) {
         case quotesActionsTypes.QUOTES_LOADING:
-            return {...state,
+            return {
+                ...state,
                 loading: true
             }
         case quotesActionsTypes.QUOTES_SUCCESS:
-            return {...state,
+            return {
+                ...state,
                 loading: false,
                 quotes: action.payload
             }
         case quotesActionsTypes.QUOTES_FAILED:
-            return {...state,
+            return {
+                ...state,
                 loading: false,
                 error: action.payload
             }
@@ -41,16 +44,20 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
 
 
         case quotesActionsTypes.QUOTES_LIKE_REQ:
-            return {...state,
+            return {
+                ...state,
                 likeReq: true,
             }
         case quotesActionsTypes.QUOTES_LIKE_SUCCESS:
-            return {...state,
+            state.quotes.quotesData.filter((item: any) => item._id === action.payload.quoteID)[0].likedBy.push(action.payload.user)
+            return {
+                ...state,
                 likeReq: false,
-                likeSuccess: action.payload
+                likeSuccess: action.payload,
             }
         case quotesActionsTypes.QUOTES_LIKE_FAILED:
-            return {...state,
+            return {
+                ...state,
                 likeReq: false,
                 likeError: action.payload
             }

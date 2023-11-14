@@ -27,7 +27,7 @@ interface QuotesLikeReq {
 
 interface QuotesLikeSuccess {
     type: quotesActionsTypes.QUOTES_LIKE_SUCCESS,
-    payload: string
+    payload: any
 }
 
 interface QuotesLikeFailed {

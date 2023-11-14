@@ -1,7 +1,7 @@
 import React from 'react'
 import './quote-card.css'
 import moment from 'moment'
-import { likeUnlikeQuotes } from '../../../state/actions-creators/quotes.actions-creators'
+import { likeQuote } from '../../../state/actions-creators/quotes.actions-creators'
 import { useAppDispatch, useAppSelector } from '../../../state/store.state'
 
 type quoteProps = {
@@ -11,15 +11,14 @@ type quoteProps = {
 }
 export default function RenderQuote(props: quoteProps) {
     const dispatch = useAppDispatch();
-    const { loading, quotes, error } = useAppSelector(state => state.quotes);
     const { isAuthenticated, user } = useAppSelector(state => state.login)
     const handleLikeUnlike = (quoteID: any) => {
-        console.log(quoteID)
-        dispatch(likeUnlikeQuotes(quoteID))
+        dispatch(likeQuote(quoteID))
     }
 
-    var x = props.quotes?.quotesData.map((item: any) => item.likedBy)
-    console.log(x?.map((item: any) => item))
+    const checkLike = (likedBy: any) => {
+        return likedBy.includes(user?.user._id)
+    }
 
 
 
@@ -48,8 +47,12 @@ export default function RenderQuote(props: quoteProps) {
                                     <div className="col-12 text-center t-bq-quote-jasper-source"><span style={{ fontSize: "8pt" }}>{item.category}</span></div>
                                     <div id='interractions-btns' className="row mx-0">
                                         <div className="col-3 d-flex justify-content-center">
-                                            <i onClick={() => handleLikeUnlike(item._id)} className="fa-light fa-heart fa-2x"></i>
-                                            <i onClick={() => handleLikeUnlike(item._id)} className="fa-solid fa-heart fa-2x" style={{ color: '#ff0000' }}></i>
+                                            {
+                                                checkLike(item.likedBy) ?
+                                                    <i onClick={() => handleLikeUnlike(item._id)} className="fa-solid fa-heart fa-2x" style={{ color: '#ff0000' }}></i>
+                                                    :
+                                                    <i onClick={() => handleLikeUnlike(item._id)} className="fa-light fa-heart fa-2x"></i>
+                                            }
                                         </div>
                                         <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-comment fa-flip-horizontal fa-2x"></i></div>
                                         <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-paper-plane-top fa-flip-vertical fa-2x"></i></div>
