@@ -11,11 +11,17 @@ type quoteProps = {
 }
 export default function RenderQuote(props: quoteProps) {
     const dispatch = useAppDispatch();
-    // const { loading, quotes, error } = useAppSelector(state => state.quotes);
+    const { loading, quotes, error } = useAppSelector(state => state.quotes);
+    const { isAuthenticated, user } = useAppSelector(state => state.login)
     const handleLikeUnlike = (quoteID: any) => {
         console.log(quoteID)
         dispatch(likeUnlikeQuotes(quoteID))
     }
+
+    var x = props.quotes?.quotesData.map((item: any) => item.likedBy)
+    console.log(x?.map((item: any) => item))
+
+
 
     const renderQuotes = props.quotes?.quotesData.map((item) => {
         return (
@@ -41,7 +47,10 @@ export default function RenderQuote(props: quoteProps) {
                                     <div className="col-12 p-2 text-center t-bq-quote-jasper-author"><cite> {item.author} </cite></div>
                                     <div className="col-12 text-center t-bq-quote-jasper-source"><span style={{ fontSize: "8pt" }}>{item.category}</span></div>
                                     <div id='interractions-btns' className="row mx-0">
-                                        <div className="col-3 d-flex justify-content-center"><i onClick={() => handleLikeUnlike(item._id)} className="fa-light fa-heart fa-2x"></i></div>
+                                        <div className="col-3 d-flex justify-content-center">
+                                            <i onClick={() => handleLikeUnlike(item._id)} className="fa-light fa-heart fa-2x"></i>
+                                            <i onClick={() => handleLikeUnlike(item._id)} className="fa-solid fa-heart fa-2x" style={{ color: '#ff0000' }}></i>
+                                        </div>
                                         <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-comment fa-flip-horizontal fa-2x"></i></div>
                                         <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-paper-plane-top fa-flip-vertical fa-2x"></i></div>
                                         <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-bookmark fa-2x"></i></div>
