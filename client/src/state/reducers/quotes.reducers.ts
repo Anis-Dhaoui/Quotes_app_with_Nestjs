@@ -8,7 +8,11 @@ interface STATE {
 
     likeReq?: boolean,
     likeSuccess?: string,
-    likeError?: string | null
+    likeError?: string | null,
+
+    unlikeReq?: boolean,
+    unlikeSuccess?: string,
+    unlikeError?: string | null
 }
 
 const initialState = {
@@ -18,7 +22,11 @@ const initialState = {
 
     likeReq: false,
     likeSuccess: undefined,
-    likeError: null
+    likeError: null,
+
+    unlikeReq: false,
+    unlikeSuccess: undefined,
+    unlikeError: null
 }
 
 export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => {
@@ -80,7 +88,7 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
         case quotesActionsTypes.UNLIKE_QUOTE_REQ:
             return {
                 ...state,
-                likeReq: true,
+                unlikeReq: true,
             }
         case quotesActionsTypes.UNLIKE_QUOTES_SUCCESS:
             var { quoteID, user } = action.payload;
@@ -94,8 +102,8 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
             };
             return {
                 ...state,
-                likeReq: false,
-                likeSuccess: action.payload,
+                unlikeReq: false,
+                unlikeSuccess: action.payload,
                 quotes: {
                     ...state.quotes,
                     quotesData: updatedQuotesData,
@@ -104,8 +112,8 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
         case quotesActionsTypes.UNLIKE_QUOTES_FAILED:
             return {
                 ...state,
-                likeReq: false,
-                likeError: action.payload
+                unlikeReq: false,
+                unlikeError: action.payload
             }
 
         default:
