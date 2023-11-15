@@ -21,18 +21,33 @@ interface QuotesFailed {
 
 
 
-interface QuotesLikeReq {
-    type: quotesActionsTypes.QUOTES_LIKE_REQ
+interface LikeQuotesReq {
+    type: quotesActionsTypes.LIKE_QUOTE_REQ
 }
 
-interface QuotesLikeSuccess {
-    type: quotesActionsTypes.QUOTES_LIKE_SUCCESS,
+interface LikeQuotesSuccess {
+    type: quotesActionsTypes.LIKE_QUOTES_SUCCESS,
     payload: any
 }
 
-interface QuotesLikeFailed {
-    type: quotesActionsTypes.QUOTES_LIKE_FAILED,
+interface LikeQuotesFailed {
+    type: quotesActionsTypes.LIKE_QUOTES_FAILED,
     payload: string
 }
 
-export type ACTION = QuotesLoading | GetAllQuotes | QuotesFailed | QuotesLikeReq | QuotesLikeSuccess | QuotesLikeFailed
+
+interface UnlikeQuotesReq {
+    type: quotesActionsTypes.UNLIKE_QUOTE_REQ
+}
+
+interface UnlikeQuotesSuccess {
+    type: quotesActionsTypes.UNLIKE_QUOTES_SUCCESS,
+    payload: any
+}
+
+interface UnlikeQuotesFailed {
+    type: quotesActionsTypes.UNLIKE_QUOTES_FAILED,
+    payload: string
+}
+
+export type ACTION = QuotesLoading | GetAllQuotes | QuotesFailed | LikeQuotesReq | LikeQuotesSuccess | LikeQuotesFailed | UnlikeQuotesReq | UnlikeQuotesSuccess | UnlikeQuotesFailed

@@ -4,9 +4,11 @@ export enum quotesActionsTypes {
     QUOTES_FAILED = 'Quotes_Failed',
     // POST_QUOTE = 'Post_Quote',
 
-    QUOTES_LIKE_REQ = 'Quotes_Like_Req',
-    QUOTES_LIKE_SUCCESS = 'Quotes_Like_Success',
-    QUOTES_LIKE_FAILED = 'Quotes_Like_Failed'
+    LIKE_QUOTE_REQ = 'LIKE_QUOTE_REQ',
+    LIKE_QUOTES_SUCCESS = 'LIKE_QUOTES_SUCCESS',
+    LIKE_QUOTES_FAILED = 'LIKE_QUOTES_FAILED',
 
-
+    UNLIKE_QUOTE_REQ = 'UNLIKE_QUOTE_REQ',
+    UNLIKE_QUOTES_SUCCESS = 'UNLIKE_QUOTES_SUCCESS',
+    UNLIKE_QUOTES_FAILED = 'UNLIKE_QUOTES_FAILED'
 }

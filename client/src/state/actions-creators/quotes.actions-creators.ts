@@ -31,22 +31,59 @@ export const fetchQuotes = (p: number = 0, l: number = 25, c: string = "") => {
 
 
 export const likeQuote = (quoteID: string) => {
+    console.log("LIKE")
+
     return async (dispatch: Dispatch<ACTION>) => {
         dispatch({
-            type: quotesActionsTypes.QUOTES_LIKE_REQ
+            type: quotesActionsTypes.LIKE_QUOTE_REQ
         });
 
         try {
             const { data } = await axiosInstance.post(`${process.env.REACT_APP_BASE_URL}/interactions/${quoteID}`);
             dispatch({
-                type: quotesActionsTypes.QUOTES_LIKE_SUCCESS,
+                type: quotesActionsTypes.LIKE_QUOTES_SUCCESS,
                 payload: data
             });
 
         } catch (err: any) {
             console.log(err)
             dispatch({
-                type: quotesActionsTypes.QUOTES_LIKE_FAILED,
+                type: quotesActionsTypes.LIKE_QUOTES_FAILED,
+                payload: err.message
+            });
+
+            toast(err.message, {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                type: "error"
+            });
+        }
+    }
+}
+
+export const UnlikeQuote = (quoteID: string) => {
+    console.log("UNLIKE")
+    return async (dispatch: Dispatch<ACTION>) => {
+        dispatch({
+            type: quotesActionsTypes.UNLIKE_QUOTE_REQ
+        });
+
+        try {
+            const { data } = await axiosInstance.post(`${process.env.REACT_APP_BASE_URL}/interactions/${quoteID}`);
+            dispatch({
+                type: quotesActionsTypes.UNLIKE_QUOTES_SUCCESS,
+                payload: data
+            });
+
+        } catch (err: any) {
+            console.log(err)
+            dispatch({
+                type: quotesActionsTypes.UNLIKE_QUOTES_FAILED,
                 payload: err.message
             });
 

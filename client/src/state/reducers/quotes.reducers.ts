@@ -43,22 +43,21 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
 
 
 
-        case quotesActionsTypes.QUOTES_LIKE_REQ:
+        case quotesActionsTypes.LIKE_QUOTE_REQ:
             return {
                 ...state,
                 likeReq: true,
             }
-        case quotesActionsTypes.QUOTES_LIKE_SUCCESS:
-            const { quoteID, user } = action.payload;
+        case quotesActionsTypes.LIKE_QUOTES_SUCCESS:
+            var { quoteID, user } = action.payload;
             // Find the index of the quote to be updated
-            const quoteIndex = state.quotes.quotesData.findIndex((item: any) => item._id === quoteID);
+            var quoteIndex = state.quotes.quotesData.findIndex((item: any) => item._id === quoteID);
             // Create a new array with the updated likedBy property for the specific quote
-            const updatedQuotesData = [...state.quotes.quotesData];
+            var updatedQuotesData = [...state.quotes.quotesData];
             updatedQuotesData[quoteIndex] = {
                 ...updatedQuotesData[quoteIndex],
                 likedBy: [...updatedQuotesData[quoteIndex].likedBy, user],
             };
-
             return {
                 ...state,
                 likeReq: false,
@@ -68,7 +67,41 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
                     quotesData: updatedQuotesData,
                 },
             };
-        case quotesActionsTypes.QUOTES_LIKE_FAILED:
+        case quotesActionsTypes.LIKE_QUOTES_FAILED:
+            return {
+                ...state,
+                likeReq: false,
+                likeError: action.payload
+            }
+
+            
+
+
+        case quotesActionsTypes.UNLIKE_QUOTE_REQ:
+            return {
+                ...state,
+                likeReq: true,
+            }
+        case quotesActionsTypes.UNLIKE_QUOTES_SUCCESS:
+            var { quoteID, user } = action.payload;
+            // Find the index of the quote to be updated
+            var quoteIndex = state.quotes.quotesData.findIndex((item: any) => item._id === quoteID);
+            // Create a new array with the updated likedBy property for the specific quote
+            var updatedQuotesData = [...state.quotes.quotesData];
+            updatedQuotesData[quoteIndex] = {
+                ...updatedQuotesData[quoteIndex],
+                likedBy: [...updatedQuotesData[quoteIndex].likedBy.filter((item: any) => item != user)],
+            };
+            return {
+                ...state,
+                likeReq: false,
+                likeSuccess: action.payload,
+                quotes: {
+                    ...state.quotes,
+                    quotesData: updatedQuotesData,
+                },
+            };
+        case quotesActionsTypes.UNLIKE_QUOTES_FAILED:
             return {
                 ...state,
                 likeReq: false,

@@ -1,7 +1,7 @@
 import React from 'react'
 import './quote-card.css'
 import moment from 'moment'
-import { likeQuote } from '../../../state/actions-creators/quotes.actions-creators'
+import { UnlikeQuote, likeQuote } from '../../../state/actions-creators/quotes.actions-creators'
 import { useAppDispatch, useAppSelector } from '../../../state/store.state'
 
 type quoteProps = {
@@ -12,8 +12,13 @@ type quoteProps = {
 export default function RenderQuote(props: quoteProps) {
     const dispatch = useAppDispatch();
     const { isAuthenticated, user } = useAppSelector(state => state.login)
-    const handleLikeUnlike = (quoteID: any) => {
+
+    const handleLikeQuote = (quoteID: string) => {
         dispatch(likeQuote(quoteID))
+    }
+    
+    const handleUnlikeQuote = (quoteID: string) => {
+        dispatch(UnlikeQuote(quoteID))
     }
 
     const checkLike = (likedBy: any) => {
@@ -49,9 +54,9 @@ export default function RenderQuote(props: quoteProps) {
                                         <div className="col-3 d-flex justify-content-center">
                                             {
                                                 checkLike(item.likedBy) ?
-                                                    <i onClick={() => handleLikeUnlike(item._id)} className="fa-solid fa-heart fa-2x" style={{ color: '#ff0000' }}></i>
+                                                    <i onClick={() => handleUnlikeQuote(item._id)} className="fa-solid fa-heart fa-2x" style={{ color: '#ff0000' }}></i>
                                                     :
-                                                    <i onClick={() => handleLikeUnlike(item._id)} className="fa-light fa-heart fa-2x"></i>
+                                                    <i onClick={() => handleLikeQuote(item._id)} className="fa-light fa-heart fa-2x"></i>
                                             }
                                         </div>
                                         <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-comment fa-flip-horizontal fa-2x"></i></div>
