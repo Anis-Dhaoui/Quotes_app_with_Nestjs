@@ -35,7 +35,7 @@ export const likeQuote = (quoteID: string) => {
         dispatch({
             type: quotesActionsTypes.QUOTES_LIKE_REQ
         });
-        const toastId = toast.loading('Please wait...')
+
         try {
             const { data } = await axiosInstance.post(`${process.env.REACT_APP_BASE_URL}/interactions/${quoteID}`);
             dispatch({
@@ -44,12 +44,22 @@ export const likeQuote = (quoteID: string) => {
             });
 
         } catch (err: any) {
+            console.log(err)
             dispatch({
                 type: quotesActionsTypes.QUOTES_LIKE_FAILED,
                 payload: err.message
             });
-            // toast.update(toastId, { render: err.message, type: "error", isLoading: false, autoClose: 3000, closeButton: true, closeOnClick: true });
 
+            toast(err.message, {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                type: "error"
+            });
         }
     }
 }
