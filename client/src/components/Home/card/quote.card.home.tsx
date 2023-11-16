@@ -1,8 +1,8 @@
 import React from 'react'
 import './quote-card.css'
 import moment from 'moment'
-import { UnlikeQuote, likeQuote } from '../../../state/actions-creators/quotes.actions-creators'
-import { useAppDispatch, useAppSelector } from '../../../state/store.state'
+import { UnlikeQuote, likeQuote } from 'state/actions-creators/quotes.actions-creators'
+import { useAppDispatch, useAppSelector } from 'state/store.state'
 
 type quoteProps = {
     loading: boolean,

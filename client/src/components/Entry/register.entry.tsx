@@ -3,8 +3,8 @@ import Multiselect from 'multiselect-react-dropdown';
 import { interestsList, INTERESTS } from './interestsList.entry';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
-import { useAppDispatch, useAppSelector } from '../../state/store.state';
-import { handleRegister } from '../../state/actions-creators/register.actions-creators';
+import { useAppDispatch, useAppSelector } from 'state/store.state';
+import { handleRegister } from 'state/actions-creators/register.actions-creators';
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 function RegisterCmp() {

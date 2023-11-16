@@ -1,5 +1,13 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@images/*": ["state/*"],
+      "@shared/*": ["shared"],
+      // Add more paths as needed
+    },
+    
     "target": "es5",
     "lib": [
       "dom",

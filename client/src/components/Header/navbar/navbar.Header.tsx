@@ -3,7 +3,7 @@ import './navbar.css';
 import './navbar.js';
 import SliderCmp from '../slider/slider.Header';
 import AvatarCmp from '../avatar/user.avatar';
-import { useAppSelector } from '../../../state/store.state';
+import { useAppSelector } from 'state/store.state';
 import { Link } from 'react-router-dom';
 
 

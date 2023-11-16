@@ -1,5 +1,5 @@
-import { quotesActionsTypes } from './../actions-types/quotes.actions-types';
-import { ACTION } from './../actions/quotes.actions';
+import { quotesActionsTypes } from 'state/actions-types/quotes.actions-types';
+import { ACTION } from 'state/actions/quotes.actions';
 import axios from 'axios';
 import { Dispatch } from 'redux';
 import { axiosInstance } from './axiosHeaderInstance';

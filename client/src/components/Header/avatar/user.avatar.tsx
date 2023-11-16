@@ -2,8 +2,8 @@ import React from 'react'
 import IonIcon from '@reacticons/ionicons';
 import './user.css';
 import './user.js';
-import { useAppDispatch } from '../../../state/store.state';
-import { handleLogout } from '../../../state/actions-creators/login.actions-creators';
+import { useAppDispatch } from 'state/store.state';
+import { handleLogout } from 'state/actions-creators/login.actions-creators';
 
 function AvatarCmp({ cu }: ILoginRes | any) {
 

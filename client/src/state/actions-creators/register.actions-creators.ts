@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
-import { registerActionsTypes } from './../actions-types/register.actions-types';
-import { ACTION } from './../actions/register.actions';
+import { registerActionsTypes } from 'state/actions-types/register.actions-types';
+import { ACTION } from 'state/actions/register.actions';
 import axios from 'axios';
 import { Dispatch } from 'redux';
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../../state/store.state';
-import { handleLogin } from '../../state/actions-creators/login.actions-creators';
+import { useAppDispatch, useAppSelector } from 'state/store.state';
+import { handleLogin } from 'state/actions-creators/login.actions-creators';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
