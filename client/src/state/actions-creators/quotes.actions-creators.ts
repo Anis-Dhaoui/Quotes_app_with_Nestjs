@@ -5,7 +5,7 @@ import { Dispatch } from 'redux';
 import { axiosInstance } from './axiosHeaderInstance';
 import { toast } from 'react-toastify';
 
-export const fetchQuotes = (p: number = 0, l: number = 25, c: string = "") => {
+export const fetchQuotes = (p: number = 0, l: number = 32, c: string = "") => {
 
     return async (dispatch: Dispatch<ACTION>) => {
         dispatch({
