@@ -1,5 +1,5 @@
-import { ACTION } from '../actions/login.actions';
-import { loginActionsTypes } from './../actions-types/login.actions-types';
+import { ACTION } from 'state/actions/login.actions';
+import { loginActionsTypes } from 'state/actions-types/login.actions-types';
 
 interface STATE {
     loading: boolean,
