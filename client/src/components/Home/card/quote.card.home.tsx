@@ -54,7 +54,7 @@ export default function RenderQuote(props: quoteProps) {
                                         <div className="col-3 d-flex justify-content-center">
                                             {
                                                 checkLike(item.likedBy) ?
-                                                    <i onClick={() => handleUnlikeQuote(item._id)} className="fa-solid fa-heart fa-2x" style={{ color: '#ff0000' }}></i>
+                                                    <i onClick={() => handleUnlikeQuote(item._id)} className="fa-solid fa-heart fa-2x" style={{ color: '#ff0000' }}><span className="badge badge-light">4</span></i>
                                                     :
                                                     <i onClick={() => handleLikeQuote(item._id)} className="fa-light fa-heart fa-2x"></i>
                                             }
