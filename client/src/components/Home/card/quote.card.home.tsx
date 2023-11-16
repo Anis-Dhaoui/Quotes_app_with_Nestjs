@@ -16,7 +16,7 @@ export default function RenderQuote(props: quoteProps) {
     const handleLikeQuote = (quoteID: string) => {
         dispatch(likeQuote(quoteID))
     }
-    
+
     const handleUnlikeQuote = (quoteID: string) => {
         dispatch(UnlikeQuote(quoteID))
     }
@@ -51,13 +51,16 @@ export default function RenderQuote(props: quoteProps) {
                                     <div className="col-12 p-2 text-center t-bq-quote-jasper-author"><cite> {item.author} </cite></div>
                                     <div className="col-12 text-center t-bq-quote-jasper-source"><span style={{ fontSize: "8pt" }}>{item.category}</span></div>
                                     <div id='interractions-btns' className="row mx-0">
-                                        <div className="col-3 d-flex justify-content-center">
+                                        <div id='like-unlike-btns' className="col-3 d-flex justify-content-center">
                                             {
                                                 checkLike(item.likedBy) ?
-                                                    <i onClick={() => handleUnlikeQuote(item._id)} className="fa-solid fa-heart fa-2x" style={{ color: '#ff0000' }}><span className="badge badge-light">4</span></i>
+                                                    <i onClick={() => handleUnlikeQuote(item._id)} className="fa-solid fa-heart fa-2x" style={{ color: '#ff0000' }}>
+                                                    </i>
                                                     :
-                                                    <i onClick={() => handleLikeQuote(item._id)} className="fa-light fa-heart fa-2x"></i>
+                                                    <i onClick={() => handleLikeQuote(item._id)} className="fa-light fa-heart fa-2x">
+                                                    </i>
                                             }
+                                            {item.likedBy.length > 0 ? <span className="badge"> {item.likedBy.length} </span> : null}
                                         </div>
                                         <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-comment fa-flip-horizontal fa-2x"></i></div>
                                         <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-paper-plane-top fa-flip-vertical fa-2x"></i></div>

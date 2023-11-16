@@ -161,6 +161,17 @@ section.t-bq-section {
     user-select: none;
 }
 
+#like-unlike-btns .badge{
+    background-color: #000000b5;
+    color: white;
+    border-radius: 50%;
+    font-size: 13px;
+    position: absolute;
+    margin-top: -8px;
+    margin-right: -33px;
+    z-index: 9999;
+    
+}
 
 
 
