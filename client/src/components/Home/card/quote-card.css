@@ -14,13 +14,12 @@ section.t-bq-section {
 
 .t-bq-quote-jasper {
     position: relative;
-    box-shadow: 2px 2px 25px #cecece;
+    box-shadow: 2px 8px 24px #3a3a3ac4;
     border-radius: 10px;
     width: 100%;
     /* Set the desired width for your cards */
     overflow: hidden;
     height: 342px;
-    border: 1px solid red;
 }
 
 .truncate-text {
@@ -39,7 +38,7 @@ section.t-bq-section {
     height: 80px;
     align-items: center;
     justify-content: flex-start;
-    background: url("https://raw.githubusercontent.com/taviskaron/t-div-blockquotes/main/img/hexabump.png") repeat;
+    background: url('./img/hexabump.png') repeat;
     /* background-color: lightgrey; */
     border-radius: 10px 10px 0 0;
 }
@@ -64,7 +63,7 @@ section.t-bq-section {
     left: calc(50% - 35px);
     width: 70px;
     height: 70px;
-    background: url("https://raw.githubusercontent.com/taviskaron/t-div-blockquotes/main/img/strug.jpg") center center no-repeat;
+    background: url("./img/strug.jpg") center center no-repeat;
     background-size: cover;
     border-radius: 50%;
 }
