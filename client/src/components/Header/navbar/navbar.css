@@ -10,7 +10,7 @@
 
 #nav-container {
     background: url(https://images.pexels.com/photos/414102/pexels-photo-414102.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
-    background-size: 100%;
+    /* background-size: 100%; */
     background-repeat: no-repeat;
     background-attachment: fixed;
     min-height: 700px;

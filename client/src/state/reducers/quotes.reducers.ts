@@ -82,7 +82,7 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
                 likeError: action.payload
             }
 
-            
+
 
 
         case quotesActionsTypes.UNLIKE_QUOTE_REQ:
