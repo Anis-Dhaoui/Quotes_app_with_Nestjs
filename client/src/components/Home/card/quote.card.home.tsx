@@ -50,7 +50,7 @@ export default function RenderQuote(props: quoteProps) {
                                 <div id='card-footer'>
                                     <div className="col-12 p-2 text-center t-bq-quote-jasper-author"><cite> {item.author} </cite></div>
                                     <div className="col-12 text-center t-bq-quote-jasper-source"><span style={{ fontSize: "8pt" }}>{item.category}</span></div>
-                                    <div id='interractions-btns' className="row mx-0">
+                                    <div id='interractions-btns' className="row">
                                         <div id='like-unlike-btns' className="col-3 d-flex justify-content-center">
                                             {
                                                 checkLike(item.likedBy) ?

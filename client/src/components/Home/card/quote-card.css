@@ -20,6 +20,7 @@ section.t-bq-section {
     /* Set the desired width for your cards */
     overflow: hidden;
     height: 342px;
+    border: 1px solid red;
 }
 
 .truncate-text {
@@ -113,7 +114,7 @@ section.t-bq-section {
     /* justify-content: center;
     align-items: center;
     align-content: center; */
-    padding: 15px;
+    /* padding: 15px; */
 }
 
 #interractions-btns {
@@ -169,8 +170,8 @@ section.t-bq-section {
     position: absolute;
     margin-top: -8px;
     margin-right: -33px;
-    z-index: 9999;
-    
+    z-index: 34;
+
 }
 
 
