@@ -150,3 +150,12 @@ svg {
     width: calc(100% - 60px);
     transition-delay: 0s;
 }
+
+@media screen and (max-width: 991px) {
+    .navigation{
+        top: 58px;
+        right: 5px;
+        width: 98px;
+        height: 60px;
+    }
+  }
