@@ -11,7 +11,8 @@ type quoteProps = {
 }
 export default function RenderQuote(props: quoteProps) {
     const dispatch = useAppDispatch();
-    const { isAuthenticated, user } = useAppSelector(state => state.login)
+    const { isAuthenticated, user } = useAppSelector(state => state.login);
+    console.log(isAuthenticated)
 
     const handleLikeQuote = (quoteID: string) => {
         dispatch(likeQuote(quoteID))

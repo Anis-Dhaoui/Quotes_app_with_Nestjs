@@ -91,14 +91,14 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
                 unlikeReq: true,
             }
         case quotesActionsTypes.UNLIKE_QUOTES_SUCCESS:
-            var { quoteID, user } = action.payload;
+            var { qID, us } = action.payload;
             // Find the index of the quote to be updated
-            var quoteIndex = state.quotes.quotesData.findIndex((item: any) => item._id === quoteID);
+            var qIndex = state.quotes.quotesData.findIndex((item: any) => item._id === qID);
             // Create a new array with the updated likedBy property for the specific quote
-            var updatedQuotesData = [...state.quotes.quotesData];
-            updatedQuotesData[quoteIndex] = {
-                ...updatedQuotesData[quoteIndex],
-                likedBy: [...updatedQuotesData[quoteIndex].likedBy.filter((item: any) => item != user)],
+            var updatedQD = [...state.quotes.quotesData];
+            updatedQD[qIndex] = {
+                ...updatedQD[qIndex],
+                likedBy: [...updatedQD[qIndex].likedBy.filter((item: any) => item !== us)],
             };
             return {
                 ...state,
@@ -106,7 +106,7 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
                 unlikeSuccess: action.payload,
                 quotes: {
                     ...state.quotes,
-                    quotesData: updatedQuotesData,
+                    quotesData: updatedQD,
                 },
             };
         case quotesActionsTypes.UNLIKE_QUOTES_FAILED:
