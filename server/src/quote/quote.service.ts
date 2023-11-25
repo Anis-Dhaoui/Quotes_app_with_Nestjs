@@ -25,7 +25,7 @@ export class QuoteService {
 
     const quoteData = await this.quoteModel.find(query.category ? { category: query.category, status: 'allowed' } : { status: 'allowed' })
       .sort({ createdAt: -1 })
-      .skip(pageOpts.page * pageOpts.limit)
+      .skip(pageOpts.page)
       .limit(pageOpts.limit)
       .exec();
 
