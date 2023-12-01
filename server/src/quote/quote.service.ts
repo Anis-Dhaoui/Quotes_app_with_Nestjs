@@ -25,9 +25,11 @@ export class QuoteService {
 
     const quoteData = await this.quoteModel.find(query.category ? { category: query.category, status: 'allowed' } : { status: 'allowed' })
       .sort({ createdAt: -1 })
-      .skip(pageOpts.page * pageOpts.limit)
+      .skip(pageOpts.page)
       .limit(pageOpts.limit)
       .exec();
+
+      console.log(await this.quoteModel.estimatedDocumentCount())
 
     if (!quoteData || quoteData.length == 0) {
       throw new NotFoundException('Quotes data not found!');

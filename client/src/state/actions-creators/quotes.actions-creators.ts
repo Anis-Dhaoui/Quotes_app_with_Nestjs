@@ -31,8 +31,6 @@ export const fetchQuotes = (p: number, l: number, c?: string) => {
 
 
 export const likeQuote = (quoteID: string) => {
-    console.log("LIKE")
-
     return async (dispatch: Dispatch<ACTION>) => {
         dispatch({
             type: quotesActionsTypes.LIKE_QUOTE_REQ
@@ -46,7 +44,6 @@ export const likeQuote = (quoteID: string) => {
             });
 
         } catch (err: any) {
-            console.log(err)
             dispatch({
                 type: quotesActionsTypes.LIKE_QUOTES_FAILED,
                 payload: err.message
@@ -67,7 +64,6 @@ export const likeQuote = (quoteID: string) => {
 }
 
 export const UnlikeQuote = (quoteID: string) => {
-    console.log("UNLIKE")
     return async (dispatch: Dispatch<ACTION>) => {
         dispatch({
             type: quotesActionsTypes.UNLIKE_QUOTE_REQ
@@ -81,7 +77,6 @@ export const UnlikeQuote = (quoteID: string) => {
             });
 
         } catch (err: any) {
-            console.log(err)
             dispatch({
                 type: quotesActionsTypes.UNLIKE_QUOTES_FAILED,
                 payload: err.message

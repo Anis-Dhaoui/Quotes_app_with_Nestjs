@@ -57,7 +57,7 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
                 likeReq: true,
             }
         case quotesActionsTypes.LIKE_QUOTES_SUCCESS:
-            var { quoteID, user } = action.payload;
+            var { quoteID, user }: any = action.payload;
             // Find the index of the quote to be updated
             var quoteIndex = state.quotes.quotesData.findIndex((item: any) => item._id === quoteID);
             // Create a new array with the updated likedBy property for the specific quote
@@ -90,16 +90,23 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
                 ...state,
                 unlikeReq: true,
             }
+            
         case quotesActionsTypes.UNLIKE_QUOTES_SUCCESS:
-            var { qID, us } = action.payload;
+            // eslint-disable-next-line
+            var { quoteID, user }: any = action.payload;
             // Find the index of the quote to be updated
-            var qIndex = state.quotes.quotesData.findIndex((item: any) => item._id === qID);
+            const qIndex = state.quotes.quotesData.findIndex((item: any) => item._id === quoteID);
             // Create a new array with the updated likedBy property for the specific quote
-            var updatedQD = [...state.quotes.quotesData];
+            const updatedQD = [...state.quotes.quotesData];
             updatedQD[qIndex] = {
                 ...updatedQD[qIndex],
-                likedBy: [...updatedQD[qIndex].likedBy.filter((item: any) => item !== us)],
+                likedBy: [...updatedQD[qIndex].likedBy.filter((item: any) => item !== user)],
             };
+
+            // updatedQuotesData[quoteIndex] = {
+            //     ...updatedQuotesData[quoteIndex],
+            //     likedBy: [...updatedQuotesData[quoteIndex].likedBy, user],
+            // };
             return {
                 ...state,
                 unlikeReq: false,

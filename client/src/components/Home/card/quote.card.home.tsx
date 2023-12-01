@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from 'state/store.state'
 
 type quoteProps = {
     loading: boolean,
-    quotes?: IQuotesRes,
+    quotes?: any,
     error?: string | null
 }
 export default function RenderQuote(props: quoteProps) {
@@ -28,7 +28,7 @@ export default function RenderQuote(props: quoteProps) {
 
 
 
-    const renderQuotes = props.quotes?.quotesData.map((item) => {
+    const renderQuotes = props.quotes.map((item: any) => {
         return (
             <div className="col-md-6 col-lg-4" key={item._id}>
                 <section className="t-bq-section" id="jasper">
