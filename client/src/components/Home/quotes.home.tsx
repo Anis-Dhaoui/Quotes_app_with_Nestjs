@@ -25,7 +25,7 @@ function HomeCmp() {
     return (
         <>
             <RenderQuote loading={loading} quotes={quotes} error={error} />
-            <button type="button" className="btn btn-primary btn-lg btn-block">Load More</button>
+            <button className="btn btn-primary btn-lg btn-block">Load More</button>
         </>
     )
 }
