@@ -37,12 +37,26 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
                 loading: true
             }
         case quotesActionsTypes.QUOTES_SUCCESS:
+            const newQuotes = action.payload.quotesData;
+            let moreQuotesData;
+            if(state.quotes != undefined && state.quotes.quotesData.length > 3){
+                moreQuotesData = [
+                    ...state.quotes.quotesData,
+                    ...newQuotes,
+                ];
+            }else{
+                moreQuotesData = action.payload;
+
+            }
+            console.log(moreQuotesData)
+
             return {
                 ...state,
                 loading: false,
-                quotes: action.payload
+                quotes: moreQuotesData
             }
         case quotesActionsTypes.QUOTES_FAILED:
+            console.log(action.payload)
             return {
                 ...state,
                 loading: false,
@@ -90,7 +104,7 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
                 ...state,
                 unlikeReq: true,
             }
-            
+
         case quotesActionsTypes.UNLIKE_QUOTES_SUCCESS:
             // eslint-disable-next-line
             var { quoteID, user }: any = action.payload;

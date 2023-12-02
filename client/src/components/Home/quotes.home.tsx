@@ -24,7 +24,7 @@ function HomeCmp() {
         setIndexLoadMore(indexLoadMore + 3)
     }, [dispatch])
 
-
+    // console.log(quotes)
     if (loading) {
         return <Loader />
     }
