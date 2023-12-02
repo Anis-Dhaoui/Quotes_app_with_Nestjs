@@ -1,26 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../state/store.state';
 import { fetchQuotes } from 'state/actions-creators/quotes.actions-creators';
-import RenderQuote from './card/quote.card.home';
+import RenderQuote from './card/renderQuote.card.home';
 import Loader from 'shared/loader/loader';
 
 function HomeCmp() {
     const dispatch = useAppDispatch();
     const { loading, quotes, error } = useAppSelector(state => state.quotes);
     var [indexLoadMore, setIndexLoadMore] = useState(0);
-    console.log(quotes)
+    const [quotesList, setQuotesList] = useState<any>([]);
+
+
     const handleLoadMorePage = () => {
         setIndexLoadMore(indexLoadMore + 3);
         dispatch(fetchQuotes(indexLoadMore, 3, ""));
+
+        // if (quotes) {
+        //     setQuotesList((prevData: any) => [...prevData, ...quotes?.quotesData])
+        // }
     }
     useEffect(() => {
-        console.log("HHHHHHHHHHHHHHHHHHHHhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
         dispatch(fetchQuotes(indexLoadMore, 3, ""));
-        setIndexLoadMore(3);
+        setIndexLoadMore(indexLoadMore + 3)
     }, [dispatch])
 
-
-
+    // console.log(quotes)
     if (loading) {
         return <Loader />
     }
