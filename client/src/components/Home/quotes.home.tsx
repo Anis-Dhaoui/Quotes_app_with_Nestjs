@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../state/store.state';
 import { fetchQuotes } from 'state/actions-creators/quotes.actions-creators';
-import RenderQuote from './card/quote.card.home';
+import RenderQuote from './card/renderQuote.card.home';
 import Loader from 'shared/loader/loader';
 
 function HomeCmp() {
@@ -10,27 +10,19 @@ function HomeCmp() {
     var [indexLoadMore, setIndexLoadMore] = useState(0);
     const [quotesList, setQuotesList] = useState<any>([]);
 
-    // console.log(indexLoadMore)
 
     const handleLoadMorePage = () => {
         setIndexLoadMore(indexLoadMore + 3);
-        console.log(indexLoadMore)
-        if (quotes) {
-            setQuotesList((prevData: any) => [...prevData, ...quotes?.quotesData])
-        }
+        dispatch(fetchQuotes(indexLoadMore, 3, ""));
+
+        // if (quotes) {
+        //     setQuotesList((prevData: any) => [...prevData, ...quotes?.quotesData])
+        // }
     }
     useEffect(() => {
-        console.log("HHHHHHHHHHHHHHHHHHHHhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
         dispatch(fetchQuotes(indexLoadMore, 3, ""));
-        if (indexLoadMore === 0 && quotes) {
-            setQuotesList(quotes?.quotesData);
-            setIndexLoadMore(3)
-        }
-    }, [indexLoadMore || quotes != undefined && dispatch])
-
-
-    console.log(quotesList)
-
+        setIndexLoadMore(indexLoadMore + 3)
+    }, [dispatch])
 
 
     if (loading) {
@@ -46,23 +38,7 @@ function HomeCmp() {
     }
     return (
         <>
-            {/* <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-            <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-            <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-            <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-            <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-            <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-            <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-            <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-            <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-            <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-            <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-            <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-            <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-            <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-            <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div> */}
-
-            <RenderQuote loading={loading} quotes={quotesList} error={error} />
+            <RenderQuote loading={loading} quotes={quotes} error={error} />
             <button onClick={handleLoadMorePage} className="btn btn-primary btn-lg btn-block">Load More</button>
         </>
     )
