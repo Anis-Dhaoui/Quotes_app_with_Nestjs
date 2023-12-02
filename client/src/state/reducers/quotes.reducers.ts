@@ -40,7 +40,8 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
             return {
                 ...state,
                 loading: false,
-                quotes: action.payload
+                // quotes: action.payload
+                quotes: {message: action.payload.message, quotesData: [...state.quotes?.quotesData, action.payload?.quotesData]}
             }
         case quotesActionsTypes.QUOTES_FAILED:
             return {

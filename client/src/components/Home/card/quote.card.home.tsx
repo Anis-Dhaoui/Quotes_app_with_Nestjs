@@ -12,7 +12,7 @@ type quoteProps = {
 export default function RenderQuote(props: quoteProps) {
     const dispatch = useAppDispatch();
     const { isAuthenticated, user } = useAppSelector(state => state.login);
-    console.log(isAuthenticated)
+    // console.log(isAuthenticated)
 
     const handleLikeQuote = (quoteID: string) => {
         dispatch(likeQuote(quoteID))
@@ -28,7 +28,7 @@ export default function RenderQuote(props: quoteProps) {
 
 
 
-    const renderQuotes = props.quotes.map((item: any) => {
+    const renderQuotes = props.quotes?.quotesData.map((item: any) => {
         return (
             <div className="col-md-6 col-lg-4" key={item._id}>
                 <section className="t-bq-section" id="jasper">
