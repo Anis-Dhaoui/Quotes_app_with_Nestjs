@@ -13,14 +13,14 @@ function HomeCmp() {
 
     const handleLoadMorePage = () => {
         setIndexLoadMore(indexLoadMore + 3);
-        // dispatch(loadMoreQuotes(indexLoadMore, 3, ""));
+        dispatch(loadMoreQuotes(indexLoadMore, 3, ""));
 
         // if (quotes) {
         //     setQuotesList((prevData: any) => [...prevData, ...quotes?.quotesData])
         // }
     }
     useEffect(() => {
-        dispatch(fetchQuotes());
+        dispatch(fetchQuotes(0, 3, ""));
         setIndexLoadMore(indexLoadMore + 3)
     }, [dispatch])
 
