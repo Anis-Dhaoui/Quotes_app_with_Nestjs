@@ -31,7 +31,6 @@ export const handleRegister = (inputs: IRegisterReq) => {
                 type: registerActionsTypes.REGISTER_FAILED,
                 payload: err.response.data
             });
-            console.log(err.response.data)
             toast.update(toastId, { render: err.response.data.message, type: "error", isLoading: false, autoClose: 3000, closeButton: true, closeOnClick: true });
         }
     }

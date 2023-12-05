@@ -13,7 +13,6 @@ async function bootstrap() {
   app.enableCors();
 
   await app.listen(5000, () =>{
-    Logger.flush()
     Logger.debug("SERVER RUNNING ON PORT: 5000")
   });
 }

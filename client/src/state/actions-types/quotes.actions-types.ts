@@ -3,7 +3,10 @@ export enum quotesActionsTypes {
     QUOTES_SUCCESS = 'Quotes_Success',
     QUOTES_FAILED = 'Quotes_Failed',
     // POST_QUOTE = 'Post_Quote',
-    LOAD_MORE = 'Load_More',
+
+    LOAD_MORE_LOADING = 'Load_More_Loading',
+    LOAD_MORE_SUCCESS = 'Load_More_Success',
+    LOAD_MORE_FAILED = 'Load_More_Failed',
 
     LIKE_QUOTE_REQ = 'LIKE_QUOTE_REQ',
     LIKE_QUOTES_SUCCESS = 'LIKE_QUOTES_SUCCESS',

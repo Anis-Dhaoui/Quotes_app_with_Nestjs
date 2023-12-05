@@ -1,25 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../state/store.state';
-import { fetchQuotes, loadMoreQuotes } from 'state/actions-creators/quotes.actions-creators';
+import { useAppDispatch, useAppSelector } from 'state/store.state';
+import { fetchQuotes } from 'state/actions-creators/quotes.actions-creators';
 import RenderQuote from './card/renderQuote.card.home';
 import Loader from 'shared/loader/loader';
+import LoadMoreButton from './LoadMoreButton';
 
 function HomeCmp() {
     const dispatch = useAppDispatch();
-    const { loading, quotes, error, docCount } = useAppSelector(state => state.quotes);
-    var [indexLoadMore, setIndexLoadMore] = useState(0);
-    const [quotesList, setQuotesList] = useState<any>([]);
-
-    
-
-    const handleLoadMorePage = () => {
-        setIndexLoadMore(indexLoadMore + 3);
-        dispatch(loadMoreQuotes(indexLoadMore, 3, ""));
-    }
+    const { loading, quotes, error } = useAppSelector(state => state.quotes);
 
     useEffect(() => {
         dispatch(fetchQuotes(0, 3, ""));
-        setIndexLoadMore(indexLoadMore + 3);
     }, [dispatch])
 
     if (loading) {
@@ -36,7 +27,7 @@ function HomeCmp() {
     return (
         <>
             <RenderQuote loading={loading} quotes={quotes} error={error} />
-            <button disabled={quotes?.quotesData.length >= docCount} onClick={handleLoadMorePage} className="btn btn-primary btn-lg btn-block">Load More</button>
+            <LoadMoreButton />
         </>
     )
 }

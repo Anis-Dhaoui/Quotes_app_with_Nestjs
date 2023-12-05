@@ -1,4 +1,4 @@
-import { loginActionsTypes } from "../actions-types/login.actions-types"
+import { loginActionsTypes } from "state/actions-types/login.actions-types"
 
 interface LoginLoading {
     type: loginActionsTypes.LOGIN_LOADING

@@ -3,7 +3,7 @@ import { OwnerGuard } from './../auth/RBAC/verify-owner/owner.guard';
 import { RoleGuard } from './../auth/RBAC/verify-admin/roles.guard';
 import { Roles } from './../auth/RBAC/verify-admin/roles.decorator';
 import { JwtAuthGuard } from './../auth/guards/jwt-auth.guard';
-import { Controller, Get, Post, Body, Param, Delete, Res, HttpStatus, Put, UseGuards, Req, Query, Logger } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Res, HttpStatus, Put, UseGuards, Req, Query } from '@nestjs/common';
 import { QuoteService } from './quote.service';
 import { CreateQuoteDto } from './dto/create-quote.dto';
 import { UpdateQuoteDto } from './dto/update-quote.dto';
@@ -139,7 +139,6 @@ export class QuoteController {
   // $$$$$$$$$$$$$$$$$$$$$$ USERS CAN SEARCH FOR QUOTES BY AUTHOR NAME $$$$$$$$$$$$$$$$$$$$$$
   @Get('/search')
   async searchByAuthor(@Res() res, @Req() req, @Query() query) {
-    Logger.warn(query)
     try {
       const quotesData = await this.quoteService.findByAuthor(query);
       return res.status(HttpStatus.OK).json({

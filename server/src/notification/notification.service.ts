@@ -1,6 +1,6 @@
 import { InjectModel } from '@nestjs/mongoose';
 import { INotification } from './entities/notification.entity';
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateNotificationDto } from './dto/create-notification.dto';
 import { Model, Query, ObjectId } from 'mongoose';
 
@@ -50,7 +50,6 @@ export class NotificationService {
 
   async findOneNotif(notifId: ObjectId, user: any): Promise<INotification> {
     const isAdmin = user.role == 'Admin';
-    Logger.log("is admin? ", isAdmin)
     const quote = await this.notifModel.findByIdAndUpdate(notifId, { read: true }, { new: true })
       .populate(
         isAdmin ? 'context sender' : 'context',

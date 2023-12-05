@@ -3,7 +3,7 @@
     "baseUrl": "src",
     "paths": {
       "@components/*": ["components/*"],
-      "@images/*": ["state/*"],
+      "@state/*": ["state/*"],
       "@shared/*": ["shared"],
       // Add more paths as needed
     },

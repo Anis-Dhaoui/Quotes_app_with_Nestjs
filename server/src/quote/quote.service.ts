@@ -1,5 +1,5 @@
 import { InjectModel } from '@nestjs/mongoose';
-import { Injectable, NotFoundException, Logger } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateQuoteDto } from './dto/create-quote.dto';
 import { UpdateQuoteDto } from './dto/update-quote.dto';
 import { Model, ObjectId } from 'mongoose';
@@ -16,7 +16,6 @@ export class QuoteService {
   }
 
   async findAll(query: any): Promise<any> {
-    Logger.log(query.category);
 
     const pageOpts = {
       page: query.page,
@@ -62,8 +61,6 @@ export class QuoteService {
   }
 
   async findAllByUsersInterests(interests, query): Promise<IQuote[]> {
-    Logger.log(interests)
-    // Logger.warn(query);
     let quoteData = await this.quoteModel.find().exec();
     quoteData.sort((a, b) => (interests.includes(a.category)) ? -1 : 0);
     const page = quoteData.slice((query.page - 1) * query.limit, query.page * query.limit);
@@ -76,7 +73,6 @@ export class QuoteService {
   }
 
   async findByAuthor(query): Promise<IQuote[]> {
-    Logger.log(query)
     const regex = new RegExp(query.author, 'i') // i for case insensitive
     let data = await this.quoteModel.find({ author: { $regex: regex } });
 

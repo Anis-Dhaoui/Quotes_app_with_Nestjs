@@ -4,7 +4,6 @@ import { IUser } from './../users/entities/user.entity';
 import { Injectable, HttpStatus, HttpException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { Logger } from '@nestjs/common';
 
 @Injectable()
 export class AuthService {
@@ -23,7 +22,6 @@ export class AuthService {
 
   //$$$$$$$$$$$$$$$$$$// VALIDATE EMAIL AND PASSWORD //$$$$$$$$$$$$$$$$$$//
   async validateUser(email: string, password: string): Promise<any> {
-    Logger.log('ValidateUser(email, password) METHOD INVOKDED');
 
     const user = await this.getUser({ email });
     if (!user) {
@@ -31,7 +29,6 @@ export class AuthService {
     }
 
     const passwordValid = await bcrypt.compare(password, user.password)
-    Logger.warn(passwordValid);
 
     if (!passwordValid) {
       throw new HttpException('Incorrect password!', HttpStatus.UNAUTHORIZED);

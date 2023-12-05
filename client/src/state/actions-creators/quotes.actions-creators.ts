@@ -33,20 +33,20 @@ export const loadMoreQuotes = (p: number, l: number, c?: string) => {
 
     return async (dispatch: Dispatch<ACTION>) => {
         dispatch({
-            type: quotesActionsTypes.QUOTES_LOADING
+            type: quotesActionsTypes.LOAD_MORE_LOADING
         });
 
         try {
             const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/quotes?page=${p}&limit=${l}&category=${c}`);
 
             dispatch({
-                type: quotesActionsTypes.LOAD_MORE,
+                type: quotesActionsTypes.LOAD_MORE_SUCCESS,
                 payload: data
             });
 
         } catch (err: any) {
             dispatch({
-                type: quotesActionsTypes.QUOTES_FAILED,
+                type: quotesActionsTypes.LOAD_MORE_FAILED,
                 payload: err.message
             });
         }

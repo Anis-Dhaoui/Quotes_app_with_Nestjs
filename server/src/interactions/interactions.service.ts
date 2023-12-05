@@ -1,6 +1,6 @@
 import { IQuote } from './../quote/entities/quote.entity';
 import { InjectModel } from '@nestjs/mongoose';
-import { Injectable, NotFoundException, Logger } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Model, ObjectId } from 'mongoose';
 
 @Injectable()

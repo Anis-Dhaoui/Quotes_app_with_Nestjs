@@ -1,4 +1,4 @@
-import { quotesActionsTypes } from "../actions-types/quotes.actions-types";
+import { quotesActionsTypes } from "state/actions-types/quotes.actions-types";
 
 // interface PostQuote {
 //     type: quotesActionsTypes.POST_QUOTE,
@@ -14,16 +14,25 @@ interface GetAllQuotes {
     payload: IQuotesRes
 }
 
-interface LoadMoreQuotes {
-    type: quotesActionsTypes.LOAD_MORE,
-    payload: IQuotesRes
-}
-
 interface QuotesFailed {
     type: quotesActionsTypes.QUOTES_FAILED,
     payload: string
 }
 
+
+interface LoadMoreLoading {
+    type: quotesActionsTypes.LOAD_MORE_LOADING
+}
+
+interface LoadMoreQuotes {
+    type: quotesActionsTypes.LOAD_MORE_SUCCESS,
+    payload: IQuotesRes
+}
+
+interface LoadMoreFailed {
+    type: quotesActionsTypes.LOAD_MORE_FAILED,
+    payload: string
+}
 
 
 interface LikeQuotesReq {
@@ -55,4 +64,4 @@ interface UnlikeQuotesFailed {
     payload: string
 }
 
-export type ACTION = QuotesLoading | GetAllQuotes | LoadMoreQuotes | QuotesFailed | LikeQuotesReq | LikeQuotesSuccess | LikeQuotesFailed | UnlikeQuotesReq | UnlikeQuotesSuccess | UnlikeQuotesFailed
+export type ACTION = QuotesLoading | GetAllQuotes | QuotesFailed | LoadMoreLoading | LoadMoreQuotes | LoadMoreFailed | LikeQuotesReq | LikeQuotesSuccess | LikeQuotesFailed | UnlikeQuotesReq | UnlikeQuotesSuccess | UnlikeQuotesFailed

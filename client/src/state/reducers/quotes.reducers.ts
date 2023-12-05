@@ -7,6 +7,10 @@ interface STATE {
     error?: string | null,
     docCount: number,
 
+    loadMoreLoading?: boolean,
+    loadedQuotes?: IQuotesRes,
+    loadMoreError?: string | null
+
     likeReq?: boolean,
     likeSuccess?: string,
     likeError?: string | null,
@@ -21,6 +25,10 @@ const initialState = {
     quotes: undefined,
     error: null,
     docCount: 0,
+
+    loadMoreLoading: false,
+    loadedQuotes: undefined,
+    loadMoreError: null,
 
     likeReq: false,
     likeSuccess: undefined,
@@ -47,14 +55,6 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
                 docCount: action.payload.docCount
             }
 
-        case quotesActionsTypes.LOAD_MORE:
-            return {
-                ...state,
-                loading: false,
-                quotes: { message: action.payload.message, quotesData: [...state.quotes.quotesData, ...action.payload.quotesData] },
-                docCount: action.payload.docCount
-            }
-
         case quotesActionsTypes.QUOTES_FAILED:
             return {
                 ...state,
@@ -62,6 +62,28 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
                 error: action.payload
             }
 
+
+
+        case quotesActionsTypes.LOAD_MORE_LOADING:
+            return {
+                ...state,
+                loadMoreLoading: true
+            }
+
+        case quotesActionsTypes.LOAD_MORE_SUCCESS:
+            return {
+                ...state,
+                loadMoreLoading: false,
+                quotes: { message: action.payload.message, quotesData: [...state.quotes.quotesData, ...action.payload.quotesData] },
+                docCount: action.payload.docCount
+            }
+
+        case quotesActionsTypes.LOAD_MORE_FAILED:
+            return {
+                ...state,
+                loadMoreLoading: false,
+                loadMoreError: action.payload
+            }
 
 
         case quotesActionsTypes.LIKE_QUOTE_REQ:

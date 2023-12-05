@@ -1,4 +1,4 @@
-import { registerActionsTypes } from './../actions-types/register.actions-types';
+import { registerActionsTypes } from 'state/actions-types/register.actions-types';
 
 interface RegisterLoading {
     type: registerActionsTypes.REGISTER_LOADING
