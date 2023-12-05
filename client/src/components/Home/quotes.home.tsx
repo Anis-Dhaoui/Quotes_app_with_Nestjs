@@ -1,30 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../state/store.state';
-import { fetchQuotes } from 'state/actions-creators/quotes.actions-creators';
+import { fetchQuotes, loadMoreQuotes } from 'state/actions-creators/quotes.actions-creators';
 import RenderQuote from './card/renderQuote.card.home';
 import Loader from 'shared/loader/loader';
 
 function HomeCmp() {
     const dispatch = useAppDispatch();
-    const { loading, quotes, error } = useAppSelector(state => state.quotes);
+    const { loading, quotes, error, docCount } = useAppSelector(state => state.quotes);
     var [indexLoadMore, setIndexLoadMore] = useState(0);
     const [quotesList, setQuotesList] = useState<any>([]);
 
+    
 
     const handleLoadMorePage = () => {
         setIndexLoadMore(indexLoadMore + 3);
-        dispatch(fetchQuotes(indexLoadMore, 3, ""));
-
-        // if (quotes) {
-        //     setQuotesList((prevData: any) => [...prevData, ...quotes?.quotesData])
-        // }
+        dispatch(loadMoreQuotes(indexLoadMore, 3, ""));
     }
+
     useEffect(() => {
-        dispatch(fetchQuotes(indexLoadMore, 3, ""));
-        setIndexLoadMore(indexLoadMore + 3)
+        dispatch(fetchQuotes(0, 3, ""));
+        setIndexLoadMore(indexLoadMore + 3);
     }, [dispatch])
 
-    // console.log(quotes)
     if (loading) {
         return <Loader />
     }
@@ -39,7 +36,7 @@ function HomeCmp() {
     return (
         <>
             <RenderQuote loading={loading} quotes={quotes} error={error} />
-            <button onClick={handleLoadMorePage} className="btn btn-primary btn-lg btn-block">Load More</button>
+            <button disabled={quotes?.quotesData.length >= docCount} onClick={handleLoadMorePage} className="btn btn-primary btn-lg btn-block">Load More</button>
         </>
     )
 }

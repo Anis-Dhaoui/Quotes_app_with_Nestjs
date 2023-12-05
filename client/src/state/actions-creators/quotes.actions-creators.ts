@@ -29,6 +29,30 @@ export const fetchQuotes = (p: number, l: number, c?: string) => {
     }
 }
 
+export const loadMoreQuotes = (p: number, l: number, c?: string) => {
+
+    return async (dispatch: Dispatch<ACTION>) => {
+        dispatch({
+            type: quotesActionsTypes.QUOTES_LOADING
+        });
+
+        try {
+            const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/quotes?page=${p}&limit=${l}&category=${c}`);
+
+            dispatch({
+                type: quotesActionsTypes.LOAD_MORE,
+                payload: data
+            });
+
+        } catch (err: any) {
+            dispatch({
+                type: quotesActionsTypes.QUOTES_FAILED,
+                payload: err.message
+            });
+        }
+    }
+}
+
 
 export const likeQuote = (quoteID: string) => {
     return async (dispatch: Dispatch<ACTION>) => {

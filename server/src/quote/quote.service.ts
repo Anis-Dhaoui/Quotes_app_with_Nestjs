@@ -15,7 +15,7 @@ export class QuoteService {
     return newQuote.save();
   }
 
-  async findAll(query: any): Promise<IQuote[]> {
+  async findAll(query: any): Promise<any> {
     Logger.log(query.category);
 
     const pageOpts = {
@@ -29,12 +29,12 @@ export class QuoteService {
       .limit(pageOpts.limit)
       .exec();
 
-      console.log(await this.quoteModel.estimatedDocumentCount())
+    const docCount = await this.quoteModel.estimatedDocumentCount();
 
     if (!quoteData || quoteData.length == 0) {
       throw new NotFoundException('Quotes data not found!');
     }
-    return quoteData;
+    return { quoteData, docCount };
   }
 
   async findOne(quoteId: string): Promise<IQuote> {

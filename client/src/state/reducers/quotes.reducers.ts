@@ -5,6 +5,7 @@ interface STATE {
     loading?: any,
     quotes?: IQuotesRes | any,
     error?: string | null,
+    docCount: number,
 
     likeReq?: boolean,
     likeSuccess?: string,
@@ -19,6 +20,7 @@ const initialState = {
     loading: false,
     quotes: undefined,
     error: null,
+    docCount: 0,
 
     likeReq: false,
     likeSuccess: undefined,
@@ -36,26 +38,24 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
                 ...state,
                 loading: true
             }
-        case quotesActionsTypes.QUOTES_SUCCESS:
-            const newQuotes = action.payload.quotesData;
-            var moreQuotesData: any = [];
-            if(state.quotes != undefined && state.quotes.quotesData.length > 3){
-                moreQuotesData = [
-                    ...state.quotes.quotesData,
-                    ...newQuotes,
-                ];
-            }else{
-                moreQuotesData = action.payload.message;
-            }
-            console.log(moreQuotesData)
 
+        case quotesActionsTypes.QUOTES_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                quotes: moreQuotesData
+                quotes: action.payload,
+                docCount: action.payload.docCount
             }
+
+        case quotesActionsTypes.LOAD_MORE:
+            return {
+                ...state,
+                loading: false,
+                quotes: { message: action.payload.message, quotesData: [...state.quotes.quotesData, ...action.payload.quotesData] },
+                docCount: action.payload.docCount
+            }
+
         case quotesActionsTypes.QUOTES_FAILED:
-            console.log(action.payload)
             return {
                 ...state,
                 loading: false,

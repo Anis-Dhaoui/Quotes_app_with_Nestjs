@@ -12,7 +12,8 @@ interface IQuote {
 
 interface IQuotesRes {
     message: string,
-    quotesData: h[]
+    quotesData: h[],
+    docCount: number
 }
 
 //$$$$$$$$$$$$$$$$$$$$$$$$$$// REGISTER //$$$$$$$$$$$$$$$$$$$$$$$$$$//
