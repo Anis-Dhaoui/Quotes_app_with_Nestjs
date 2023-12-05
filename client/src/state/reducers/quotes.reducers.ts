@@ -37,24 +37,18 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
                 loading: true
             }
         case quotesActionsTypes.QUOTES_SUCCESS:
-            const newQuotes = action.payload.quotesData;
-            let moreQuotesData;
-            if(state.quotes != undefined && state.quotes.quotesData.length > 3){
-                moreQuotesData = [
-                    ...state.quotes.quotesData,
-                    ...newQuotes,
-                ];
-            }else{
-                moreQuotesData = action.payload;
-
-            }
-            console.log(moreQuotesData)
-
             return {
                 ...state,
                 loading: false,
-                quotes: moreQuotesData
+                quotes: action.payload
             }
+        case quotesActionsTypes.LOAD_MORE:
+            return {
+                ...state,
+                loading: false,
+                quotes: { message: action.payload.message, quotesData: [...state.quotes.quotesData, ...action.payload.quotesData] }
+            }
+
         case quotesActionsTypes.QUOTES_FAILED:
             console.log(action.payload)
             return {

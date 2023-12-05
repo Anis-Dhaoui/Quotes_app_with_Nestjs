@@ -5,7 +5,7 @@ import { Dispatch } from 'redux';
 import { axiosInstance } from './axiosHeaderInstance';
 import { toast } from 'react-toastify';
 
-export const fetchQuotes = (p: number, l: number, c?: string) => {
+export const fetchQuotes = (p: number = 0, l: number = 3, c?: string) => {
 
     return async (dispatch: Dispatch<ACTION>) => {
         dispatch({
@@ -17,6 +17,30 @@ export const fetchQuotes = (p: number, l: number, c?: string) => {
 
             dispatch({
                 type: quotesActionsTypes.QUOTES_SUCCESS,
+                payload: data
+            });
+
+        } catch (err: any) {
+            dispatch({
+                type: quotesActionsTypes.QUOTES_FAILED,
+                payload: err.message
+            });
+        }
+    }
+}
+
+export const loadMoreQuotes = (p: number, l: number, c?: string) => {
+
+    return async (dispatch: Dispatch<ACTION>) => {
+        dispatch({
+            type: quotesActionsTypes.QUOTES_LOADING
+        });
+
+        try {
+            const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/quotes?page=${p}&limit=${l}&category=${c}`);
+
+            dispatch({
+                type: quotesActionsTypes.LOAD_MORE,
                 payload: data
             });
 

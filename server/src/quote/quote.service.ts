@@ -29,7 +29,7 @@ export class QuoteService {
       .limit(pageOpts.limit)
       .exec();
 
-      console.log(await this.quoteModel.estimatedDocumentCount())
+      // console.log(await this.quoteModel.estimatedDocumentCount())
 
     if (!quoteData || quoteData.length == 0) {
       throw new NotFoundException('Quotes data not found!');

@@ -14,6 +14,11 @@ interface GetAllQuotes {
     payload: IQuotesRes
 }
 
+interface LoadMoreQuotes {
+    type: quotesActionsTypes.LOAD_MORE,
+    payload: IQuotesRes
+}
+
 interface QuotesFailed {
     type: quotesActionsTypes.QUOTES_FAILED,
     payload: string
@@ -50,4 +55,4 @@ interface UnlikeQuotesFailed {
     payload: string
 }
 
-export type ACTION = QuotesLoading | GetAllQuotes | QuotesFailed | LikeQuotesReq | LikeQuotesSuccess | LikeQuotesFailed | UnlikeQuotesReq | UnlikeQuotesSuccess | UnlikeQuotesFailed
+export type ACTION = QuotesLoading | GetAllQuotes | LoadMoreQuotes | QuotesFailed | LikeQuotesReq | LikeQuotesSuccess | LikeQuotesFailed | UnlikeQuotesReq | UnlikeQuotesSuccess | UnlikeQuotesFailed

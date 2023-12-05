@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../state/store.state';
-import { fetchQuotes } from 'state/actions-creators/quotes.actions-creators';
+import { fetchQuotes, loadMoreQuotes } from 'state/actions-creators/quotes.actions-creators';
 import RenderQuote from './card/renderQuote.card.home';
 import Loader from 'shared/loader/loader';
 
@@ -13,18 +13,18 @@ function HomeCmp() {
 
     const handleLoadMorePage = () => {
         setIndexLoadMore(indexLoadMore + 3);
-        dispatch(fetchQuotes(indexLoadMore, 3, ""));
+        // dispatch(loadMoreQuotes(indexLoadMore, 3, ""));
 
         // if (quotes) {
         //     setQuotesList((prevData: any) => [...prevData, ...quotes?.quotesData])
         // }
     }
     useEffect(() => {
-        dispatch(fetchQuotes(indexLoadMore, 3, ""));
+        dispatch(fetchQuotes());
         setIndexLoadMore(indexLoadMore + 3)
     }, [dispatch])
 
-    // console.log(quotes)
+    console.log(quotes)
     if (loading) {
         return <Loader />
     }
