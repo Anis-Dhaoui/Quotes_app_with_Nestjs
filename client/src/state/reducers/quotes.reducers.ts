@@ -38,15 +38,14 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
             }
         case quotesActionsTypes.QUOTES_SUCCESS:
             const newQuotes = action.payload.quotesData;
-            let moreQuotesData;
+            var moreQuotesData: any = [];
             if(state.quotes != undefined && state.quotes.quotesData.length > 3){
                 moreQuotesData = [
                     ...state.quotes.quotesData,
                     ...newQuotes,
                 ];
             }else{
-                moreQuotesData = action.payload;
-
+                moreQuotesData = action.payload.message;
             }
             console.log(moreQuotesData)
 
