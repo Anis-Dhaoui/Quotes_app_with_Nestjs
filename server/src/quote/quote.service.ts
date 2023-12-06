@@ -28,7 +28,7 @@ export class QuoteService {
       .limit(pageOpts.limit)
       .exec();
 
-    const docCount = await this.quoteModel.estimatedDocumentCount();
+    const docCount = await this.quoteModel.countDocuments({status: 'allowed'});
 
     if (!quoteData || quoteData.length == 0) {
       throw new NotFoundException('Quotes data not found!');

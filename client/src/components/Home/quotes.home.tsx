@@ -10,7 +10,7 @@ function HomeCmp() {
     const { loading, quotes, error } = useAppSelector(state => state.quotes);
 
     useEffect(() => {
-        dispatch(fetchQuotes(0, 3, ""));
+        dispatch(fetchQuotes(0, 9, ""));
     }, [dispatch])
 
     if (loading) {

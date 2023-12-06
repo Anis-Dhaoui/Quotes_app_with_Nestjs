@@ -6,16 +6,17 @@ import { loadMoreQuotes } from 'state/actions-creators/quotes.actions-creators';
 function LoadMoreButton() {
     const dispatch = useAppDispatch();
     const { quotes, docCount, loadMoreLoading, loadMoreError } = useAppSelector(state => state.quotes);
-    var [indexLoadMore, setIndexLoadMore] = useState(3);
+    var [indexLoadMore, setIndexLoadMore] = useState(9);
 
     const handleLoadMorePage = () => {
-        setIndexLoadMore(indexLoadMore + 3);
-        dispatch(loadMoreQuotes(indexLoadMore, 3, ""));
+        setIndexLoadMore(indexLoadMore + 9);
+        dispatch(loadMoreQuotes(indexLoadMore, 9, ""));
     }
 
     if (loadMoreLoading) {
         return <Loader />
     }
+    console.log(quotes)
 
     if (loadMoreError) {
         return (
