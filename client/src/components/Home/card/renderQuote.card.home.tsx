@@ -1,8 +1,6 @@
 import React from 'react'
 import './quote-card.css'
 import moment from 'moment'
-import { UnlikeQuote, likeQuote } from 'state/actions-creators/quotes.actions-creators'
-import { useAppDispatch, useAppSelector } from 'state/store.state'
 import LikeUnlikeBtns from './LikeUnlikeBtns'
 
 type quoteProps = {
@@ -11,9 +9,6 @@ type quoteProps = {
     error?: string | null
 }
 export default function RenderQuote(props: quoteProps) {
-
-
-
 
     const renderQuotes = props.quotes?.quotesData.map((item: any) => {
         return (

@@ -1,9 +1,11 @@
 import React from 'react'
+import { Navigate, Route, useNavigate } from 'react-router-dom';
 import { UnlikeQuote, likeQuote } from 'state/actions-creators/quotes.actions-creators';
 import { useAppDispatch, useAppSelector } from 'state/store.state';
 
 function LikeUnlikeBtns({ item }: any) {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const { user, isAuthenticated } = useAppSelector(state => state.login);
 
     const handleLikeQuote = (quoteID: string) => {
@@ -17,6 +19,11 @@ function LikeUnlikeBtns({ item }: any) {
     const checkLike = (likedBy: any) => {
         return likedBy.includes(user?.user._id)
     }
+
+    const redirectToLoginPage = () =>{
+        navigate('/entry')
+        
+    }
     return (
         <div id='like-unlike-btns' className="col-3 d-flex justify-content-center">
             {isAuthenticated ?
@@ -25,7 +32,7 @@ function LikeUnlikeBtns({ item }: any) {
                     :
                     <i onClick={() => handleLikeQuote(item._id)} className="fa-light fa-heart fa-2x"></i>
                 :
-                <i onClick={() => alert("you're not logged in!")} className="fa-light fa-heart fa-2x"></i>
+                <i onClick={() => redirectToLoginPage()} className="fa-light fa-heart fa-2x"></i>
             }
             {item.likedBy.length > 0 ? <span className="badge"> {item.likedBy.length} </span> : null}
         </div>
