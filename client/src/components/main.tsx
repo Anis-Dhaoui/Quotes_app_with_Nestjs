@@ -18,3 +18,36 @@ export default function Main() {
         </>
     )
 }
+
+
+
+{/* <Routes>
+    <Route path='/login' element={<LoginPage />} />
+
+    <Route path='/home'
+        element={
+            <RouteProtector isLoggedIn={isAuthenticated}>
+                <RenderComputers />
+            </RouteProtector>
+        }
+    />
+
+    <Route path='/profile'
+        element={
+            <RouteProtector isLoggedIn={isAuthenticated}>
+                <Profile />
+            </RouteProtector>
+        }
+    />
+
+    <Route path='/users_management'
+        element={
+            <RouteProtector isLoggedIn={isAuthenticated}>
+                <UsersManagement />
+            </RouteProtector>
+        }
+    />
+
+    <Route path='*' element={<div>NOT FOUND</div>} />
+    <Route path='/' element={<Navigate to="/home" />} />
+</Routes> */}

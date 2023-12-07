@@ -3,6 +3,7 @@ import './quote-card.css'
 import moment from 'moment'
 import { UnlikeQuote, likeQuote } from 'state/actions-creators/quotes.actions-creators'
 import { useAppDispatch, useAppSelector } from 'state/store.state'
+import LikeUnlikeBtns from './LikeUnlikeBtns'
 
 type quoteProps = {
     loading: boolean,
@@ -10,20 +11,7 @@ type quoteProps = {
     error?: string | null
 }
 export default function RenderQuote(props: quoteProps) {
-    const dispatch = useAppDispatch();
-    const { user } = useAppSelector(state => state.login);
 
-    const handleLikeQuote = (quoteID: string) => {
-        dispatch(likeQuote(quoteID))
-    }
-
-    const handleUnlikeQuote = (quoteID: string) => {
-        dispatch(UnlikeQuote(quoteID))
-    }
-
-    const checkLike = (likedBy: any) => {
-        return likedBy.includes(user?.user._id)
-    }
 
 
 
@@ -45,23 +33,13 @@ export default function RenderQuote(props: quoteProps) {
                             <div className="t-bq-quote-jasper-userpic"></div>
                             <div className="row d-flex align-items-end t-bq-quote-jasper-base">
                                 <div className="col-12 p-4 justify-content-start">
-                                    <blockquote className="truncate-text" cite="Strugatsky Brothers">{item.quote}</blockquote>
+                                    <blockquote className="truncate-text" cite={item.author}>{item.quote}</blockquote>
                                 </div>
                                 <div id='card-footer'>
                                     <div className="col-12 p-2 text-center t-bq-quote-jasper-author"><cite> {item.author} </cite></div>
                                     <div className="col-12 text-center t-bq-quote-jasper-source"><span style={{ fontSize: "8pt" }}>{item.category}</span></div>
                                     <div id='interractions-btns' className="row pl-0">
-                                        <div id='like-unlike-btns' className="col-3 d-flex justify-content-center">
-                                            {
-                                                checkLike(item.likedBy) ?
-                                                    <i onClick={() => handleUnlikeQuote(item._id)} className="fa-solid fa-heart fa-2x" style={{ color: '#ff0000' }}>
-                                                    </i>
-                                                    :
-                                                    <i onClick={() => handleLikeQuote(item._id)} className="fa-light fa-heart fa-2x">
-                                                    </i>
-                                            }
-                                            {item.likedBy.length > 0 ? <span className="badge"> {item.likedBy.length} </span> : null}
-                                        </div>
+                                        <LikeUnlikeBtns item={item} />
                                         <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-comment fa-flip-horizontal fa-2x"></i></div>
                                         <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-paper-plane-top fa-flip-vertical fa-2x"></i></div>
                                         <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-bookmark fa-2x"></i></div>
