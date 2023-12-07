@@ -38,3 +38,16 @@ function LoadMoreButton() {
 }
 
 export default LoadMoreButton
+
+// {
+//     author: "Test Test"
+//     authorPic: "images/img.jpg"
+//     category: "Happiness"
+//     createdAt: "2023-11-02T21:06:13.232Z"
+//     likedBy: ['63c446853e6fa1e888823b3d', '63c82cccbe221c116dafd16b']
+//     owner: "6484e9c75621bfb240364907"
+//     quote: "quotes text."
+//     status: "allowed"
+//     updatedAt: "2023-12-06T07:14:32.320Z"
+//     _id: "65440f45db0ccac073bc76ff"
+// }
