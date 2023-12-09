@@ -60,16 +60,30 @@ export class QuoteService {
     return deletedQuote;
   }
 
-  async findAllByUsersInterests(interests, query): Promise<IQuote[]> {
-    let quoteData = await this.quoteModel.find().exec();
-    quoteData.sort((a, b) => (interests.includes(a.category)) ? -1 : 0);
-    const page = quoteData.slice((query.page - 1) * query.limit, query.page * query.limit);
+  // async findAllByUsersInterests(interests, query): Promise<IQuote[]> {
+  //   let quoteData = await this.quoteModel.find().exec();
+  //   quoteData.sort((a, b) => (interests.includes(a.category)) ? -1 : 0);
+  //   // const page = quoteData.slice((query.page - 1) * query.limit, query.page * query.limit);
 
-    if (!quoteData || quoteData.length == 0) {
-      throw new NotFoundException('Quotes data not found!');
-    }
+  //   if (!quoteData || quoteData.length == 0) {
+  //     throw new NotFoundException('Quotes data not found!');
+  //   }
 
-    return page;
+  //   return quoteData;
+  // }
+
+  async findAllByUsersInterests(interests, query): Promise<any> {
+    let quoteData = await this.quoteModel.updateMany(
+      {},
+      [{ $set: { category: { $toLower: "$category" } } }],
+      { multi: true }
+    )
+      .then((result) => {
+        console.log("Categories updated successfully:", result);
+      })
+      .catch((error) => {
+        console.error("Error updating categories:", error);
+      });;
   }
 
   async findByAuthor(query): Promise<IQuote[]> {
