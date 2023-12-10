@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'state/store.state';
 import { fetchQuotes } from 'state/actions-creators/quotes.actions-creators';
-import RenderQuotesByDefault from './RenderQuotes/RenderQuotesByDefault';
+import RenderQuotes from './RenderQuotes/RenderQuotes';
 import Loader from 'shared/loader/loader';
 import LoadMoreButton from './LoadMoreButton';
-import RenderQuotesByInterests from './RenderQuotes/RenderQuotesByInterests';
 
 function Index() {
     const dispatch = useAppDispatch();
@@ -29,12 +28,7 @@ function Index() {
     console.log(isAuthenticated)
     return (
         <>
-            {
-                !isAuthenticated ?
-                    <RenderQuotesByInterests />
-                    :
-                    <RenderQuotesByDefault loading={loading} quotes={quotes} error={error} />
-            }
+            <RenderQuotes loading={loading} quotes={quotes} error={error} />
             <LoadMoreButton />
         </>
     )

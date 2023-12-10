@@ -8,7 +8,7 @@ type quoteProps = {
     quotes?: any,
     error?: string | null
 }
-export default function RenderQuotesByDefault(props: quoteProps) {
+export default function RenderQuotes(props: quoteProps) {
 
     const renderQuotes = props.quotes?.quotesData.map((item: any) => {
         return (
