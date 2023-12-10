@@ -61,13 +61,15 @@ export class QuoteService {
   }
 
   async findAllByUsersInterests(interests, query): Promise<any> {
+    console.log("PAGE: ", query.page)
+    console.log("LIMIT: ", query.limit)
     let quoteData = await this.quoteModel.find(
       query.category ?
         { category: query.category, status: 'allowed' }
         :
         { status: 'allowed' }
     ).exec();
-    quoteData.sort((a, b) => (interests.includes(a.category)) ? -1 : 1);
+    quoteData.sort((a, b) => (interests.includes(a.category)) ? -1 : 0);
     const page = quoteData.slice(query.page, query.limit);
     const docCount = await this.quoteModel.countDocuments({ status: 'allowed' });
     if (!quoteData || quoteData.length == 0) {

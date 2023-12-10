@@ -8,10 +8,10 @@ import LoadMoreButton from './LoadMoreButton';
 function Index() {
     const dispatch = useAppDispatch();
     const { loading, quotes, error } = useAppSelector(state => state.quotes);
-    const { user, isAuthenticated } = useAppSelector(state => state.login);
+    const { isAuthenticated } = useAppSelector(state => state.login);
 
     useEffect(() => {
-        dispatch(fetchQuotes(0, 9, ""));
+        dispatch(fetchQuotes(0, 3, "", isAuthenticated));
     }, [dispatch])
 
     if (loading) {
@@ -25,7 +25,7 @@ function Index() {
             </div>
         )
     }
-    console.log(isAuthenticated)
+
     return (
         <>
             <RenderQuotes loading={loading} quotes={quotes} error={error} />

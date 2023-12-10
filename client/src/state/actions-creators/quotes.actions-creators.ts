@@ -1,19 +1,23 @@
 import { quotesActionsTypes } from 'state/actions-types/quotes.actions-types';
 import { ACTION } from 'state/actions/quotes.actions';
-import axios from 'axios';
 import { Dispatch } from 'redux';
 import { axiosInstance } from './axiosHeaderInstance';
 import { toast } from 'react-toastify';
 
-export const fetchQuotes = (p: number, l: number, c?: string) => {
-
+export const fetchQuotes = (p: number, l: number, c?: string, isAuthenticated?: boolean) => {
+    console.log(isAuthenticated)
     return async (dispatch: Dispatch<ACTION>) => {
         dispatch({
             type: quotesActionsTypes.QUOTES_LOADING
         });
-
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/quotes?page=${p}&limit=${l}&category=${c}`);
+            if (!isAuthenticated) {
+                console.log("$$$$$$$$$$$$$ /quotes $$$$$$$$$$$$$")
+                var { data } = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes?page=${p}&limit=${l}&category=${c}`);
+            } else {
+                console.log("$$$$$$$$$$$$$ /quotes/interests $$$$$$$$$$$$$")
+                var { data } = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes/interests/?page=${p}&limit=${l}&category=${c}`);
+            }
 
             dispatch({
                 type: quotesActionsTypes.QUOTES_SUCCESS,
@@ -29,7 +33,7 @@ export const fetchQuotes = (p: number, l: number, c?: string) => {
     }
 }
 
-export const loadMoreQuotes = (p: number, l: number, c?: string) => {
+export const loadMoreQuotes = (p: number, l: number, c?: string, isAuthenticated?: boolean) => {
 
     return async (dispatch: Dispatch<ACTION>) => {
         dispatch({
@@ -37,8 +41,13 @@ export const loadMoreQuotes = (p: number, l: number, c?: string) => {
         });
 
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/quotes?page=${p}&limit=${l}&category=${c}`);
-
+            if (!isAuthenticated) {
+                var { data } = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes?page=${p}&limit=${l}&category=${c}`);
+                console.log("$$$$$$$$$$$$$ /quotes $$$$$$$$$$$$$")
+            } else {
+                var { data } = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes/interests/?page=${p}&limit=${l}&category=${c}`);
+                console.log("$$$$$$$$$$$$$ /quotes/interests $$$$$$$$$$$$$")
+            }
             dispatch({
                 type: quotesActionsTypes.LOAD_MORE_SUCCESS,
                 payload: data
