@@ -128,8 +128,10 @@ export class QuoteController {
 
     try {
       const quotesData = await this.quoteService.findAllByUsersInterests(req.user.interests, query);
+      const data = quotesData.page;
+      const count = quotesData.docCount;
       return res.status(HttpStatus.OK).json({
-        message: 'All quotes data found successfully', quotesData,
+        message: 'All quotes data found successfully', quotesData: data, docCount: count
       });
     } catch (err) {
       return res.status(err.status).json(err.response);

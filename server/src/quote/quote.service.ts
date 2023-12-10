@@ -28,7 +28,7 @@ export class QuoteService {
       .limit(pageOpts.limit)
       .exec();
 
-    const docCount = await this.quoteModel.countDocuments({status: 'allowed'});
+    const docCount = await this.quoteModel.countDocuments({ status: 'allowed' });
 
     if (!quoteData || quoteData.length == 0) {
       throw new NotFoundException('Quotes data not found!');
@@ -60,31 +60,53 @@ export class QuoteService {
     return deletedQuote;
   }
 
-  // async findAllByUsersInterests(interests, query): Promise<IQuote[]> {
-  //   let quoteData = await this.quoteModel.find().exec();
-  //   quoteData.sort((a, b) => (interests.includes(a.category)) ? -1 : 0);
-  //   // const page = quoteData.slice((query.page - 1) * query.limit, query.page * query.limit);
+  async findAllByUsersInterests(interests, query): Promise<any> {
+    let quoteData = await this.quoteModel.find().exec();
+    quoteData.sort((a, b) => (interests.includes(a.category)) ? -1 : 1);
+    const page = quoteData.slice(query.page, query.limit);
+    const docCount = await this.quoteModel.countDocuments({ status: 'allowed' });
+    if (!quoteData || quoteData.length == 0) {
+      throw new NotFoundException('Quotes data not found!');
+    }
 
-  //   if (!quoteData || quoteData.length == 0) {
-  //     throw new NotFoundException('Quotes data not found!');
-  //   }
+    return { page, docCount };
+  }
 
-  //   return quoteData;
+  // $$$$$$$$$$$$$$$ THIS IS TO LOWERCASE CATEGORIES (exp: from "LIFE" to "life") $$$$$$$$$$$$$$$
+  // async findAllByUsersInterests(interests, query): Promise<any> {
+  //   let quoteData = await this.quoteModel.updateMany(
+  //     {},
+  //     [{ $set: { category: { $toLower: "$category" } } }],
+  //     { multi: true }
+  //   )
+  //     .then((result) => {
+  //       console.log("Categories updated successfully:", result);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error updating categories:", error);
+  //     });;
+  //     return quoteData
   // }
 
-  async findAllByUsersInterests(interests, query): Promise<any> {
-    let quoteData = await this.quoteModel.updateMany(
-      {},
-      [{ $set: { category: { $toLower: "$category" } } }],
-      { multi: true }
-    )
-      .then((result) => {
-        console.log("Categories updated successfully:", result);
-      })
-      .catch((error) => {
-        console.error("Error updating categories:", error);
-      });;
-  }
+  // $$$$$$$$$$$$$$$ THIS IS TO CONVERT THE FIRST LETTER OF CATEGORIES TO UPPERCASE (exp: from "life" to "Life") $$$$$$$$$$$$$$$
+  // async findAllByUsersInterests(interests, query): Promise<any> {
+  //   let quoteData = await this.quoteModel.updateMany(
+  //     {},
+  //     [
+  //       {
+  //         $set: {
+  //           category: {
+  //             $concat: [
+  //               { $toUpper: { $substrCP: ["$category", 0, 1] } },
+  //               { $substrCP: ["$category", 1, { $subtract: [{ $strLenCP: "$category" }, 1] }] }
+  //             ]
+  //           }
+  //         }
+  //       }
+  //     ]
+  //   )
+  //     return quoteData
+  // }
 
   async findByAuthor(query): Promise<IQuote[]> {
     const regex = new RegExp(query.author, 'i') // i for case insensitive
