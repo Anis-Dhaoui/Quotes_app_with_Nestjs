@@ -1,5 +1,5 @@
 import React from 'react'
-import './quote-card.css'
+import './style.css'
 import moment from 'moment'
 import LikeUnlikeBtns from './LikeUnlikeBtns'
 
@@ -8,7 +8,7 @@ type quoteProps = {
     quotes?: any,
     error?: string | null
 }
-export default function RenderQuote(props: quoteProps) {
+export default function RenderQuotesByDefault(props: quoteProps) {
 
     const renderQuotes = props.quotes?.quotesData.map((item: any) => {
         return (

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'state/store.state';
 import { fetchQuotes } from 'state/actions-creators/quotes.actions-creators';
-import RenderQuote from './card/renderQuote.card.home';
+import RenderQuotesByDefault from './RenderQuotes/RenderQuotesByDefault';
 import Loader from 'shared/loader/loader';
 import LoadMoreButton from './LoadMoreButton';
 
-function HomeCmp() {
+function Index() {
     const dispatch = useAppDispatch();
     const { loading, quotes, error } = useAppSelector(state => state.quotes);
 
@@ -26,10 +26,10 @@ function HomeCmp() {
     }
     return (
         <>
-            <RenderQuote loading={loading} quotes={quotes} error={error} />
+            <RenderQuotesByDefault loading={loading} quotes={quotes} error={error} />
             <LoadMoreButton />
         </>
     )
 }
 
-export default HomeCmp
+export default Index
