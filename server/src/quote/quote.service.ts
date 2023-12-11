@@ -60,23 +60,82 @@ export class QuoteService {
     return deletedQuote;
   }
 
-  async findAllByUsersInterests(interests, query): Promise<any> {
-    console.log("PAGE: ", query.page)
-    console.log("LIMIT: ", query.limit)
-    let quoteData = await this.quoteModel.find(
-      query.category ?
-        { category: query.category, status: 'allowed' }
-        :
-        { status: 'allowed' }
-    ).exec();
-    quoteData.sort((a, b) => (interests.includes(a.category)) ? -1 : 0);
-    const page = quoteData.slice(query.page, query.limit);
-    const docCount = await this.quoteModel.countDocuments({ status: 'allowed' });
-    if (!quoteData || quoteData.length == 0) {
-      throw new NotFoundException('Quotes data not found!');
-    }
+  // async findAllByUsersInterests(interests, query): Promise<any> {
+  //   console.log("PAGE: ", query.page)
+  //   console.log("LIMIT: ", query.limit)
+  //   let quoteData = await this.quoteModel.find(
+  //     query.category ?
+  //       { category: query.category, status: 'allowed' }
+  //       :
+  //       { status: 'allowed' }
+  //   ).exec();
+  //   quoteData.sort((a, b) => (interests.includes(a.category)) ? -1 : 0);
+  //   const page = quoteData.slice(query.page, query.limit);
+  //   const docCount = await this.quoteModel.countDocuments({ status: 'allowed' });
+  //   if (!quoteData || quoteData.length == 0) {
+  //     throw new NotFoundException('Quotes data not found!');
+  //   }
 
-    return { page, docCount };
+  //   return { page, docCount };
+  // }
+  async findAllByUsersInterests(interests, query): Promise<any> {
+    console.log(interests, query)
+    let quoteData = await this.quoteModel.aggregate([
+      {
+        $match: {
+          status: "allowed" // Filtering documents where status is "allowed"
+        }
+      },
+      {
+        $addFields: {
+          "sort-key": {
+            $cond: {
+              if: {
+                $in: ["$category", interests]
+              },
+              then: {
+                $add: [
+                  {
+                    $indexOfArray: [interests, "$category"]
+                  },
+                  {
+                    $multiply: [
+                      {
+                        $rand: {}
+                      },
+                      10
+                    ]
+                  }// Multiply by a random number to add randomness
+
+                ]
+              },
+              else: 9999// Assign a high value to categories not in the desired order
+
+            }
+          }
+        }
+      },
+      {
+        $sort: {
+          "sort-key": 1// Sort based on the custom order with randomness
+        }
+      },
+      {
+        $unset: [
+          "sort-key"
+        ]// Remove the added field after sorting
+
+      },
+      {
+        $skip: +query.page // Skip the first 5 documents
+      },
+      {
+        $limit: +query.limit // Limit to 10 documents
+      }
+    ])
+    console.log(quoteData)
+    const docCount = await this.quoteModel.countDocuments({ status: 'allowed' });
+    return { quoteData, docCount };
   }
 
   // $$$$$$$$$$$$$$$ THIS IS TO LOWERCASE CATEGORIES (exp: from "LIFE" to "life") $$$$$$$$$$$$$$$

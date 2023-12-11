@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navigate, Route, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { UnlikeQuote, likeQuote } from 'state/actions-creators/quotes.actions-creators';
 import { useAppDispatch, useAppSelector } from 'state/store.state';
 
@@ -20,9 +20,8 @@ function LikeUnlikeBtns({ item }: any) {
         return likedBy.includes(user?.user._id)
     }
 
-    const redirectToLoginPage = () =>{
+    const redirectToLoginPage = () => {
         navigate('/entry')
-        
     }
     return (
         <div id='like-unlike-btns' className="col-3 d-flex justify-content-center">
