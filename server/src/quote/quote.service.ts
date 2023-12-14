@@ -78,65 +78,64 @@ export class QuoteService {
 
   //   return { page, docCount };
   // }
+
+  // async findAllByUsersInterests(interests, query): Promise<any> {
+  //   console.log(interests, query)
+  //   let quoteData = await this.quoteModel.aggregate([
+  //     { $match: { status: "allowed", category: { $in: interests } } },
+  //     {
+  //       $addFields: {
+  //         "sort-key": {
+  //           $cond: {
+  //             if: { $in: ["$category", interests] },
+  //             then: {
+  //               $add: [
+  //                 { $indexOfArray: [interests, "$category"] },
+  //                 { $multiply: [{ $rand: {} }, 10] }// Multiply by a random number to add randomness
+  //               ]
+  //             },
+  //             else: 9999// Assign a high value to categories not in the desired order
+  //           }
+  //         }
+  //       }
+  //     },
+  //     { $sort: { "sort-key": 1 } }, // Sort based on the custom order with randomness
+  //     { $unset: ["sort-key"] } // Remove the added field after sorting
+  //   ])
+
+  //   const docCount = await this.quoteModel.countDocuments({ status: 'allowed', category: { $in: interests } });
+  //   return { quoteData, docCount };
+  // }
+
+
   async findAllByUsersInterests(interests, query): Promise<any> {
     console.log(interests, query)
     let quoteData = await this.quoteModel.aggregate([
-      {
-        $match: {
-          status: "allowed" // Filtering documents where status is "allowed"
-        }
-      },
+      { $match: { status: "allowed", category: { $in: interests } } },
       {
         $addFields: {
           "sort-key": {
             $cond: {
-              if: {
-                $in: ["$category", interests]
-              },
+              if: { $in: ["$category", interests] },
               then: {
                 $add: [
-                  {
-                    $indexOfArray: [interests, "$category"]
-                  },
-                  {
-                    $multiply: [
-                      {
-                        $rand: {}
-                      },
-                      10
-                    ]
-                  }// Multiply by a random number to add randomness
-
+                  { $indexOfArray: [interests, "$category"] },
+                  { $multiply: [{ $rand: {} }, 10] }// Multiply by a random number to add randomness
                 ]
               },
               else: 9999// Assign a high value to categories not in the desired order
-
             }
           }
         }
       },
-      {
-        $sort: {
-          "sort-key": 1// Sort based on the custom order with randomness
-        }
-      },
-      {
-        $unset: [
-          "sort-key"
-        ]// Remove the added field after sorting
-
-      },
-      {
-        $skip: +query.page // Skip the first 5 documents
-      },
-      {
-        $limit: +query.limit // Limit to 10 documents
-      }
+      { $sort: { "sort-key": 1 } }, // Sort based on the custom order with randomness
+      { $unset: ["sort-key"] } // Remove the added field after sorting
     ])
-    console.log(quoteData)
-    const docCount = await this.quoteModel.countDocuments({ status: 'allowed' });
+
+    const docCount = await this.quoteModel.countDocuments({ status: 'allowed', category: { $in: interests } });
     return { quoteData, docCount };
   }
+
 
   // $$$$$$$$$$$$$$$ THIS IS TO LOWERCASE CATEGORIES (exp: from "LIFE" to "life") $$$$$$$$$$$$$$$
   // async findAllByUsersInterests(interests, query): Promise<any> {
