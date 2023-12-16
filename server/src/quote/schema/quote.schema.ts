@@ -29,4 +29,4 @@ export class Quote {
 }
 export const QuoteSchema = SchemaFactory.createForClass(Quote);
 // Condition for author and quote (together) must be unique 
-QuoteSchema.index({ author: 1, quote: 1 }, { unique: true });
+// QuoteSchema.index({ author: 1, quote: 1 }, { unique: true });
