@@ -60,47 +60,23 @@ export class QuoteService {
     return deletedQuote;
   }
 
-  // async findAllByUsersInterests(interests, query): Promise<any> {
-  //   console.log("PAGE: ", query.page)
-  //   console.log("LIMIT: ", query.limit)
-  //   let quoteData = await this.quoteModel.find(
-  //     query.category ?
-  //       { category: query.category, status: 'allowed' }
-  //       :
-  //       { status: 'allowed' }
-  //   ).exec();
-  //   quoteData.sort((a, b) => (interests.includes(a.category)) ? -1 : 0);
-  //   const page = quoteData.slice(query.page, query.limit);
-  //   const docCount = await this.quoteModel.countDocuments({ status: 'allowed' });
-  //   if (!quoteData || quoteData.length == 0) {
-  //     throw new NotFoundException('Quotes data not found!');
-  //   }
-
-  //   return { page, docCount };
-  // }
-
-  async findAllByUsersInterests(interests, query): Promise<any> {
-    console.log(interests, query)
+  async findAllByUsersInterests(interestss, query): Promise<any> {
+    const interests = ["God", "Life", "Happiness"]
     let quoteData = await this.quoteModel.aggregate([
-      { $match: { status: "allowed", category: { $in: interests } } },
+      { $match: { status: "allowed" } },
       {
         $addFields: {
           "sort-key": {
             $cond: {
               if: { $in: ["$category", interests] },
-              then: {
-                $add: [
-                  { $indexOfArray: [interests, "$category"] },
-                  { $multiply: [{ $rand: {} }, 10] }// Multiply by a random number to add randomness
-                ]
-              },
-              else: 9999// Assign a high value to categories not in the desired order
+              then: 0, // Assign a lower value for matching categories
+              else: 1   // Assign a higher value for non-matching categories
             }
           }
         }
       },
-      { $sort: { "createdAt": -1,  "sort-key": 1} }, // Sort based on the custom order with randomness
-      { $unset: ["sort-key"] }, // Remove the added field after sorting
+      { $sort: { "sort-key": 1, "createdAt": -1, "_id": 1 } }, // Sort based on the custom order with randomness
+      { $unset: ["sort-key", "__v"] }, // Remove the added field after sorting
       {
         $skip: +query.page // Skip the first 5 documents
       },
@@ -109,45 +85,9 @@ export class QuoteService {
       }
     ])
 
-    const docCount = await this.quoteModel.countDocuments({ status: 'allowed', category: { $in: interests } });
+    const docCount = await this.quoteModel.countDocuments({ status: 'allowed' });
     return { quoteData, docCount };
   }
-
-  // async findAllByUsersInterests(interests, query): Promise<any> {
-  //   console.log(interests, query);
-
-  //   // Find quotes that match the given interests and status
-  //   const quoteData = await this.quoteModel.find(
-  //     { status: "allowed", category: { $in: interests } }
-  //   );
-
-  //   // Sort the retrieved quotes based on the specified custom order with randomness
-  //   quoteData.sort((a, b) => {
-  //     const indexA = interests.indexOf(a.category);
-  //     const indexB = interests.indexOf(b.category);
-
-  //     // If both categories are in the interests array, sort based on the custom order with randomness
-  //     if (indexA !== -1 && indexB !== -1) {
-  //       const randomA = indexA + Math.random() * 10;
-  //       const randomB = indexB + Math.random() * 10;
-  //       return randomA - randomB;
-  //     }
-
-  //     // Categories not in the desired order get a higher value for sorting
-  //     if (indexA === -1) return 1;
-  //     if (indexB === -1) return -1;
-
-  //     return 0;
-  //   });
-
-  //   // Count the documents that match the criteria
-  //   const docCount = await this.quoteModel.countDocuments({
-  //     status: 'allowed',
-  //     category: { $in: interests }
-  //   });
-
-  //   return { quoteData, docCount };
-  // }
 
 
 
