@@ -8,11 +8,11 @@ function LoadMoreButton() {
     const { quotes, docCount, loadMoreLoading, loadMoreError } = useAppSelector(state => state.quotes);
     const { isAuthenticated } = useAppSelector(state => state.login);
 
-    var [indexLoadMore, setIndexLoadMore] = useState(3);
+    var [indexLoadMore, setIndexLoadMore] = useState(12);
 
     const handleLoadMorePage = () => {
-        setIndexLoadMore(indexLoadMore + 3);
-        dispatch(loadMoreQuotes(indexLoadMore, 3, "", isAuthenticated));
+        setIndexLoadMore(indexLoadMore + 12);
+        dispatch(loadMoreQuotes(indexLoadMore, 12, "", isAuthenticated));
     }
 
     if (loadMoreLoading) {

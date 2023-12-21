@@ -11,7 +11,7 @@ function Index() {
     const { isAuthenticated } = useAppSelector(state => state.login);
 
     useEffect(() => {
-        dispatch(fetchQuotes(0, 3, "", isAuthenticated));
+        dispatch(fetchQuotes(0, 12, "", isAuthenticated));
     }, [dispatch])
 
     if (loading) {

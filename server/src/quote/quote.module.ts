@@ -3,7 +3,6 @@ import { Module, Global, Scope } from '@nestjs/common';
 import { QuoteService } from './quote.service';
 import { QuoteController } from './quote.controller';
 import { QuoteSchema } from './schema/quote.schema';
-import { TempData } from './tempData';
 
 @Global()
 @Module({
@@ -11,13 +10,7 @@ import { TempData } from './tempData';
     MongooseModule.forFeature([{ name: 'Quote', schema: QuoteSchema }]) // Setup the mongoose module to use the User schema
   ],
   controllers: [QuoteController],
-  providers: [QuoteService,
-    {
-      provide: TempData,
-      useClass: TempData,
-      // scope: Scope.REQUEST,
-    },
-  ],
+  providers: [QuoteService],
   exports: [
     QuoteService,
     MongooseModule.forFeature([{ name: 'Quote', schema: QuoteSchema }]),

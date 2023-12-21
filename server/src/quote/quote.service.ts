@@ -60,8 +60,7 @@ export class QuoteService {
     return deletedQuote;
   }
 
-  async findAllByUsersInterests(interestss, query): Promise<any> {
-    const interests = ["God", "Life", "Happiness"]
+  async findAllByUsersInterests(interests, query): Promise<any> {
     let quoteData = await this.quoteModel.aggregate([
       { $match: { status: "allowed" } },
       {
