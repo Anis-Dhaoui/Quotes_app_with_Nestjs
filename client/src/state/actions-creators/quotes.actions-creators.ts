@@ -5,17 +5,14 @@ import { axiosInstance } from './axiosHeaderInstance';
 import { toast } from 'react-toastify';
 
 export const fetchQuotes = (p: number, l: number, c?: string, isAuthenticated?: boolean) => {
-    console.log(isAuthenticated)
     return async (dispatch: Dispatch<ACTION>) => {
         dispatch({
             type: quotesActionsTypes.QUOTES_LOADING
         });
         try {
             if (!isAuthenticated) {
-                console.log("$$$$$$$$$$$$$ /quotes $$$$$$$$$$$$$")
                 var { data } = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes?page=${p}&limit=${l}&category=${c}`);
             } else {
-                console.log("$$$$$$$$$$$$$ /quotes/interests $$$$$$$$$$$$$")
                 var { data } = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes/interests/?page=${p}&limit=${l}&category=${c}`);
             }
 
@@ -43,10 +40,8 @@ export const loadMoreQuotes = (p: number, l: number, c?: string, isAuthenticated
         try {
             if (!isAuthenticated) {
                 var { data } = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes?page=${p}&limit=${l}&category=${c}`);
-                console.log("$$$$$$$$$$$$$ /quotes $$$$$$$$$$$$$")
             } else {
                 var { data } = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes/interests/?page=${p}&limit=${l}&category=${c}`);
-                console.log("$$$$$$$$$$$$$ /quotes/interests $$$$$$$$$$$$$")
             }
             dispatch({
                 type: quotesActionsTypes.LOAD_MORE_SUCCESS,
