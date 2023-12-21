@@ -36,6 +36,18 @@ export class QuoteService {
     return { quoteData, docCount };
   }
 
+  async findMostPopularQuotes(): Promise<any> {
+    let popularQuotes = await this.quoteModel
+      .aggregate([
+        { $match: { status: "allowed" } },
+        { $addFields: { "likedByCount": { $size: '$likedBy' } } },
+        { $sort: { "likedByCount": -1, "createdAt": -1 } },
+        { $limit: 10 }
+      ])
+
+    return popularQuotes;
+  }
+
   async findOne(quoteId: string): Promise<IQuote> {
     const quote = await this.quoteModel.findById(quoteId).populate('owner likedBy', 'firstName lastName userPic');
     if (!quote) {

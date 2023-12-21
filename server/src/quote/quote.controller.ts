@@ -75,6 +75,20 @@ export class QuoteController {
     }
   }
 
+  // $$$$$$$$$$$$$$$$$$$$$$ GET THE MOST POPULAR ANR RECENT QUOTES FOR HEADER SLIDE SHOW $$$$$$$$$$$$$$$$$$$$$$
+  @Get('/popular-quotes')
+  async findMostPopularQuotes(@Res() res) {
+    try {
+      const result = await this.quoteService.findMostPopularQuotes()
+      return res.status(HttpStatus.OK).json({
+        message: 'Popular quotes fetched successfully',
+        popularQuotes: result
+      })
+    } catch (err) {
+      return res.status(err.status).json(err.response);
+    }
+  }
+
   // $$$$$$$$$$$$$$$$$$$$$$ EVERYONE CAN VISIT QUOTE DETAIL $$$$$$$$$$$$$$$$$$$$$$
   @Get('/detail/:quoteId')
   async findOne(@Res() response, @Param('quoteId') quoteId: string) {
