@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import './style.slider.css';
 import { useAppDispatch, useAppSelector } from 'state/store.state';
 import { fetchPopularQuotes } from 'state/actions-creators/quotes.actions-creators';
+import Loader from 'shared/loader/loader';
+import img from './authorSample.jpg'
 
 export default function RenderPopularQuotes() {
 
@@ -14,63 +16,36 @@ export default function RenderPopularQuotes() {
 
   console.log(popularQuotesRes?.popularQuotes)
 
+  if (popularQuotesReq) {
+    return <Loader />
+  }
+
+  if (popularQuotesErr) {
+    return (
+      <div className="alert alert-danger my-5 mx-5" role="alert">
+        {popularQuotesErr}
+      </div>
+    )
+  }
+
+  const popularQuotesList = popularQuotesRes?.popularQuotes.map((item: any) => {
+    return (
+      <div key={item._id} className='carousel__item'>
+        <div className='carousel__item-head'>
+          <img src={img} alt='img' className='rounded-circle' width={80} height={80} />
+        </div>
+        <div className='carousel__item-body'>
+          <p>{item.author}</p>
+          <blockquote className="truncate-text" cite={item.author}>{item.quote}</blockquote>
+          <span style={{ fontSize: "8pt", position: "absolute", bottom: "0", right: "45%" }}>{item.category}</span>
+        </div>
+      </div>
+    )
+  })
   return (
     <div className='wrapper'>
       <div className='carousel'>
-        <div className='carousel__item'>
-          <div className='carousel__item-head'>
-            1
-          </div>
-          <div className='carousel__item-body'>
-            <p>Carousel item 1</p>
-            <p>Eiusmod tempor incididunt ut labore et dolore</p>
-          </div>
-        </div>
-        <div className='carousel__item'>
-          <div className='carousel__item-head'>
-            2
-          </div>
-          <div className='carousel__item-body'>
-            <p>Carousel item 2</p>
-            <p>Eiusmod tempor incididunt ut labore et dolore</p>
-          </div>
-        </div>
-        <div className='carousel__item'>
-          <div className='carousel__item-head'>
-            3
-          </div>
-          <div className='carousel__item-body'>
-            <p>Carousel item 3</p>
-            <p>Eiusmod tempor incididunt ut labore et dolore</p>
-          </div>
-        </div>
-        <div className='carousel__item'>
-          <div className='carousel__item-head'>
-            4
-          </div>
-          <div className='carousel__item-body'>
-            <p>Carousel item 4</p>
-            <p>Eiusmod tempor incididunt ut labore et dolore</p>
-          </div>
-        </div>
-        <div className='carousel__item'>
-          <div className='carousel__item-head'>
-            5
-          </div>
-          <div className='carousel__item-body'>
-            <p>Carousel item 5</p>
-            <p>Eiusmod tempor incididunt ut labore et dolore</p>
-          </div>
-        </div>
-        <div className='carousel__item'>
-          <div className='carousel__item-head'>
-            6
-          </div>
-          <div className='carousel__item-body'>
-            <p>Carousel item 6</p>
-            <p>Eiusmod tempor incididunt ut labore et dolore</p>
-          </div>
-        </div>
+        {popularQuotesList}
       </div>
     </div>
 
