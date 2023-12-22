@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './slider.css';
+import { useAppDispatch, useAppSelector } from 'state/store.state';
+import { fetchPopularQuotes } from 'state/actions-creators/quotes.actions-creators';
 
 export default function SliderCmp() {
+
+  const dispatch = useAppDispatch();
+  const { popularQuotesReq, popularQuotesRes, popularQuotesErr } = useAppSelector(state => state.quotes);
+
+  useEffect(() => {
+    dispatch(fetchPopularQuotes());
+  }, [dispatch])
+
+  console.log(popularQuotesRes.popularQuotes)
+
   return (
     <div className='wrapper'>
       <div className='carousel'>

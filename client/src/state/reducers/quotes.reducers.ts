@@ -17,7 +17,11 @@ interface STATE {
 
     unlikeReq?: boolean,
     unlikeSuccess?: string,
-    unlikeError?: string | null
+    unlikeError?: string | null,
+
+    popularQuotesReq: boolean,
+    popularQuotesRes: any,
+    popularQuotesErr: string | null
 }
 
 const initialState = {
@@ -36,7 +40,11 @@ const initialState = {
 
     unlikeReq: false,
     unlikeSuccess: undefined,
-    unlikeError: null
+    unlikeError: null,
+
+    popularQuotesReq: false,
+    popularQuotesRes: undefined,
+    popularQuotesErr: null
 }
 
 export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => {
@@ -60,6 +68,28 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
                 ...state,
                 loading: false,
                 error: action.payload
+            }
+
+
+
+        case quotesActionsTypes.POPULAR_QUOTES_REQ:
+            return {
+                ...state,
+                popularQuotesReq: true
+            }
+
+        case quotesActionsTypes.POPULAR_QUOTES_RES:
+            return {
+                ...state,
+                popularQuotesReq: false,
+                popularQuotesRes: action.payload
+            }
+
+        case quotesActionsTypes.POPULAR_QUOTES_ERR:
+            return {
+                ...state,
+                popularQuotesReq: false,
+                popularQuotesErr: action.payload
             }
 
 
@@ -116,7 +146,6 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
                 likeReq: false,
                 likeError: action.payload
             }
-
 
 
 

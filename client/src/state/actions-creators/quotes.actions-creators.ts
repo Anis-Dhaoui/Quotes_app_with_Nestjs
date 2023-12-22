@@ -30,6 +30,29 @@ export const fetchQuotes = (p: number, l: number, c?: string, isAuthenticated?: 
     }
 }
 
+
+export const fetchPopularQuotes = () => {
+    return async (dispatch: Dispatch<ACTION>) => {
+        dispatch({
+            type: quotesActionsTypes.POPULAR_QUOTES_REQ
+        })
+
+        try {
+            const { data } = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes/popular-quotes`);
+            dispatch({
+                type: quotesActionsTypes.POPULAR_QUOTES_RES,
+                payload: data
+            })
+        } catch (err: any) {
+            dispatch({
+                type: quotesActionsTypes.POPULAR_QUOTES_ERR,
+                payload: err.message
+            })
+        }
+    }
+}
+
+
 export const loadMoreQuotes = (p: number, l: number, c?: string, isAuthenticated?: boolean) => {
 
     return async (dispatch: Dispatch<ACTION>) => {
@@ -90,6 +113,7 @@ export const likeQuote = (quoteID: string) => {
         }
     }
 }
+
 
 export const UnlikeQuote = (quoteID: string) => {
     return async (dispatch: Dispatch<ACTION>) => {

@@ -50,6 +50,7 @@ interface LikeQuotesFailed {
 }
 
 
+
 interface UnlikeQuotesReq {
     type: quotesActionsTypes.UNLIKE_QUOTE_REQ
 }
@@ -64,4 +65,25 @@ interface UnlikeQuotesFailed {
     payload: string
 }
 
-export type ACTION = QuotesLoading | GetAllQuotes | QuotesFailed | LoadMoreLoading | LoadMoreQuotes | LoadMoreFailed | LikeQuotesReq | LikeQuotesSuccess | LikeQuotesFailed | UnlikeQuotesReq | UnlikeQuotesSuccess | UnlikeQuotesFailed
+
+
+interface FetchPopularQuotesReq {
+    type: quotesActionsTypes.POPULAR_QUOTES_REQ
+}
+
+interface FetchPopularQuotesRes {
+    type: quotesActionsTypes.POPULAR_QUOTES_RES,
+    payload: IQuotesRes
+}
+
+interface FetchPopularQuotesErr {
+    type: quotesActionsTypes.POPULAR_QUOTES_ERR,
+    payload: string
+}
+
+
+export type ACTION = QuotesLoading | GetAllQuotes | QuotesFailed |
+    LoadMoreLoading | LoadMoreQuotes | LoadMoreFailed |
+    LikeQuotesReq | LikeQuotesSuccess | LikeQuotesFailed |
+    UnlikeQuotesReq | UnlikeQuotesSuccess | UnlikeQuotesFailed |
+    FetchPopularQuotesReq | FetchPopularQuotesRes | FetchPopularQuotesErr
