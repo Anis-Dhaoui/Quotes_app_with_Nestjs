@@ -35,9 +35,9 @@ export default function RenderPopularQuotes() {
           <img src={img} alt='img' className='rounded-circle' width={80} height={80} />
         </div>
         <div className='carousel__item-body'>
-          <p>{item.author}</p>
+          <p style={{fontWeight: "bold"}}>{item.author}</p>
           <blockquote className="truncate-text" cite={item.author}>{item.quote}</blockquote>
-          <span style={{ fontSize: "8pt", position: "absolute", bottom: "0", right: "45%" }}>{item.category}</span>
+          <span style={{ fontSize: "8pt", position: "absolute", bottom: "0", right: "45%", marginBottom: "8px", opacity: "0.6" }}>{item.category}</span>
         </div>
       </div>
     )
