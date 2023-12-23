@@ -8,7 +8,7 @@ export default function InterractionBtns({ item }: any) {
   const { user, isAuthenticated } = useAppSelector(state => state.login);
 
   return (
-    <div id='interractions-btns' className="row pl-0">
+    <div id='interractions-btns' className="row mx-0 pl-0">
       <LikeUnlikeBtns item={item} user={user} isAuthenticated={isAuthenticated} dispatch={dispatch} />
       <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-comment fa-flip-horizontal fa-2x"></i></div>
       <div className="col-3 d-flex justify-content-center"><i className="fa-light fa-paper-plane-top fa-flip-vertical fa-2x"></i></div>

@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from 'state/store.state';
 import { fetchPopularQuotes } from 'state/actions-creators/quotes.actions-creators';
 import Loader from 'shared/loader/loader';
 import img from './authorSample.jpg';
+import InterractionBtns from 'components/Interraction-btns/InterractionBtns';
 
 export default function RenderPopularQuotes() {
 
@@ -37,7 +38,10 @@ export default function RenderPopularQuotes() {
         <div className='carousel__item-body'>
           <p style={{ fontWeight: "bold" }}>{item.author}</p>
           <blockquote className="truncate-text" cite={item.author}>{item.quote}</blockquote>
-          <span style={{ fontSize: "8pt", position: "absolute", bottom: "0", right: "45%", marginBottom: "8px", opacity: "0.6" }}>{item.category}</span>
+          <span style={{ fontSize: "8pt", position: "absolute", bottom: "0", right: "45%", left: "42%", marginBottom: "8px", opacity: "0.6" }}>{item.category}</span>
+        </div>
+        <div style={{ width: "100%", marginTop: "-4px" }}>
+          <InterractionBtns item={item} />
         </div>
       </div>
     )
