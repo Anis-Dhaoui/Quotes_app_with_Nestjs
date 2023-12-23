@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from 'state/store.state';
 import { fetchQuotes } from 'state/actions-creators/quotes.actions-creators';
 import RenderQuotes from './RenderQuotes/RenderQuotes';
@@ -12,6 +12,7 @@ function Index() {
 
     useEffect(() => {
         dispatch(fetchQuotes(0, 12, "", isAuthenticated));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch])
 
     if (loading) {

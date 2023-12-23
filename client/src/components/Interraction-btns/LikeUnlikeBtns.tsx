@@ -1,12 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { UnlikeQuote, likeQuote } from 'state/actions-creators/quotes.actions-creators';
-import { useAppDispatch, useAppSelector } from 'state/store.state';
 
-function LikeUnlikeBtns({ item }: any) {
-    const dispatch = useAppDispatch();
+function LikeUnlikeBtns({ item, user, isAuthenticated, dispatch }: any) {
     const navigate = useNavigate();
-    const { user, isAuthenticated } = useAppSelector(state => state.login);
 
     const handleLikeQuote = (quoteID: string) => {
         dispatch(likeQuote(quoteID))

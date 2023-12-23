@@ -4,7 +4,7 @@ import './navbar.js';
 import AvatarCmp from '../avatar/user.avatar';
 import { useAppSelector } from 'state/store.state';
 import { Link } from 'react-router-dom';
-import RenderPopularQuotes from '../slider/RenderPopularQuotes.slider.Home';
+import RenderPopularQuotes from '../popularQuotes/RenderPopularQuotes';
 
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -43,9 +43,7 @@ function HeaderCmp() {
                             :
                             null
                     }
-
                 </div>
-
             </nav>
             <div className="slider-container">
                 <h3>Best Quotes</h3>

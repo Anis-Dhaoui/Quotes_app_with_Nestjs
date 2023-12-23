@@ -116,21 +116,6 @@ section.t-bq-section {
     /* padding: 15px; */
 }
 
-#interractions-btns {
-    background-color: #efc5a1d1;
-    padding: 15px;
-    border-radius: 0 0 10px 10px;
-}
-
-#interractions-btns i {
-    cursor: pointer;
-    transition: opacity 0.2s ease-in-out;
-}
-
-#interractions-btns i:hover {
-    opacity: 0.5;
-}
-
 .engraved-postedAt {
     font-size: 20px;
     font-family: Lithos Pro;
@@ -159,18 +144,6 @@ section.t-bq-section {
     -ms-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-}
-
-#like-unlike-btns .badge {
-    background-color: #000000b5;
-    color: white;
-    border-radius: 50%;
-    font-size: 13px;
-    position: absolute;
-    margin-top: -8px;
-    margin-right: -33px;
-    z-index: 34;
-
 }
 
 

@@ -10,15 +10,16 @@ export const fetchQuotes = (p: number, l: number, c?: string, isAuthenticated?: 
             type: quotesActionsTypes.QUOTES_LOADING
         });
         try {
+            let data: any;
             if (!isAuthenticated) {
-                var { data } = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes?page=${p}&limit=${l}&category=${c}`);
+                data = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes?page=${p}&limit=${l}&category=${c}`);
             } else {
-                var { data } = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes/interests/?page=${p}&limit=${l}&category=${c}`);
+                data = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes/interests/?page=${p}&limit=${l}&category=${c}`);
             }
 
             dispatch({
                 type: quotesActionsTypes.QUOTES_SUCCESS,
-                payload: data
+                payload: data.data
             });
 
         } catch (err: any) {
@@ -61,14 +62,15 @@ export const loadMoreQuotes = (p: number, l: number, c?: string, isAuthenticated
         });
 
         try {
+            let data: any;
             if (!isAuthenticated) {
-                var { data } = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes?page=${p}&limit=${l}&category=${c}`);
+                data = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes?page=${p}&limit=${l}&category=${c}`);
             } else {
-                var { data } = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes/interests/?page=${p}&limit=${l}&category=${c}`);
+                data = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes/interests/?page=${p}&limit=${l}&category=${c}`);
             }
             dispatch({
                 type: quotesActionsTypes.LOAD_MORE_SUCCESS,
-                payload: data
+                payload: data.data
             });
 
         } catch (err: any) {
