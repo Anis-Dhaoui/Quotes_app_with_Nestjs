@@ -6,7 +6,7 @@ import LikeUnlikeBtns from './LikeUnlikeBtns';
 export default function InterractionBtns({ item }: any) {
   const dispatch = useAppDispatch();
   const { user, isAuthenticated } = useAppSelector(state => state.login);
-
+  // console.log(item)
   return (
     <div id='interractions-btns' className="row mx-0 pl-0">
       <LikeUnlikeBtns item={item} user={user} isAuthenticated={isAuthenticated} dispatch={dispatch} />
