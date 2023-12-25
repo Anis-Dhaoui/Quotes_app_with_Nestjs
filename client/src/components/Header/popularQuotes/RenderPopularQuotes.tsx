@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import './style.popularQuotes.css';
+import './style.popularQuotes.scss';
 import { useAppDispatch, useAppSelector } from 'state/store.state';
 import { fetchPopularQuotes } from 'state/actions-creators/quotes.actions-creators';
 import Loader from 'shared/loader/loader';
@@ -15,8 +15,6 @@ export default function RenderPopularQuotes() {
     dispatch(fetchPopularQuotes());
   }, [dispatch])
 
-  console.log(popularQuotesRes?.popularQuotes)
-
   if (popularQuotesReq) {
     return <Loader />
   }
@@ -29,9 +27,10 @@ export default function RenderPopularQuotes() {
     )
   }
 
+
   const popularQuotesList = popularQuotesRes?.popularQuotes.map((item: any) => {
     return (
-      <div key={item._id} className='carousel__item'>
+      <div key={item._id} className='carousel__item active'>
         <div className='carousel__item-head'>
           <img src={img} alt='img' className='rounded-circle' width={80} height={80} />
         </div>
