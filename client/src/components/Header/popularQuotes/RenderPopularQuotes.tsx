@@ -110,22 +110,6 @@ export default function RenderPopularQuotes() {
     )
   }
 
-<<<<<<< HEAD
-  const popularQuotesList = popularQuotesRes?.popularQuotes.map((item: any, index: number) => {
-    return (
-      <div id={item._id} key={item._id} className='carousel__item'>
-          <div className='carousel__item-head'>
-            <img src={img} alt='img' className='rounded-circle' width={80} height={80} />
-          </div>
-          <div className='carousel__item-body'>
-            <p style={{ fontWeight: "bold" }}>{item.author}</p>
-            <blockquote className="truncate-text" cite={item.author}>{item.quote}</blockquote>
-            <span style={{ fontSize: "8pt", position: "absolute", bottom: "0", right: "45%", left: "42%", marginBottom: "8px", opacity: "0.6" }}>{item.category}</span>
-          </div>
-          <div style={{ width: "100%", marginTop: "-4px" }}>
-            <InterractionBtns item={item} />
-          </div>
-=======
 
   // const popularQuotesList = popularQuotesRes?.popularQuotes.map((item: any) => {
   const popularQuotesList = () => {
@@ -147,7 +131,6 @@ export default function RenderPopularQuotes() {
           /> */}
           {carouselItemData}
         </Carousel>
->>>>>>> d38fc01518a1ff9855e806eb04a7cbf88a0c130b
       </div>
 
 
