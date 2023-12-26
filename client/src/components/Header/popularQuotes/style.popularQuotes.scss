@@ -1,124 +1,16 @@
 $background-color_1: #b1c3df;
 $background-color_2: #6198cc;
-// .carousel__item:nth-child(1) {
-//     -webkit-animation-delay: calc(3.3333333333s * 0);
-//     animation-delay: calc(3.3333333333s * 0);
-// }
-// .............
-// .............
-// .carousel__item:nth-child(10) {
-//     -webkit-animation-delay: calc(3.3333333333s * 5);
-//     animation-delay: calc(3.3333333333s * 5);
-// }
 
-@for $i from 1 through 10 {
-    .carousel__item:nth-child(#{$i}) {
-        -webkit-animation-delay: calc(3.3333333333s * (#{$i} - 1));
-        animation-delay: calc(3.3333333333s * (#{$i} - 1));
-    }
-}
-
-@-webkit-keyframes carousel-animate-horizontal {
-    0% {
-        transform: translateX(-200%);
-        opacity: 0;
-    }
-
-    2%,
-    16.6666666667% {
-        transform: translateX(-100%);
-        opacity: 0.4;
-    }
-
-    18.6666666667%,
-    33.3333333333% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-
-    35.3333333333%,
-    50% {
-        transform: translateX(100%);
-        opacity: 0.4;
-    }
-
-    52% {
-        transform: translateX(200%);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translateX(200%);
-        opacity: 0;
-    }
-}
-
-@keyframes carousel-animate-horizontal {
-    0% {
-        transform: translateX(-200%);
-        opacity: 0;
-    }
-
-    2%,
-    16.6666666667% {
-        transform: translateX(-100%);
-        opacity: 0.4;
-    }
-
-    18.6666666667%,
-    33.3333333333% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-
-    35.3333333333%,
-    50% {
-        transform: translateX(100%);
-        opacity: 0.4;
-    }
-
-    52% {
-        transform: translateX(200%);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translateX(200%);
-        opacity: 0;
-    }
-}
-
-.wrapper {
-    margin-top: 150px;
-    height: 100%;
+.card_item {
     width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.carousel {
-    position: relative;
-    overflow: visible;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.carousel__item {
-    width: 100%;
-    max-width: 300px;
+    // max-width: 300px;
     padding: 0 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
-    opacity: 0;
-    -webkit-animation: carousel-animate-horizontal 20s linear forwards infinite;
-    animation: carousel-animate-horizontal 20s linear forwards infinite;
 }
 
-.carousel__item-head {
+.card_item-head {
     border-radius: 50%;
     background-color: $background-color_1;
     width: 84px;
@@ -132,7 +24,7 @@ $background-color_2: #6198cc;
     font-size: 20px;
 }
 
-.carousel__item-body {
+.card_item-body {
     width: 100%;
     height: 200px;
     background-color: $background-color_2;
