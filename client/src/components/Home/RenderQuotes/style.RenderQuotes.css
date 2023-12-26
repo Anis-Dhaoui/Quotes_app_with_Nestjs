@@ -110,6 +110,7 @@ section.t-bq-section {
     bottom: 0;
     width: 100%;
     display: grid;
+    margin-left: -5px;
     /* justify-content: center;
     align-items: center;
     align-content: center; */
@@ -165,8 +166,8 @@ section.t-bq-section {
     }
 }
 
-@media screen and (min-width: 375px) and (max-width: 767px) {
-    #interractions-btns {
-        margin-left: -28px;
+@media screen and (max-width: 767px) {
+    #card-footer {
+        margin-left: -15px;
     }
 }
