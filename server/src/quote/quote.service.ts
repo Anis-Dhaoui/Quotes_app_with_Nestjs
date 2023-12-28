@@ -42,7 +42,7 @@ export class QuoteService {
         { $match: { status: "allowed" } },
         { $addFields: { "likedByCount": { $size: '$likedBy' } } },
         { $sort: { "likedByCount": -1, "createdAt": -1 } },
-        { $limit: 10 }
+        { $limit: 15 }
       ])
 
     return popularQuotes;
