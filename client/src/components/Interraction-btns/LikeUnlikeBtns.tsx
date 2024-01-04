@@ -14,14 +14,14 @@ function LikeUnlikeBtns({ item, user, isAuthenticated, dispatch }: any) {
     }
 
     const checkLike = (likedBy: any) => {
-        console.log(likedBy)
+        // console.log(likedBy)
         return likedBy?.includes(user?.user._id)
     }
 
     const redirectToLoginPage = () => {
         navigate('/entry')
     }
-
+    console.log(item)
     return (
         <div id='like-unlike-btns' className="col-3 d-flex justify-content-center">
             {

@@ -26,10 +26,12 @@ export default function RenderQuotes(props: quoteProps) {
                             </div>
 
                             <div className="t-bq-quote-jasper-userpic"></div>
+
                             <div className="row d-flex align-items-end t-bq-quote-jasper-base">
                                 <div className="col-12 p-4 justify-content-start">
                                     <blockquote className="truncate-text" cite={item.author}>{item.quote}</blockquote>
                                 </div>
+
                                 <div id='card-footer'>
                                     <div className="col-12 p-2 text-center t-bq-quote-jasper-author"><cite> {item.author} </cite></div>
                                     <div className="col-12 text-center t-bq-quote-jasper-source"><span style={{ fontSize: "8pt" }}>{item.category}</span></div>
