@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Carousel, CarouselItem } from 'reactstrap';
 import img from './authorSample.jpg';
-
+import InterractionBtns from 'components/Interraction-btns/InterractionBtns';
 
 export default function CarouselPopQuotes({ data }: any) {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -55,7 +55,7 @@ export default function CarouselPopQuotes({ data }: any) {
                                     <span style={{ fontSize: "8pt", position: "absolute", bottom: "0", right: "45%", left: "42%", marginBottom: "8px", opacity: "0.6" }}>{item.category}</span>
                                 </div>
                                 <div style={{ width: "100%", marginTop: "-2px" }}>
-                                    {/* <InterractionBtns item={item} /> */}
+                                    <InterractionBtns item={item} />
                                 </div>
                             </div>
                         </div>

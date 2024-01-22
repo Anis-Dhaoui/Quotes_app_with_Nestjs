@@ -14,7 +14,7 @@ function LikeUnlikeBtns({ item, user, isAuthenticated, dispatch }: any) {
     }
 
     const checkLike = (likedBy: any) => {
-        console.log(likedBy)
+        // console.log(likedBy)
         return likedBy?.includes(user?.user._id)
     }
 
