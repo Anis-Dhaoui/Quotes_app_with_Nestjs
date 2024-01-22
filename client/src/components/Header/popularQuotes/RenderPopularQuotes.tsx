@@ -37,6 +37,4 @@ export default function RenderPopularQuotes() {
       Oops! could not fetch popular quotes
     </div>
   )
-
-
 }

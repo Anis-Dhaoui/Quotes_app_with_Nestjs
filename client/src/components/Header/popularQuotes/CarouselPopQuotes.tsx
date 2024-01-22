@@ -3,6 +3,7 @@ import { Carousel, CarouselItem } from 'reactstrap';
 import img from './authorSample.jpg';
 import InterractionBtns from 'components/Interraction-btns/InterractionBtns';
 
+
 export default function CarouselPopQuotes({ data }: any) {
     const [activeIndex, setActiveIndex] = useState(0);
     // eslint-disable-next-line
