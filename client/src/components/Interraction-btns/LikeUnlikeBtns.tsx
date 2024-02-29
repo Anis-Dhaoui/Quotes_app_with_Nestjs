@@ -21,7 +21,7 @@ function LikeUnlikeBtns({ item, user, isAuthenticated, dispatch }: any) {
     const redirectToLoginPage = () => {
         navigate('/entry')
     }
-    console.log(item)
+
     return (
         <div id='like-unlike-btns' className="col-3 d-flex justify-content-center">
             {

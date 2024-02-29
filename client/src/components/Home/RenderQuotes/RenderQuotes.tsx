@@ -35,7 +35,7 @@ export default function RenderQuotes(props: quoteProps) {
                                 <div id='card-footer'>
                                     <div className="col-12 p-2 text-center t-bq-quote-jasper-author"><cite> {item.author} </cite></div>
                                     <div className="col-12 text-center t-bq-quote-jasper-source"><span style={{ fontSize: "8pt" }}>{item.category}</span></div>
-                                    {/* <InterractionBtns item={item} /> */}
+                                    <InterractionBtns item={item} />
                                 </div>
                             </div>
                         </div>
