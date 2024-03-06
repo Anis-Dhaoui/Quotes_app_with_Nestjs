@@ -1,22 +1,83 @@
 $color_1: white;
-$background-color_1: #000000b5;
+$background-color_1: rgb(27 27 27);
 
 #like-unlike-btns {
-	i {
-		cursor: pointer;
-		transition: opacity 0.2s ease-in-out;
-		&:hover {
-			opacity: 0.5;
-		}
-	}
-	.badge {
-		background-color: $background-color_1;
-		color: $color_1;
-		border-radius: 50%;
-		font-size: 13px;
-		position: absolute;
-		margin-top: -8px;
-		margin-right: -33px;
-		z-index: 34;
-	}
+    i {
+        cursor: pointer;
+        transition: opacity 0.2s ease-in-out;
+
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+
+    .badge {
+        background-color: $background-color_1;
+        color: $color_1;
+        border-radius: 50%;
+        font-size: 13px;
+        position: absolute;
+        margin-top: -8px;
+        margin-right: -33px;
+        z-index: 34;
+    }
+}
+
+
+$color: #555;
+$main-background: #5B9EED;
+$blacky: #191919;
+$white-two: #aaa;
+
+.list-wrapper {
+    // max-width: 400px;
+    // margin: 50px auto;
+    position: absolute;
+    bottom: 0;
+    left: 14px;
+    z-index: 9999;
+}
+
+.list {
+    background: $blacky;
+    border-radius: 2px;
+    list-style: none;
+    border-radius: 5%;
+}
+
+.list-item {
+    display: flex;
+    margin: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &-image {
+        border-radius: 50%;
+        width: 34px;
+    }
+
+    &-content {
+        margin-left: 10px;
+
+        h4,
+        p {
+            margin: 0;
+        }
+
+        h4 {
+            margin-top: 9px;
+            font-size: 14px;
+        }
+
+        p {
+            margin-top: 5px;
+            color: $white-two;
+            display: none;
+        }
+    }
 }
