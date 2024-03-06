@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.interraction-btns.css';
 import { useAppDispatch, useAppSelector } from 'state/store.state';
-import LikeUnlikeBtns from './LikeUnlikeBtns';
+import LikeUnlikeBtns from './Like-Unlike/LikeUnlikeBtns';
 
 export default function InterractionBtns({ item }: any) {
   const dispatch = useAppDispatch();
