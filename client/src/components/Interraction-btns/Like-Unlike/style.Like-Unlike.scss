@@ -33,8 +33,9 @@ $white-two: #aaa;
     // max-width: 400px;
     // margin: 50px auto;
     position: absolute;
-    bottom: 0;
-    left: 14px;
+    top: auto;
+    bottom: -2px;
+    left: 12px;
     z-index: 9999;
 }
 
@@ -43,6 +44,8 @@ $white-two: #aaa;
     border-radius: 2px;
     list-style: none;
     border-radius: 5%;
+    max-height: 240px;
+    overflow-y: auto;
 }
 
 .list-item {
