@@ -1,4 +1,4 @@
-$color_1: white;
+$white: white;
 $background-color_1: rgb(27 27 27);
 
 #like-unlike-btns {
@@ -13,7 +13,7 @@ $background-color_1: rgb(27 27 27);
 
     .badge {
         background-color: $background-color_1;
-        color: $color_1;
+        color: $white;
         border-radius: 50%;
         font-size: 13px;
         position: absolute;
@@ -34,8 +34,8 @@ $white-two: #aaa;
     // margin: 50px auto;
     position: absolute;
     top: auto;
-    bottom: -2px;
-    left: 12px;
+    bottom: 9px;
+    left: 91px;
     z-index: 9999;
 }
 
@@ -54,6 +54,7 @@ $white-two: #aaa;
     padding-bottom: 5px;
     padding-top: 5px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    color: $white;
 
     &:last-child {
         border-bottom: none;
