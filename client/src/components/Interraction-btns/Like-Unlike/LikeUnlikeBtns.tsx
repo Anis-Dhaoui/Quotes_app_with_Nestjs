@@ -35,7 +35,17 @@ function LikeUnlikeBtns({ item, user, isAuthenticated, dispatch }: any) {
                     :
                     <i onClick={() => redirectToLoginPage()} className="fa-light fa-heart fa-2x"></i>
             }
-            {item?.likedBy.length > 0 ? <LikeBadgeList item={item} isAuthenticated={isAuthenticated} redirectToLoginPage={redirectToLoginPage} /> : null}
+
+            {
+                item?.likedBy.length > 0 ?
+                    <LikeBadgeList
+                        item={item}
+                        isAuthenticated={isAuthenticated}
+                        redirectToLoginPage={redirectToLoginPage}
+                    />
+                    :
+                    null
+            }
         </div>
     )
 }

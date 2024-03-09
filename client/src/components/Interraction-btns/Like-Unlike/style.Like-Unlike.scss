@@ -30,8 +30,6 @@ $blacky: #191919;
 $white-two: #aaa;
 
 .list-wrapper {
-    // max-width: 400px;
-    // margin: 50px auto;
     position: absolute;
     top: auto;
     bottom: 9px;
@@ -70,12 +68,14 @@ $white-two: #aaa;
 
         h4,
         p {
+            white-space: nowrap;
+            text-overflow: ellipsis;
             margin: 0;
         }
 
         h4 {
             margin-top: 9px;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         p {

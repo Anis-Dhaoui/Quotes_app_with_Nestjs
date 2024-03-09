@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 function LikeBadgeList(props: any) {
     const [showLikesList, setShowLikesList] = useState(false)
-    console.log(props.item)
+    console.log(props.item.likedBy)
     return (
         <>
             <span style={{ cursor: "help" }}
@@ -19,63 +19,7 @@ function LikeBadgeList(props: any) {
                                     <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/488320/profile/profile-80.jpg" className="list-item-image" />
                                 </div>
                                 <div className="list-item-content">
-                                    <h4>Hitesh Kumarxxxxxxx</h4>
-                                </div>
-                            </li>
-                            <li className="list-item">
-                                <div>
-                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/488320/profile/profile-80.jpg" className="list-item-image" />
-                                </div>
-                                <div className="list-item-content">
-                                    <h4>Hitesh Kumar</h4>
-                                </div>
-                            </li>
-                            <li className="list-item">
-                                <div>
-                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/488320/profile/profile-80.jpg" className="list-item-image" />
-                                </div>
-                                <div className="list-item-content">
-                                    <h4>Hitesh Kumar</h4>
-                                </div>
-                            </li>
-                            <li className="list-item">
-                                <div>
-                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/488320/profile/profile-80.jpg" className="list-item-image" />
-                                </div>
-                                <div className="list-item-content">
-                                    <h4>Hitesh Kumar</h4>
-                                </div>
-                            </li>
-                            <li className="list-item">
-                                <div>
-                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/488320/profile/profile-80.jpg" className="list-item-image" />
-                                </div>
-                                <div className="list-item-content">
-                                    <h4>Hitesh Kumar</h4>
-                                </div>
-                            </li>
-                            <li className="list-item">
-                                <div>
-                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/488320/profile/profile-80.jpg" className="list-item-image" />
-                                </div>
-                                <div className="list-item-content">
-                                    <h4>Hitesh Kumar</h4>
-                                </div>
-                            </li>
-                            <li className="list-item">
-                                <div>
-                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/488320/profile/profile-80.jpg" className="list-item-image" />
-                                </div>
-                                <div className="list-item-content">
-                                    <h4>Hitesh Kumar</h4>
-                                </div>
-                            </li>
-                            <li className="list-item">
-                                <div>
-                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/488320/profile/profile-80.jpg" className="list-item-image" />
-                                </div>
-                                <div className="list-item-content">
-                                    <h4>Hitesh Kumar</h4>
+                                    <h4>Hitesh Kumar xxxxxxx</h4>
                                 </div>
                             </li>
                             <li className="list-item">
@@ -100,10 +44,6 @@ function LikeBadgeList(props: any) {
                     null
 
             }
-
-
-
-
         </>
     )
 }
