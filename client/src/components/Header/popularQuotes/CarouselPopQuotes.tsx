@@ -55,7 +55,7 @@ export default function CarouselPopQuotes({ data }: any) {
                                     <blockquote className="truncate-text" cite={item.author}>{item.quote}</blockquote>
                                     <span style={{ fontSize: "8pt", position: "absolute", bottom: "0", right: "45%", left: "42%", marginBottom: "8px", opacity: "0.6" }}>{item.category}</span>
                                 </div>
-                                <div style={{ width: "100%", marginTop: "-2px" }}>
+                                <div className='disabled' style={{ width: "100%", marginTop: "-2px" }}>
                                     <InterractionBtns item={item} />
                                 </div>
                             </div>
