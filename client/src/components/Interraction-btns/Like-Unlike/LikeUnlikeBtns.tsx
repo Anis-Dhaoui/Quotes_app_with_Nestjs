@@ -1,6 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { UnlikeQuote, likeQuote } from 'state/actions-creators/quotes.actions-creators';
+import LikeBadgeList from './LikeBadgeList';
+import './style.Like-Unlike.scss'
 
 function LikeUnlikeBtns({ item, user, isAuthenticated, dispatch }: any) {
     const navigate = useNavigate();
@@ -21,7 +23,7 @@ function LikeUnlikeBtns({ item, user, isAuthenticated, dispatch }: any) {
     const redirectToLoginPage = () => {
         navigate('/entry')
     }
-    console.log(item)
+
     return (
         <div id='like-unlike-btns' className="col-3 d-flex justify-content-center">
             {
@@ -33,7 +35,17 @@ function LikeUnlikeBtns({ item, user, isAuthenticated, dispatch }: any) {
                     :
                     <i onClick={() => redirectToLoginPage()} className="fa-light fa-heart fa-2x"></i>
             }
-            {item?.likedBy.length > 0 ? <span className="badge"> {item?.likedBy.length} </span> : null}
+
+            {
+                item?.likedBy.length > 0 ?
+                    <LikeBadgeList
+                        item={item}
+                        isAuthenticated={isAuthenticated}
+                        redirectToLoginPage={redirectToLoginPage}
+                    />
+                    :
+                    null
+            }
         </div>
     )
 }
