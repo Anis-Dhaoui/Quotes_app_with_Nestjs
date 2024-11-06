@@ -18,7 +18,7 @@ function LikeBadgeList(props: any) {
                                 props.item.likedBy.map((item: any) => {
                                     <li className="list-item">
                                         <div>
-                                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/488320/profile/profile-80.jpg" className="list-item-image" />
+                                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/488320/profile/profile-80.jpg" className="list-item-image" alt='profile-img' />
                                         </div>
                                         <div className="list-item-content">
                                             <h4>Hitesh Kumar</h4>
