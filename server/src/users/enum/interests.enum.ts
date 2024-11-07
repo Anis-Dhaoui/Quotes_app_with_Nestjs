@@ -40,5 +40,6 @@ export enum INTERESTS {
     Environment = 'Environment',
     Time = 'Time',
     Legacy = 'Legacy',
-    Humor = 'Humor'
+    Humor = 'Humor',
+    Literature = 'Literature'
 }
