@@ -62,7 +62,6 @@ export class QuoteController {
   // $$$$$$$$$$$$$$$$$$$$$$ EVERYONE CAN FETCH ALL ALLOWED QUOTES $$$$$$$$$$$$$$$$$$$$$$
   @Get('/')
   async findAll(@Res() res, @Query() query) {
-
     try {
       const quotesData = await this.quoteService.findAll(query);
       const data = quotesData.quoteData;

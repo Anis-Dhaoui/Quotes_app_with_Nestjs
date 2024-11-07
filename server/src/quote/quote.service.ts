@@ -16,18 +16,34 @@ export class QuoteService {
   }
 
   async findAll(query: any): Promise<any> {
-
     const pageOpts = {
       page: query.page,
       limit: query.limit
     }
 
-    const quoteData = await this.quoteModel.find(query.category ? { category: query.category, status: 'allowed' } : { status: 'allowed' })
-      .sort({ createdAt: -1 })
-      .skip(pageOpts.page)
-      .limit(pageOpts.limit)
-      .exec();
+    const quoteData = await this.quoteModel.aggregate([
+      {
+        $match: {
+          status: 'allowed',
+          ...(query.category ? { category: query.category } : {})
+        }
+      },
 
+      { $sort: { createdAt: -1 } },
+      { $skip: pageOpts.page * pageOpts.limit },
+      { $limit: +pageOpts.limit },
+
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'owner',
+          foreignField: '_id',
+          as: 'quoteOwner',
+          pipeline: [{ $project: { _id: 0, firstName: 1, lastName: 1, userPic: 1 } }]
+        }
+      }
+    ]);
+    
     const docCount = await this.quoteModel.countDocuments({ status: 'allowed' });
 
     if (!quoteData || quoteData.length == 0) {
@@ -35,6 +51,7 @@ export class QuoteService {
     }
     return { quoteData, docCount };
   }
+
 
   async findMostPopularQuotes(): Promise<any> {
     let popularQuotes = await this.quoteModel
