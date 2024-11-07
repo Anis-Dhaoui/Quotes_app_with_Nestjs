@@ -10,21 +10,6 @@ import { RoleGuard } from 'src/auth/RBAC/verify-admin/roles.guard';
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
-  @Roles('Admin')
-  @UseGuards(JwtAuthGuard, RoleGuard, OwnerGuard)
-  @Get()
-  async findAll(@Res() res) {
-    try {
-      const allUsers = await this.usersService.findAll();
-      return res.status(HttpStatus.OK).json({
-        message: 'Users Fetched successfully',
-        users: allUsers
-      })
-    } catch (error) {
-      return res.status(error.status).json(error.response);
-    }
-  }
-
   @Roles('Admin', 'User')
   @UseGuards(JwtAuthGuard, RoleGuard, OwnerGuard)
   @Get(':userId')
