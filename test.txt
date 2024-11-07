@@ -1,0 +1,8 @@
+Donald Trump:
+donald.trump@gmail.com Password123
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRvbmFsZC50cnVtcEBnbWFpbC5jb20iLCJzdWIiOiI2NzJiOTVjMTc4NDMwZTNkNjI3NjJhNmIiLCJpYXQiOjE3MzA5Njc4ODgsImV4cCI6MTczMTU3MjY4OH0.DLcpScS0N8eyzG_afNzFlHkw1HCPoRKwD5wsglIMLTw
+
+
+
+Admin Admin:
+admin@admin.com Admin123
