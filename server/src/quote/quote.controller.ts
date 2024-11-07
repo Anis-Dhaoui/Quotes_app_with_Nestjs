@@ -59,7 +59,7 @@ export class QuoteController {
     }
   }
 
-  // $$$$$$$$$$$$$$$$$$$$$$ EVERYONE CAN FETCH ALL QUOTES $$$$$$$$$$$$$$$$$$$$$$
+  // $$$$$$$$$$$$$$$$$$$$$$ EVERYONE CAN FETCH ALL ALLOWED QUOTES $$$$$$$$$$$$$$$$$$$$$$
   @Get('/')
   async findAll(@Res() res, @Query() query) {
 
@@ -75,7 +75,7 @@ export class QuoteController {
     }
   }
 
-  // $$$$$$$$$$$$$$$$$$$$$$ GET THE MOST POPULAR ANR RECENT QUOTES FOR HEADER SLIDE SHOW $$$$$$$$$$$$$$$$$$$$$$
+  // $$$$$$$$$$$$$$$$$$$$$$ GET THE MOST POPULAR AND RECENT QUOTES FOR HEADER SLIDE SHOW $$$$$$$$$$$$$$$$$$$$$$
   @Get('/popular-quotes')
   async findMostPopularQuotes(@Res() res) {
     try {
@@ -89,7 +89,7 @@ export class QuoteController {
     }
   }
 
-  // $$$$$$$$$$$$$$$$$$$$$$ EVERYONE CAN VISIT QUOTE DETAIL $$$$$$$$$$$$$$$$$$$$$$
+  // $$$$$$$$$$$$$$$$$$$$$$ EVERYONE CAN VISIT ALLOWED QUOTE DETAIL $$$$$$$$$$$$$$$$$$$$$$
   @Get('/detail/:quoteId')
   async findOne(@Res() response, @Param('quoteId') quoteId: string) {
     try {
@@ -165,7 +165,7 @@ export class QuoteController {
     }
   }
 
-  // $$$$$$$$$$$$$$$$$$$$$$ EVERY USER CAN FETCH HIS OWN QUOTES $$$$$$$$$$$$$$$$$$$$$$
+  // $$$$$$$$$$$$$$$$$$$$$$ EVERY USER CAN FETCH HIS OWN QUOTES EITHER ALLOWED, DENIED OR PENDING $$$$$$$$$$$$$$$$$$$$$$
   @Roles('User')
   @UseGuards(JwtAuthGuard, RoleGuard)
   @Get('/myquotes')
