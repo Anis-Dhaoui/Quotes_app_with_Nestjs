@@ -30,7 +30,7 @@ export class QuoteService {
       },
 
       { $sort: { createdAt: -1 } },
-      { $skip: pageOpts.page * pageOpts.limit },
+      { $skip: +pageOpts.page },
       { $limit: +pageOpts.limit },
 
       {

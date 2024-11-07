@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 function LikeBadgeList(props: any) {
     const [showLikesList, setShowLikesList] = useState(false)
-    console.log(props.item.likedBy)
+    // console.log(props.item.likedBy)
     return (
         <>
             <span style={{ cursor: "help" }}

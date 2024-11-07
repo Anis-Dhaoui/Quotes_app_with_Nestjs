@@ -16,6 +16,7 @@ export default function Main() {
 
     return (
         <>
+        <ToastContainer autoClose={3000} theme="colored" />
             {/* eslint-disable-next-line no-lone-blocks */}
             <Routes>
                 <Route path='/home' element={[<HeaderCmp key={1} />, <Index key={2} />]} />
