@@ -27,7 +27,7 @@ export class QuoteController {
       // Send notification to the ADMIN in order to review this quote
       await this.notificationService.createNotif({
         sender: req.user._id,
-        reciever: ObjectId('63c446853e6fa1e888823b3d'), //Admin ID
+        reciever: ObjectId(process.env.ADMIN_ID), //Admin ID
         title: `${req.user.firstName} ${req.user.lastName} added new quote`,
         context: ObjectId(newQuote._id)
       })
