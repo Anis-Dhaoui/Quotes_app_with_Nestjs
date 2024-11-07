@@ -1,0 +1,16 @@
+Donald Trump:
+donald.trump@gmail.com Password123
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRvbmFsZC50cnVtcEBnbWFpbC5jb20iLCJzdWIiOiI2NzJiOTVjMTc4NDMwZTNkNjI3NjJhNmIiLCJpYXQiOjE3MzA5Njc4ODgsImV4cCI6MTczMTU3MjY4OH0.DLcpScS0N8eyzG_afNzFlHkw1HCPoRKwD5wsglIMLTw
+
+
+
+Admin Admin:
+admin@admin.com Admin123
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInN1YiI6IjY3MmM2ZWRlYmY0ZWUwMDFmOWUwMzMwNSIsImlhdCI6MTczMDk2ODUxNywiZXhwIjoxNzMxNTczMzE3fQ.BLxjpfVpicB8Ts8VY_DF4WuPM_eH_-08S5dqNX5y8nM
+
+
+
+Note 1: 
+- We're gonna need another endpoint for the Admin and users for the sake of:
+    * Admin should be able to fetch all the quotes either pending, denied or allowed. and we can do a filter of course: "Fetch all quotes", "Fetch only allowed quotes", "Fetch only denied quotes" or "Fetch only pending quotes"
+    * User could fetch all his own quotes either pending or allowed or denied, but we could do a filter as well.
