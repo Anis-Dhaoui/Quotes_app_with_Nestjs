@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from 'state/store.state';
 import { fetchQuotes } from 'state/actions-creators/quotes.actions-creators';
 import RenderQuotes from 'components/Home/RenderQuotes/RenderQuotes';
 import LoadMoreButton from 'components/Home/LoadMoreButton';
+import QuoteCard from 'components/Home/RenderQuotes/QuoteCard.RenderQuotes';
 
 function Profile() {
 
@@ -14,7 +15,15 @@ function Profile() {
   useEffect(() => {
       dispatch(fetchQuotes(0, 12, "", isAuthenticated));
       // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch])
+  }, [dispatch]);
+  console.log(quotes)
+  let renderQuotes = quotes?.quotesData?.map((item: any) =>{
+    return(
+      <div className="col-12" key={item._id}>
+        <QuoteCard item={item} />
+      </div>
+    )
+  })
 
   return (
     <div className="">
@@ -74,8 +83,7 @@ function Profile() {
                           <span className="pull-right text-muted">18 Views</span>
                         </div>
                         <div className="timeline-content">
-                        <RenderQuotes loading={loading} quotes={quotes} error={error} />
-                        <LoadMoreButton />
+                          {renderQuotes}
                         </div>
                         {/* <div className="timeline-likes">
                           <div className="stats-right">
