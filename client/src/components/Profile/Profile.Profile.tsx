@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './style.Profile.css'; // Ensure to import necessary CSS files
+import { useAppDispatch, useAppSelector } from 'state/store.state';
+import { fetchQuotes } from 'state/actions-creators/quotes.actions-creators';
+import RenderQuotes from 'components/Home/RenderQuotes/RenderQuotes';
+import LoadMoreButton from 'components/Home/LoadMoreButton';
 
 function Profile() {
+
+  const dispatch = useAppDispatch();
+  const { loading, quotes, error } = useAppSelector(state => state.quotes);
+  const { isAuthenticated } = useAppSelector(state => state.login);
+
+  useEffect(() => {
+      dispatch(fetchQuotes(0, 12, "", isAuthenticated));
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch])
+
   return (
     <div className="">
       <div className="row">
@@ -60,10 +74,8 @@ function Profile() {
                           <span className="pull-right text-muted">18 Views</span>
                         </div>
                         <div className="timeline-content">
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus turpis quis tincidunt luctus.
-                            Nam sagittis dui in nunc consequat, in imperdiet nunc sagittis.
-                          </p>
+                        <RenderQuotes loading={loading} quotes={quotes} error={error} />
+                        <LoadMoreButton />
                         </div>
                         {/* <div className="timeline-likes">
                           <div className="stats-right">
