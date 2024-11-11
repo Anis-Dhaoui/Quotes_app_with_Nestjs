@@ -54,7 +54,7 @@ export const fetchPopularQuotes = () => {
 }
 
 
-export const loadMoreQuotes = (p: number, l: number, c?: string, isAuthenticated?: boolean) => {
+export const LoadMoreQuotesSuccess = (p: number, l: number, c?: string, isAuthenticated?: boolean) => {
 
     return async (dispatch: Dispatch<ACTION>) => {
         dispatch({

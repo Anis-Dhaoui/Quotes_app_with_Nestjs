@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
 import Loader from 'shared/loader/loader';
 import { useAppDispatch, useAppSelector } from 'state/store.state';
-import { loadMoreQuotes } from 'state/actions-creators/quotes.actions-creators';
+import { LoadMoreQuotesSuccess } from 'state/actions-creators/quotes.actions-creators';
 
 function LoadMoreButton() {
     const dispatch = useAppDispatch();
-    const { quotes, docCount, loadMoreLoading, loadMoreError } = useAppSelector(state => state.quotes);
+    const { quotes, docCount, LoadMoreQuotesLoading, loadMoreError } = useAppSelector(state => state.quotes);
     const { isAuthenticated } = useAppSelector(state => state.login);
 
     var [indexLoadMore, setIndexLoadMore] = useState(12);
 
     const handleLoadMorePage = () => {
         setIndexLoadMore(indexLoadMore + 12);
-        dispatch(loadMoreQuotes(indexLoadMore, 12, "", isAuthenticated));
+        dispatch(LoadMoreQuotesSuccess(indexLoadMore, 12, "", isAuthenticated));
     }
 
-    if (loadMoreLoading) {
+    if (LoadMoreQuotesLoading) {
         return <Loader />
     }
 

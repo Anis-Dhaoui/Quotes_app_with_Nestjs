@@ -20,16 +20,16 @@ interface QuotesFailed {
 }
 
 
-interface LoadMoreLoading {
+interface LoadMoreQuotesLoading {
     type: quotesActionsTypes.LOAD_MORE_LOADING
 }
 
-interface LoadMoreQuotes {
+interface LoadMoreQuotesSuccess {
     type: quotesActionsTypes.LOAD_MORE_SUCCESS,
     payload: IQuotesRes
 }
 
-interface LoadMoreFailed {
+interface LoadMoreQuotesFailed {
     type: quotesActionsTypes.LOAD_MORE_FAILED,
     payload: string
 }
@@ -83,7 +83,7 @@ interface FetchPopularQuotesErr {
 
 
 export type ACTION = QuotesLoading | GetAllQuotes | QuotesFailed |
-    LoadMoreLoading | LoadMoreQuotes | LoadMoreFailed |
+    LoadMoreQuotesLoading | LoadMoreQuotesSuccess | LoadMoreQuotesFailed |
     LikeQuotesReq | LikeQuotesSuccess | LikeQuotesFailed |
     UnlikeQuotesReq | UnlikeQuotesSuccess | UnlikeQuotesFailed |
     FetchPopularQuotesReq | FetchPopularQuotesRes | FetchPopularQuotesErr

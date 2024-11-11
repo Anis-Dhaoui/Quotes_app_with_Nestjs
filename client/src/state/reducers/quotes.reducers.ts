@@ -7,7 +7,7 @@ interface STATE {
     error?: string | null,
     docCount: number,
 
-    loadMoreLoading?: boolean,
+    LoadMoreQuotesLoading?: boolean,
     loadedQuotes?: IQuotesRes,
     loadMoreError?: string | null
 
@@ -30,7 +30,7 @@ const initialState = {
     error: null,
     docCount: 0,
 
-    loadMoreLoading: false,
+    LoadMoreQuotesLoading: false,
     loadedQuotes: undefined,
     loadMoreError: null,
 
@@ -97,13 +97,13 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
         case quotesActionsTypes.LOAD_MORE_LOADING:
             return {
                 ...state,
-                loadMoreLoading: true
+                LoadMoreQuotesLoading: true
             }
 
         case quotesActionsTypes.LOAD_MORE_SUCCESS:
             return {
                 ...state,
-                loadMoreLoading: false,
+                LoadMoreQuotesLoading: false,
                 quotes: { message: action.payload.message, quotesData: [...state.quotes.quotesData, ...action.payload.quotesData] },
                 docCount: action.payload.docCount
             }
@@ -111,7 +111,7 @@ export const quoteRed = (state: STATE = initialState, action: ACTION): STATE => 
         case quotesActionsTypes.LOAD_MORE_FAILED:
             return {
                 ...state,
-                loadMoreLoading: false,
+                LoadMoreQuotesLoading: false,
                 loadMoreError: action.payload
             }
 
