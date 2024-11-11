@@ -448,6 +448,7 @@ select.form-control:not([size]):not([multiple]) {
     left: 0;
     width: 18%;
     text-align: right;
+    transition: width 0.3s ease;
     top: 30px
 }
 
@@ -506,7 +507,7 @@ select.form-control:not([size]):not([multiple]) {
     display: block;
     position: absolute;
     border: 10px solid transparent;
-    border-right-color: #fff;
+    border-right-color: #e6e6e6;
     left: -20px;
     top: 20px
 }
@@ -694,7 +695,8 @@ select.form-control:not([size]):not([multiple]) {
     }
 
     .timeline .timeline-time {
-        text-align: left;
+        /* text-align: left; */
+        width: 3%;
     }
 
     .timeline:before {
