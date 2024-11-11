@@ -13,12 +13,13 @@ function Profile() {
   const { isAuthenticated } = useAppSelector(state => state.login);
 
   useEffect(() => {
-      dispatch(fetchQuotes(0, 12, "", isAuthenticated));
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+    dispatch(fetchQuotes(0, 12, "", isAuthenticated));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
-  console.log(quotes)
-  let renderQuotes = quotes?.quotesData?.map((item: any) =>{
-    return(
+
+
+  let renderQuotes = quotes?.quotesData?.map((item: any) => {
+    return (
       <div className="col-12" key={item._id}>
         <QuoteCard item={item} />
       </div>

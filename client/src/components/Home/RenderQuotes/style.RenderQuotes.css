@@ -8,7 +8,7 @@ section.t-bq-section {
 }
 
 .t-bq-wrapper.t-bq-wrapper-boxed {
-    max-width: 576px;
+    /* max-width: 576px; */
     margin: 0 auto;
 }
 
