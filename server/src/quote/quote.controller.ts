@@ -140,7 +140,7 @@ export class QuoteController {
   async findByInterests(@Res() res, @Req() req, @Query() query) {
 
     try {
-      const quotesData = await this.quoteService.findAllByUsersInterests(req.user.interests, query);
+      const quotesData = await this.quoteService.findAllByUsersInterests(req.user.interests, req.user._id, query);
       const data = quotesData.quoteData;
       const count = quotesData.docCount;
       return res.status(HttpStatus.OK).json({

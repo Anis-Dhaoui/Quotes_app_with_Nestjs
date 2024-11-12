@@ -43,7 +43,7 @@ export class QuoteService {
         }
       }
     ]);
-    
+
     const docCount = await this.quoteModel.countDocuments({ status: 'allowed' });
 
     if (!quoteData || quoteData.length == 0) {
@@ -89,9 +89,15 @@ export class QuoteService {
     return deletedQuote;
   }
 
-  async findAllByUsersInterests(interests, query): Promise<any> {
+  // The authenticated will fetch all the quotes and the quotes will be sorted according to his interests list
+  async findAllByUsersInterests(interests, userId, query): Promise<any> {
     let quoteData = await this.quoteModel.aggregate([
-      { $match: { status: "allowed" } },
+      {
+        $match: {
+          status: "allowed",
+          ...(query.myquotes == 'true' ? { owner: userId } : {}) // This condition is when the user visit his profile only his own quotes will be fetched from the database
+        }
+      },
       {
         $addFields: {
           "sort-key": {
@@ -110,6 +116,15 @@ export class QuoteService {
       },
       {
         $limit: +query.limit // Limit to 10 documents
+      },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'owner',
+          foreignField: '_id',
+          as: 'quoteOwner',
+          pipeline: [{ $project: { _id: 0, firstName: 1, lastName: 1, userPic: 1 } }]
+        }
       }
     ])
 

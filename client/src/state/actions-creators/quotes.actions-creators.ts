@@ -4,7 +4,7 @@ import { Dispatch } from 'redux';
 import { axiosInstance } from './axiosHeaderInstance';
 import { toast } from 'react-toastify';
 
-export const fetchQuotes = (p: number, l: number, c?: string, isAuthenticated?: boolean) => {
+export const fetchQuotes = (p: number, l: number, c?: string, isAuthenticated?: boolean, myQuotes: boolean = false) => {
     return async (dispatch: Dispatch<ACTION>) => {
         dispatch({
             type: quotesActionsTypes.QUOTES_LOADING
@@ -14,7 +14,7 @@ export const fetchQuotes = (p: number, l: number, c?: string, isAuthenticated?: 
             if (!isAuthenticated) {
                 data = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes?page=${p}&limit=${l}&category=${c}`);
             } else {
-                data = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes/interests/?page=${p}&limit=${l}&category=${c}`);
+                data = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes/interests/?page=${p}&limit=${l}&category=${c}&myquotes=${myQuotes}`);
             }
 
             dispatch({

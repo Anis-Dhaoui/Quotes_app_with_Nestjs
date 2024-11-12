@@ -13,7 +13,7 @@ function Profile() {
   const { isAuthenticated } = useAppSelector(state => state.login);
 
   useEffect(() => {
-    dispatch(fetchQuotes(0, 12, "", isAuthenticated));
+    dispatch(fetchQuotes(0, 3, "", isAuthenticated, true));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
