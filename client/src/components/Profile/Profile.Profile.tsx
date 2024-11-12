@@ -10,8 +10,8 @@ function Profile() {
 
   const dispatch = useAppDispatch();
   const { loading, quotes, error } = useAppSelector(state => state.quotes);
-  const { isAuthenticated } = useAppSelector(state => state.login);
-
+  const { isAuthenticated, user } = useAppSelector(state => state.login);
+  console.log(user?.user)
   useEffect(() => {
     dispatch(fetchQuotes(0, 3, "", isAuthenticated, true));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -20,9 +20,20 @@ function Profile() {
 
   let renderQuotes = quotes?.quotesData?.map((item: any) => {
     return (
-      <div className="col-12" key={item._id}>
-        <QuoteCard item={item} />
-      </div>
+      <li>
+        <div className="timeline-time">
+          <span className="date">today</span>
+          <span className="time">04:20</span>
+        </div>
+        <div className="timeline-icon">
+          <span>&nbsp;</span>
+        </div>
+        <div className="timeline-body">
+          <div className="timeline-content">
+          <QuoteCard item={item} />
+          </div>
+        </div>
+      </li>
     )
   })
 
@@ -46,8 +57,8 @@ function Profile() {
 
                   {/* Profile Header Info */}
                   <div className="profile-header-info">
-                    <h4 className="m-t-10 m-b-5">Sean Ngu</h4>
-                    <p className="m-b-10">UXUI + Frontend Developer</p>
+                    <h4 className="m-t-10 m-b-5">{`${user?.user.firstName} ${user?.user.lastName}`}</h4>
+                    <p className="m-b-10">{user?.user.email}</p>
                     <button className="btn btn-sm btn-info mb-2">Edit Profile</button>
                   </div>
                 </div>
@@ -69,25 +80,24 @@ function Profile() {
                 <div className="tab-pane fade active show" id="profile-post">
                   {/* Timeline */}
                   <ul className="timeline">
-                    <li>
-                      <div className="timeline-time">
-                        <span className="date">today</span>
-                        <span className="time">04:20</span>
-                      </div>
-                      <div className="timeline-icon">
-                        <span>&nbsp;</span>
-                      </div>
-                      <div className="timeline-body">
-                        <div className="timeline-header">
-                          <span className="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="User" /></span>
-                          <span className="username"><a href="#">Sean Ngu</a> <small></small></span>
-                          <span className="pull-right text-muted">18 Views</span>
-                        </div>
-                        <div className="timeline-content">
-                          {renderQuotes}
-                          <LoadMoreButton index={2} myquotes={true} />
-                        </div>
-                        {/* <div className="timeline-likes">
+                      {renderQuotes}
+                    {/* Repeat the above structure for other timeline items */}
+                  </ul>
+                </div>
+                <LoadMoreButton index={2} myquotes={true} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Profile;
+
+
+{/* <div className="timeline-likes">
                           <div className="stats-right">
                             <span className="stats-text">259 Shares</span>
                             <span className="stats-text">21 Comments</span>
@@ -104,12 +114,12 @@ function Profile() {
                             <span className="stats-total">4.3k</span>
                           </div>
                         </div> */}
-                        {/* <div className="timeline-footer">
+{/* <div className="timeline-footer">
                           <a href="#" className="m-r-15 text-inverse-lighter"><i className="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
                           <a href="#" className="m-r-15 text-inverse-lighter"><i className="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
                           <a href="#" className="m-r-15 text-inverse-lighter"><i className="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
                         </div> */}
-                        {/* <div className="timeline-comment-box">
+{/* <div className="timeline-comment-box">
                           <div className="user"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="User" /></div>
                           <div className="input">
                             <form>
@@ -122,18 +132,3 @@ function Profile() {
                             </form>
                           </div>
                         </div> */}
-                      </div>
-                    </li>
-                    {/* Repeat the above structure for other timeline items */}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default Profile;

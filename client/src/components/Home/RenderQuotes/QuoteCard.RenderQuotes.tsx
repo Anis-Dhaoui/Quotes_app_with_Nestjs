@@ -9,7 +9,11 @@ function QuoteCard(props: any) {
                 <div className="t-bq-quote t-bq-quote-jasper">
                     <div className="row t-bq-quote-jasper-pattern">
                         <div className="col d-flex ml-1 justify-content-start quotation">
-                            &#10077;
+                            <div className="timeline-header">
+                                <span className="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="User" /></span>
+                                <span className="username"><a href="#">{`Anis Dhaoui`}</a> <small></small></span>
+                                {/* <span className="pull-right text-muted">18 Views</span> */}
+                            </div>
                         </div>
                         <div className="col mr-1 d-flex justify-content-end">
                             <i className="engraved-postedAt">{moment(props.item.createdAt).fromNow()}</i>
