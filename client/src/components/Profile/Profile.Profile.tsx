@@ -85,6 +85,7 @@ function Profile() {
                         </div>
                         <div className="timeline-content">
                           {renderQuotes}
+                          <LoadMoreButton index={2} myquotes={true} />
                         </div>
                         {/* <div className="timeline-likes">
                           <div className="stats-right">

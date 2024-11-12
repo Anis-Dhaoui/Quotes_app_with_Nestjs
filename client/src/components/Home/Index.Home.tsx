@@ -30,7 +30,7 @@ function Index() {
     return (
         <>
             <RenderQuotes loading={loading} quotes={quotes} error={error} />
-            <LoadMoreButton />
+            <LoadMoreButton index={12} myquotes={false} />
         </>
     )
 }

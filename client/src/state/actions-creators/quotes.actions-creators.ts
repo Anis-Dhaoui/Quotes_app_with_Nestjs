@@ -54,7 +54,7 @@ export const fetchPopularQuotes = () => {
 }
 
 
-export const LoadMoreQuotesSuccess = (p: number, l: number, c?: string, isAuthenticated?: boolean) => {
+export const LoadMoreQuotes = (p: number, l: number, c?: string, isAuthenticated?: boolean, myquotes: boolean = false) => {
 
     return async (dispatch: Dispatch<ACTION>) => {
         dispatch({
@@ -66,7 +66,7 @@ export const LoadMoreQuotesSuccess = (p: number, l: number, c?: string, isAuthen
             if (!isAuthenticated) {
                 data = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes?page=${p}&limit=${l}&category=${c}`);
             } else {
-                data = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes/interests/?page=${p}&limit=${l}&category=${c}`);
+                data = await axiosInstance.get(`${process.env.REACT_APP_BASE_URL}/quotes/interests/?page=${p}&limit=${l}&category=${c}&myquotes=${myquotes}`);
             }
             dispatch({
                 type: quotesActionsTypes.LOAD_MORE_SUCCESS,

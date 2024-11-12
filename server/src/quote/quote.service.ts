@@ -91,12 +91,10 @@ export class QuoteService {
 
   // The authenticated will fetch all the quotes and the quotes will be sorted according to his interests list
   async findAllByUsersInterests(interests, userId, query): Promise<any> {
+    const matchCond = query.myquotes === 'true' ? { owner: userId, status: 'allowed' } : {status: 'allowed'};
     let quoteData = await this.quoteModel.aggregate([
       {
-        $match: {
-          status: "allowed",
-          ...(query.myquotes == 'true' ? { owner: userId } : {}) // This condition is when the user visit his profile only his own quotes will be fetched from the database
-        }
+        $match: matchCond
       },
       {
         $addFields: {
@@ -128,7 +126,7 @@ export class QuoteService {
       }
     ])
 
-    const docCount = await this.quoteModel.countDocuments({ status: 'allowed' });
+    const docCount = await this.quoteModel.countDocuments(matchCond);
     return { quoteData, docCount };
   }
 
