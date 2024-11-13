@@ -182,3 +182,9 @@ section.t-bq-section {
         margin-left: -15px;
     }
 }
+
+@media screen and (max-width: 573px) {
+    section.t-bq-section {
+        margin-left: -12px;
+    }
+}
