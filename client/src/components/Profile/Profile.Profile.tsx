@@ -5,32 +5,43 @@ import { fetchQuotes } from 'state/actions-creators/quotes.actions-creators';
 import RenderQuotes from 'components/Home/RenderQuotes/RenderQuotes';
 import LoadMoreButton from 'components/Home/LoadMoreButton';
 import QuoteCard from 'components/Home/RenderQuotes/QuoteCard.RenderQuotes';
+import moment from 'moment';
 
 function Profile() {
 
   const dispatch = useAppDispatch();
   const { loading, quotes, error } = useAppSelector(state => state.quotes);
   const { isAuthenticated, user } = useAppSelector(state => state.login);
-  console.log(user?.user)
+
   useEffect(() => {
     dispatch(fetchQuotes(0, 3, "", isAuthenticated, true));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
+  // const date = moment()
+
 
   let renderQuotes = quotes?.quotesData?.map((item: any) => {
+    const postedAtDate = moment(item.createdAt).calendar(null, {
+      sameDay: '[Today]',
+      lastDay: '[Yesterday]',
+      lastWeek: 'dddd',
+      sameElse: 'MMMM Do YYYY'
+    });;
+
+    const postedAtTime = moment(item.createdAt).format('hh:mm')
     return (
       <li>
         <div className="timeline-time">
-          <span className="date">today</span>
-          <span className="time">04:20</span>
+          <span className="date">{postedAtDate}</span>
+          <span className="time">{postedAtTime}</span>
         </div>
         <div className="timeline-icon">
           <span>&nbsp;</span>
         </div>
         <div className="timeline-body">
           <div className="timeline-content">
-          <QuoteCard item={item} />
+            <QuoteCard item={item} />
           </div>
         </div>
       </li>
@@ -80,7 +91,7 @@ function Profile() {
                 <div className="tab-pane fade active show" id="profile-post">
                   {/* Timeline */}
                   <ul className="timeline">
-                      {renderQuotes}
+                    {renderQuotes}
                     {/* Repeat the above structure for other timeline items */}
                   </ul>
                 </div>
