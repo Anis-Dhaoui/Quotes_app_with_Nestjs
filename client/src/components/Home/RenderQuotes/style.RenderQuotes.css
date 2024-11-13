@@ -125,7 +125,7 @@ section.t-bq-section {
     -webkit-background-clip: text;
     -moz-background-clip: text;
     background-clip: text;
-    /* color: transparent; */
+    color: #919191;
     text-shadow: rgba(245, 245, 245, 0.72) 0px 0px 0px;
 }
 
@@ -156,10 +156,14 @@ section.t-bq-section {
     margin: 12px 12px 7px 14px;
 }
 
-.username {
+.timeline-header .username,
+.timeline-header .username a {
     font-size: 16px;
     font-weight: 600;
-    color: #2d353c
+    color: #ffffff12 !important;
+    background: url('./img/hexabump.png') repeat;
+    background-clip: text;
+    -webkit-background-clip: text;
 }
 
 

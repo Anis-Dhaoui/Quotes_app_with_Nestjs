@@ -530,10 +530,7 @@ select.form-control:not([size]):not([multiple]) {
     line-height: 30px
 }
 
-.timeline-header .username,
-.timeline-header .username a {
-    color: #2d353c
-}
+
 
 .timeline img {
     max-width: 100%;

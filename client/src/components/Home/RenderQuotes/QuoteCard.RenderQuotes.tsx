@@ -1,8 +1,10 @@
 import React from "react";
 import InterractionBtns from 'components/Interraction-btns/InterractionBtns'
 import moment from 'moment'
+import { Link } from "react-router-dom";
 
 function QuoteCard(props: any) {
+    console.log(props)
     return (
         <section className="t-bq-section" id="jasper">
             <div className="t-bq-wrapper t-bq-wrapper-boxed">
@@ -11,13 +13,13 @@ function QuoteCard(props: any) {
                         <div className="col d-flex ml-1 justify-content-start quotation">
                             <div className="timeline-header">
                                 <span className="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="User" /></span>
-                                <span className="username"><a href="#">{`Anis Dhaoui`}</a> <small></small></span>
+                                <span className="username"><Link to="">{`${props.item.quoteOwner[0].firstName} ${props.item.quoteOwner[0].lastName}`}</Link> <small></small></span>
                                 {/* <span className="pull-right text-muted">18 Views</span> */}
                             </div>
                         </div>
-                        <div className="col mr-1 d-flex justify-content-end">
+                        {/* <div className="col mr-1 d-flex justify-content-end">
                             <i className="engraved-postedAt">{moment(props.item.createdAt).fromNow()}</i>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="t-bq-quote-jasper-userpic"></div>
