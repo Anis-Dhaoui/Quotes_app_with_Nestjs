@@ -6,6 +6,7 @@ import RenderQuotes from 'components/Home/RenderQuotes/RenderQuotes';
 import LoadMoreButton from 'components/Home/LoadMoreButton';
 import QuoteCard from 'components/Home/RenderQuotes/QuoteCard.RenderQuotes';
 import moment from 'moment';
+import Loader from 'shared/loader/loader';
 
 function Profile() {
 
@@ -18,16 +19,15 @@ function Profile() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
-
   let renderQuotes = quotes?.quotesData?.map((item: any) => {
     const postedAtDate = moment(item.createdAt).calendar(null, {
       sameDay: '[Today]',
       lastDay: '[Yesterday]',
       lastWeek: 'dddd',
       sameElse: 'MMMM Do YYYY'
-    });;
+    });
 
-    const postedAtTime = moment(item.createdAt).format('hh:mm')
+    const postedAtTime = moment(item.createdAt).format('hh:mm');
     return (
       <li>
         <div className="timeline-time">
@@ -89,7 +89,15 @@ function Profile() {
                 <div className="tab-pane fade active show" id="profile-post">
                   {/* Timeline */}
                   <ul className="timeline">
-                    {renderQuotes}
+                    {
+                      loading ? <Loader /> : null
+                    }
+                    {
+                      error ? <div className="alert alert-danger my-5 mx-5" role="alert"> {error} </div> : null
+                    }
+                    {
+                      renderQuotes
+                    }
                     {/* Repeat the above structure for other timeline items */}
                   </ul>
                 </div>

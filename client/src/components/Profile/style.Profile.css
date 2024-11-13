@@ -509,8 +509,8 @@ select.form-control:not([size]):not([multiple]) {
     display: block;
     position: absolute;
     border: 10px solid #9f060600;
-    border-right-color: #2e3236;
-    left: 20px;
+    border-right-color: #100f0f;
+    left: 21px;
     top: 42px;
 }
 
