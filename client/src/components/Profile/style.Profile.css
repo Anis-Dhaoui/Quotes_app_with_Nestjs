@@ -149,7 +149,8 @@
     list-style-type: none;
     margin: -10px 0 0;
     padding: 0 0 0 140px;
-    transition: padding 0.3s ease; /* Adds smooth transition for padding */
+    transition: padding 0.3s ease;
+    /* Adds smooth transition for padding */
     white-space: nowrap;
     border-radius: 0
 }

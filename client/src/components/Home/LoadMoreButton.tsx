@@ -8,13 +8,13 @@ function LoadMoreButton(props: any) {
     const { quotes, docCount, LoadMoreQuotesLoading, loadMoreError } = useAppSelector(state => state.quotes);
     const { isAuthenticated } = useAppSelector(state => state.login);
 
-    var [indexLoadMore, setIndexLoadMore] = useState(0);
+    var [indexLoadMore, setIndexLoadMore] = useState(props.index);
 
     const handleLoadMorePage = () => {
-        setIndexLoadMore(props.index);
+        setIndexLoadMore((prev: any) => prev + props.index);
         dispatch(LoadMoreQuotes(indexLoadMore, props.index, "", isAuthenticated, props.myquotes));
     }
-
+    console.log(indexLoadMore)
     if (LoadMoreQuotesLoading) {
         return <Loader />
     }

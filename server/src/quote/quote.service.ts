@@ -91,7 +91,7 @@ export class QuoteService {
 
   // The authenticated will fetch all the quotes and the quotes will be sorted according to his interests list
   async findAllByUsersInterests(interests, userId, query): Promise<any> {
-    const matchCond = query.myquotes === 'true' ? { owner: userId, status: 'allowed' } : {status: 'allowed'};
+    const matchCond = query.myquotes === 'true' ? { owner: userId, status: 'allowed' } : { status: 'allowed' };
     let quoteData = await this.quoteModel.aggregate([
       {
         $match: matchCond
@@ -110,10 +110,10 @@ export class QuoteService {
       { $sort: { "sort-key": 1, "createdAt": -1, "_id": 1 } }, // Sort based on the custom order with randomness
       { $unset: ["sort-key", "__v"] }, // Remove the added field after sorting
       {
-        $skip: +query.page // Skip the first 5 documents
+        $skip: +query.page // Skip the first n documents
       },
       {
-        $limit: +query.limit // Limit to 10 documents
+        $limit: +query.limit // Limit to N documents
       },
       {
         $lookup: {

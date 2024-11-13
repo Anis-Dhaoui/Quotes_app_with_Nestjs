@@ -18,8 +18,6 @@ function Profile() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
-  // const date = moment()
-
 
   let renderQuotes = quotes?.quotesData?.map((item: any) => {
     const postedAtDate = moment(item.createdAt).calendar(null, {
@@ -95,7 +93,7 @@ function Profile() {
                     {/* Repeat the above structure for other timeline items */}
                   </ul>
                 </div>
-                <LoadMoreButton index={2} myquotes={true} />
+                <LoadMoreButton index={3} myquotes={true} />
               </div>
             </div>
           </div>
