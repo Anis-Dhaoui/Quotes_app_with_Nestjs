@@ -1,0 +1,98 @@
+#new-quote-form.t-bq-section {
+    padding: 15px;
+}
+
+#new-quote-form .t-bq-wrapper.t-bq-wrapper-boxed {
+    margin: 0 auto;
+}
+
+#new-quote-form .t-bq-quote-jasper {
+    position: relative;
+    box-shadow: 2px 8px 24px #3a3a3ac4;
+    border-radius: 10px;
+    width: 100%;
+    overflow: hidden;
+    height: 342px;
+}
+
+#new-quote-form .t-bq-quote-jasper .t-bq-quote-jasper-pattern {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 80px;
+    align-items: center;
+    justify-content: flex-start;
+    background: url('./img/hexabump.png') repeat;
+    border-radius: 10px 10px 0 0;
+}
+
+#new-quote-form .t-bq-quote-jasper .t-bq-quote-jasper-userpic {
+    position: absolute;
+    top: 45px;
+    left: calc(50% - 35px);
+    width: 70px;
+    height: 70px;
+    background: url("./img/strug.jpg") center center no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+#new-quote-form .t-bq-quote-jasper .t-bq-quote-jasper-base {
+    background: #ffffff;
+    padding: 40px 20px;
+    font-size: 11pt;
+    line-height: 1.62em;
+    border-radius: 0 0 10px 10px;
+}
+
+#new-quote-form #card-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: grid;
+    margin-left: -5px;
+}
+
+#new-quote-form .userimage {
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    overflow: hidden;
+    margin: 12px 12px 7px 14px;
+}
+
+#new-quote-form .form-timeline-header .username {
+    font-size: 16px;
+    font-weight: 600;
+    color: #c0c0c0 !important;
+}
+
+#new-quote-form .form-timeline-header {
+    padding-bottom: 10px;
+    line-height: 30px
+}
+
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+    #new-quote-form .t-bq-quote-jasper .t-bq-quote-jasper-base {
+        padding-left: 30px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #new-quote-form #card-footer {
+        margin-left: -15px;
+    }
+}
+
+@media screen and (max-width: 573px) {
+    #new-quote-form.t-bq-section {
+        margin-left: -12px;
+    }
+}

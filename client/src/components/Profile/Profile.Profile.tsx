@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import './style.Profile.css'; // Ensure to import necessary CSS files
+import './style.Profile.css';
 import { useAppDispatch, useAppSelector } from 'state/store.state';
 import { fetchQuotes } from 'state/actions-creators/quotes.actions-creators';
-import RenderQuotes from 'components/Home/RenderQuotes/RenderQuotes';
 import LoadMoreButton from 'components/Home/LoadMoreButton';
 import QuoteCard from 'components/Home/RenderQuotes/QuoteCard.RenderQuotes';
 import moment from 'moment';
 import Loader from 'shared/loader/loader';
+import NewQuoteForm from 'components/PostNewQuote/NewQuoteForm.PostNewQuote';
 
 function Profile() {
 
@@ -24,7 +24,7 @@ function Profile() {
       sameDay: '[Today]',
       lastDay: '[Yesterday]',
       lastWeek: 'dddd',
-      sameElse: 'MMMM Do YYYY'
+      sameElse: 'MMM/DD/YY'
     });
 
     const postedAtTime = moment(item.createdAt).format('hh:mm');
@@ -47,67 +47,73 @@ function Profile() {
   })
 
   return (
-    <div className="">
+    <>
       <div className="row">
         <div className="col-md-12">
-          <div id="content" className="content content-full-width">
-            {/* Profile */}
-            <div className="profile">
-              <div className="profile-header">
-                {/* Profile Header Cover */}
-                <div className="profile-header-cover"></div>
+          {/* Profile */}
+          <div className="profile">
+            <div className="profile-header">
+              {/* Profile Header Cover */}
+              <div className="profile-header-cover"></div>
 
-                {/* Profile Header Content */}
-                <div className="profile-header-content">
-                  {/* Profile Header Image */}
-                  <div className="profile-header-img">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Profile" />
-                  </div>
-
-                  {/* Profile Header Info */}
-                  <div className="profile-header-info">
-                    <h4 className="m-t-10 m-b-5">{`${user?.user.firstName} ${user?.user.lastName}`}</h4>
-                    <p className="m-b-10">{user?.user.email}</p>
-                    <button className="btn btn-sm btn-info mb-2">Edit Profile</button>
-                  </div>
+              {/* Profile Header Content */}
+              <div className="profile-header-content">
+                {/* Profile Header Image */}
+                <div className="profile-header-img">
+                  <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Profile" />
                 </div>
 
-                {/* Profile Header Tabs */}
-                <ul className="profile-header-tab nav nav-tabs">
-                  <li className="nav-item"><a href="https://www.bootdey.com/snippets/view/bs4-profile-with-timeline-posts" target="_blank" rel="noopener noreferrer" className="nav-link_">POSTS</a></li>
-                  <li className="nav-item"><a href="https://www.bootdey.com/snippets/view/bs4-profile-about" target="_blank" rel="noopener noreferrer" className="nav-link_">ABOUT</a></li>
-                  <li className="nav-item"><a href="https://www.bootdey.com/snippets/view/profile-photos" target="_blank" rel="noopener noreferrer" className="nav-link_">PHOTOS</a></li>
-                  <li className="nav-item"><a href="https://www.bootdey.com/snippets/view/profile-videos" target="_blank" rel="noopener noreferrer" className="nav-link_">VIDEOS</a></li>
-                  <li className="nav-item"><a href="https://www.bootdey.com/snippets/view/bs4-profile-friend-list" target="_blank" rel="noopener noreferrer" className="nav-link_ active show">FRIENDS</a></li>
+                {/* Profile Header Info */}
+                <div className="profile-header-info">
+                  <h4 className="m-t-10 m-b-5">{`${user?.user.firstName} ${user?.user.lastName}`}</h4>
+                  <p className="m-b-10">{user?.user.email}</p>
+                  <button className="btn btn-sm btn-info mb-2">Edit Profile</button>
+                </div>
+              </div>
+
+              {/* Profile Header Tabs */}
+              <ul className="profile-header-tab nav nav-tabs">
+                <li className="nav-item"><a href="https://www.bootdey.com/snippets/view/bs4-profile-with-timeline-posts" target="_blank" rel="noopener noreferrer" className="nav-link_">POSTS</a></li>
+                <li className="nav-item"><a href="https://www.bootdey.com/snippets/view/bs4-profile-about" target="_blank" rel="noopener noreferrer" className="nav-link_">ABOUT</a></li>
+                <li className="nav-item"><a href="https://www.bootdey.com/snippets/view/profile-photos" target="_blank" rel="noopener noreferrer" className="nav-link_">PHOTOS</a></li>
+                <li className="nav-item"><a href="https://www.bootdey.com/snippets/view/profile-videos" target="_blank" rel="noopener noreferrer" className="nav-link_">VIDEOS</a></li>
+                <li className="nav-item"><a href="https://www.bootdey.com/snippets/view/bs4-profile-friend-list" target="_blank" rel="noopener noreferrer" className="nav-link_ active show">FRIENDS</a></li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Profile Content */}
+          <div className="profile-content">
+            <div className="tab-content p-0">
+              <div className="tab-pane fade active show" id="profile-post">
+                {/* Timeline */}
+                <ul className="timeline">
+                  <li>
+                    <div className="timeline-body">
+                      <div className="timeline-content">
+                        <NewQuoteForm />
+                      </div>
+                    </div>
+
+                  </li>
+                  {
+                    loading ? <Loader /> : null
+                  }
+                  {
+                    error ? <div className="alert alert-danger my-5 mx-5" role="alert"> {error} </div> : null
+                  }
+                  {
+                    renderQuotes
+                  }
+                  {/* Repeat the above structure for other timeline items */}
                 </ul>
               </div>
-            </div>
-
-            {/* Profile Content */}
-            <div className="profile-content">
-              <div className="tab-content p-0">
-                <div className="tab-pane fade active show" id="profile-post">
-                  {/* Timeline */}
-                  <ul className="timeline">
-                    {
-                      loading ? <Loader /> : null
-                    }
-                    {
-                      error ? <div className="alert alert-danger my-5 mx-5" role="alert"> {error} </div> : null
-                    }
-                    {
-                      renderQuotes
-                    }
-                    {/* Repeat the above structure for other timeline items */}
-                  </ul>
-                </div>
-                <LoadMoreButton index={3} myquotes={true} />
-              </div>
+              <LoadMoreButton index={3} myquotes={true} />
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

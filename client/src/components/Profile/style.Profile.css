@@ -524,11 +524,6 @@ select.form-control:not([size]):not([multiple]) {
     border-radius: 0 0 6px 6px
 }
 
-.timeline-header {
-    padding-bottom: 10px;
-    border-bottom: 1px solid #e2e7eb;
-    line-height: 30px
-}
 
 
 

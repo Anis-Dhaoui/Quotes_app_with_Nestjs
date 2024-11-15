@@ -1,5 +1,4 @@
 import React from 'react'
-import './style.RenderQuotes.css'
 import QuoteCard from './QuoteCard.RenderQuotes'
 
 
